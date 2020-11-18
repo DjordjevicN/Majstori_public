@@ -1,0 +1,59 @@
+.loginWrapper {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.loginAvatar {
+  width: 50px;
+}
+.loginTitle {
+  margin: 10px 0 30px 0;
+}
+.form {
+  /* max-width: 700px; */
+  width: 30%;
+  min-width: 250px;
+  margin: 0 auto;
+  padding: 100px 50px;
+}
+.formItem {
+  margin: 10px 0;
+}
+.formItemLogin {
+  width: 100%;
+}
+.actions {
+  /* font-size: 10px; */
+  display: flex;
+  justify-content: space-between;
+}
+.actions Link {
+  margin: 100px;
+}
+.linkBtn {
+  margin: 10px 0;
+  text-decoration: "none";
+}
+.signupButton {
+  background-color: var(--green1);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  text-decoration: none;
+  color: var(--shade1);
+}
+.signupButton:hover {
+  background-color: var(--green2);
+}
+.formButtonLogin {
+  width: 100%;
+  border: none;
+  background-color: var(--green1);
+  color: var(--shade1);
+  padding: 10px;
+  cursor: pointer;
+}
+.formButtonLogin:hover {
+  background-color: var(--green2);
+}

@@ -1,0 +1,153 @@
+.homeHeroWrapper {
+  display: grid;
+  grid-template-columns: minmax(250px, 60%) 1fr;
+  background-image: url("/images/shoping.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+}
+.HomeSignupWrapper {
+  display: grid;
+  place-items: center;
+}
+.HomeSignupForm {
+  background-color: var(--shade1);
+  opacity: 1;
+  padding: 30px 30px;
+  border-radius: 2px;
+  box-shadow: 1px 3px 8px #888888;
+  /* max-width: 600px; */
+  min-width: 300px;
+}
+.HomeSignupTitle {
+  text-align: center;
+  padding: 20px 0;
+  color: var(--shade6);
+}
+.HomeSignupLinkBtn {
+  font-size: 13px;
+  padding: 10px;
+  /* text-decoration: none; */
+}
+.signupLegal {
+  font-size: 10px;
+  padding: 20px 0;
+}
+.homePromisesWrapper {
+  margin-top: 50px;
+}
+.homePromisesContent {
+  text-align: center;
+  background-image: url("/images/popJob2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.homeHeroTitle {
+  display: grid;
+  place-items: center;
+}
+.homeHeroTitle h1 {
+  color: var(--shade1);
+  font-size: 56px;
+  font-weight: 400;
+}
+.homePromisesTitle {
+  padding: 50px 0 90px 0;
+  font-weight: 400;
+  color: var(--shade6);
+}
+.homePromisesItems {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 90px;
+}
+.homePromisesItem {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 1px 3px 8px #888888;
+  background-color: var(--green3);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.homePromisesItem h4 {
+  color: var(--shade1);
+  font-size: 12px;
+  font-weight: 300;
+}
+.homePromisesItemIcon {
+  font-size: 55px;
+  color: var(--green1);
+}
+/* ******************  */
+.homeSplitBannerContent {
+  text-align: center;
+}
+.homeSplitBannerTitle {
+  font-weight: 400;
+  font-size: 34px;
+  color: var(--shade6);
+  padding: 30px 0 90px 0;
+}
+.homeSplitBannerGrid {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.homeSplitBannerTextBlock {
+  display: grid;
+  place-items: center;
+}
+.homeSplitBannerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.homeSplitBannerIcon {
+  color: var(--green1);
+  padding-right: 20px;
+  font-size: 20px;
+}
+.letsStartCTAWrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+.letsStartCTATitle {
+  padding-bottom: 90px;
+}
+.letsStartCTATitle h4 {
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--shade6);
+}
+.letsStartCTAItems {
+  display: flex;
+  justify-content: space-evenly;
+}
+.letsStartCTAWrapper {
+  background-color: aliceblue;
+  padding: 60px 0;
+}
+.letsStartCTAItem h6 {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--green6);
+}
+.letsStartCTAItem p {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--green6);
+}
+.letsStartCTAIcon {
+  font-size: 60px;
+  color: var(--blue1);
+}
+.letsStartCTAButton {
+  background-color: var(--blue1);
+  margin-top: 100px;
+  padding: 20px 40px;
+}

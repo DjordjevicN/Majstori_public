@@ -1,0 +1,69 @@
+.dashServicesTitle {
+  text-align: center;
+  padding: 20px 0 20px 0;
+  color: var(--shade6);
+  font-weight: 900;
+  background-color: var(--shade1);
+  width: 100%;
+}
+.dashServicesCard {
+  margin: 20px;
+  border-left: 6px solid var(--green2);
+  box-shadow: 1px 3px 8px #888888;
+}
+.dashServicesCard:hover {
+  border-left: 6px solid var(--blue1);
+  background-color: var(--shade1);
+}
+.dashServicesCardCategory {
+  padding: 10px;
+}
+.dashServicesCardCategory h3 {
+  color: var(--shade6);
+  margin-bottom: 5px;
+}
+.dashServicesCardCategory h5 span {
+  color: var(--orange1);
+}
+.dashServicesCardCategory p {
+  padding-top: 15px;
+  font-size: 13px;
+}
+.dashServicesAction {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.dashServicesActionIcon {
+  background-color: var(--orange0);
+  color: var(--shade1);
+  padding: 5px;
+  cursor: pointer;
+}
+.dashServicesActionIcon:hover {
+  background-color: var(--orange1);
+}
+.serviceOptionsTab {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 0;
+}
+.serviceOptionsTab p {
+  padding-left: 15px;
+  color: #888888;
+}
+.servicesFormBtn {
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--shade1);
+  background-color: var(--green1);
+  font-weight: 500;
+  margin-bottom: 50px;
+}
+.servicesFormBtn:hover {
+  background-color: var(--green2);
+}

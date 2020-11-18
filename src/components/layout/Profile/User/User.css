@@ -1,0 +1,45 @@
+.profileDashCard {
+  margin-top: 30px;
+  box-shadow: 1px 3px 8px #888888;
+}
+.profileInformationDash {
+  display: flex;
+}
+.profileDashName {
+  color: var(--shade6);
+  padding-bottom: 5px;
+}
+.dashSmallInfo {
+  font-size: 13px;
+}
+.dashInformationBlock {
+  margin-left: 10px;
+}
+.UserItem span {
+  color: var(--blue1);
+}
+.bottomDashInformation {
+  margin: 15px;
+}
+.bottomDashInformation h3 {
+  color: var(--shade6);
+}
+.bottomDashInformation p {
+  font-size: 13px;
+  padding-bottom: 20px;
+}
+.logoutUserDiv {
+  margin-top: 10px;
+}
+.logoutUser {
+  color: var(--orange1);
+}
+.dashImage {
+  width: 150px;
+}
+.taskerOnline {
+  color: var(--lightGreen);
+}
+.taskerOffline {
+  color: var(--redRegular);
+}

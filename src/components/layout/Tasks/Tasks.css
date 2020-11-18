@@ -1,0 +1,144 @@
+.root {
+  margin-top: 5%;
+}
+.taskCard {
+  width: 50%;
+  margin: 20px auto;
+  background-color: rgb(255, 255, 255);
+  /* border-radius: 8px; */
+  box-shadow: 1px 3px 8px #888888;
+  border-left: 6px solid var(--green2);
+}
+.taskCard:hover {
+  border-left: 6px solid var(--blue1);
+  background-color: var(--shade1);
+}
+.taskCardContent {
+  padding: 20px;
+}
+.taskCardTitle {
+  font-size: 20px;
+  color: var(--shade5);
+  margin-bottom: 10px;
+}
+.taskCardInfo1 {
+  display: flex;
+  justify-content: flex-start;
+}
+.taskCardItem {
+  margin-right: 20px;
+  font-size: 12px;
+}
+.taskCardItem span {
+  color: var(--green1);
+}
+.price {
+  color: var(--orange1);
+  font-weight: 600;
+}
+.taskCardBody {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.taskCardBody span {
+  color: var(--blue1);
+}
+.hour {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.taskCardAction {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.taskActionBtn {
+  font-size: 10px;
+  color: var(--orange1);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.applyBtn {
+  color: var(--shade1);
+  background-color: var(--green1);
+  border: none;
+  padding: 5px 30px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.applyBtn:hover {
+  background-color: var(--green2);
+}
+.searchInputWrapper {
+  margin: 0 auto;
+}
+.searchInput {
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+}
+.selectTab {
+  width: 100%;
+  margin: 0 auto;
+}
+.searchButtons {
+  border: none;
+  color: var(--shade1);
+  background-color: var(--green1);
+  width: 90px;
+  margin-left: 20px;
+  cursor: pointer;
+  box-shadow: 1px 3px 8px #888888;
+}
+.searchButtons:hover {
+  background-color: var(--green2);
+}
+.closeSearch {
+  border: none;
+  background-color: var(--orange1);
+  padding: 3px 8px;
+  color: var(--shade1);
+  cursor: pointer;
+}
+.closeSearch:hover {
+  background-color: var(--orange0);
+}
+.applyModalFormWrapper {
+  background-color: rgba(39, 39, 39, 0.747);
+  position: fixed;
+  top: 0;
+  z-index: 101;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+}
+.applyModalForm {
+  width: 30%;
+  background-color: var(--shade1);
+  padding: 40px;
+}
+.applyInputs {
+  margin: 20px 0 10px 0;
+}
+.closeModal {
+  color: var(--orange1);
+  cursor: pointer;
+  float: right;
+}
+.applyForm h6 {
+  color: var(--shade5);
+}
+.applyFormItem {
+  margin-top: 15px;
+}
+.applyFormActions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+  color: var(--shade1);
+  background-color: var(--green1);
+  font-size: 10px;
+  cursor: pointer;
+}

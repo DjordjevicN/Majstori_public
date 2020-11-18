@@ -1,0 +1,50 @@
+.footerWrapper {
+  text-align: center;
+  background-color: #3c3c3c;
+  padding-bottom: 30px;
+}
+
+.footerContentItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  padding-top: 40px;
+}
+.footerMenuItem {
+  color: var(--shade1);
+  margin: 0 auto;
+}
+.footerIcons {
+  display: flex;
+}
+.footerIcon {
+  font-size: 15px;
+  color: var(--shade5);
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--shade5);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.footerIcon:hover {
+  color: var(--shade4);
+  border: 1px solid var(--shade4);
+  border-radius: 10px;
+}
+.footerAboutMe {
+  color: var(--shade4);
+  font-size: 13px;
+}
+.footerMenuUl {
+  color: var(--shade4);
+}
+.footerMenuUl li {
+  margin-top: 20px;
+  list-style: none;
+  text-align: left;
+}
+.footerMenuLi {
+  color: var(--shade4);
+  text-decoration: underline;
+  font-size: 15px;
+}

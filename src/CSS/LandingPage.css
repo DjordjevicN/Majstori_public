@@ -1,0 +1,197 @@
+.shader h1 {
+  font-size: 40px;
+  width: 70%;
+  margin: 0 auto;
+  text-shadow: 2px 2px #000000a9;
+  color: white;
+}
+
+.mapWrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  margin: 100px 0 20px 0;
+}
+.mapWrapper {
+  z-index: 90;
+}
+/* ***********************************  */
+.popularTasksWrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+.popularTasksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.popularTasks {
+  margin: 20px 20px;
+}
+.popularTasksCardImage {
+  width: 100%;
+}
+.popularTasksCardTitle {
+  color: var(--lightGreen);
+}
+.popularTasksCardSubtitleTitle {
+  font-size: 13px;
+  padding: 10px 0px 10px 0;
+}
+.banner {
+  background-color: rgb(243, 252, 252);
+  margin: 100px 0;
+}
+.headerBanner {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.bannerSplit {
+  background-color: rgb(247, 251, 255);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 200px;
+}
+.bannerSplitInformation {
+  margin: 0 auto;
+  width: 40%;
+}
+.bannerListWrap {
+  margin-top: 20px;
+}
+.bannerTitle {
+  margin: 30px 0;
+  font-size: 2.5vw;
+}
+.bannerList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bannerCheck {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+.bannerImageWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.bannerImage {
+  width: 100%;
+}
+.topTaskersWrapper {
+  margin-top: 200px;
+}
+
+.bannerImage {
+  width: 100%;
+}
+.bannerLeft {
+  width: 80%;
+  margin: 50px auto;
+  padding: 40px 0;
+  font-size: 1.1vw;
+}
+.bannerSubText {
+  width: 80%;
+  margin: 0 auto;
+}
+.topTackers {
+  width: 100%;
+  margin: 50px auto;
+}
+.topTaskerGrid {
+  /* display: grid;
+  grid-template-columns: repeat(1, 1fr); */
+}
+.topCards {
+  margin: 20px 20px 0 0px;
+  border-radius: 8px;
+  border: 1px solid rgb(236, 236, 236);
+  box-shadow: 2px 2px 1px 1px rgba(51, 51, 51, 0.2);
+}
+
+.topCardInfo {
+  width: 90%;
+  margin: 10px auto;
+}
+.topInformation {
+  margin: 0 auto;
+}
+.topInformation1 {
+  margin: 15px;
+}
+.topInformation2 {
+  display: flex;
+  font-size: 15px;
+  color: var(--lightGreen);
+}
+.topInformation2 p {
+  margin-left: 15px;
+}
+.topCardAvatarWrap {
+  text-align: center;
+}
+.avatar {
+  width: 100%;
+}
+.topTackers {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  width: 90%;
+  margin: 0 auto;
+}
+.topCardMidSection {
+  margin: 10px;
+}
+.topCardMidSectionTask {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.topCardMidSectionPrice {
+  color: var(--lightGreen);
+}
+.topCardBottomSection {
+  margin: 10px;
+}
+.topCardBottomSectionTitle {
+  margin-bottom: 5px;
+}
+.ctaBannerWrap {
+  width: 100%;
+  background-color: rgb(243, 252, 252);
+}
+.ctaBanner {
+  width: 50%;
+  text-align: center;
+  margin: 50px auto;
+  padding: 50px 0;
+}
+
+.ctaBannerTitle {
+  text-align: center;
+  margin: 10px;
+}
+.ctaButton {
+  text-align: center;
+  margin: 40px 0;
+}
+@media screen and (min-width: 780px) {
+  .popularTasksGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .popularTasks {
+    margin: 5px 5px;
+  }
+  .banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

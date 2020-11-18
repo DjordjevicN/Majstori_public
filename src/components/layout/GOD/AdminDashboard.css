@@ -1,0 +1,27 @@
+.adminDashboardWrapper {
+}
+.adminContent {
+  width: 90%;
+  margin: 0 auto;
+}
+.newsSubmitBTN {
+  background-color: var(--green1);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--shade1);
+  cursor: pointer;
+}
+.newsForm {
+  width: 30%;
+  margin: 30px;
+  padding: 20px;
+  background-color: var(--shade1);
+}
+.newsInput {
+  width: 90%;
+  margin: 10px 0;
+  padding: 13px 0;
+  border: 1px solid var(--shade2);
+}

@@ -1,0 +1,68 @@
+.selectFormWrapper {
+  border: 1px solid var(--lightBorder);
+  border-radius: 5px;
+}
+.selectTab {
+  display: flex;
+  padding: 15px 5px;
+  cursor: pointer;
+  border: 1px solid rgb(189, 189, 189);
+  box-shadow: 1px 3px 8px #888888;
+}
+
+.selectTab p {
+  color: var(--lighterText);
+  padding-left: 9px;
+}
+.optionsWrapper {
+  display: block;
+  width: 28%;
+  box-shadow: 1px 3px 8px #888888;
+  border: 1px solid var(--lightBorder);
+  border-radius: 8px;
+  z-index: 101;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  height: 300px;
+  overflow-y: scroll;
+}
+.optionsWrapper::-webkit-scrollbar {
+  background-color: var(--lightGreen);
+  width: 5px;
+}
+.optionsWrapper::-webkit-scrollbar-track {
+  background: var(--lighterText);
+}
+.optionsWrapper::-webkit-scrollbar-thumb {
+  background: var(--lightGreen);
+}
+.optionsWrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--lightGreenHover);
+}
+
+.options {
+  padding: 20px;
+}
+.optionItems {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-bottom: 1px solid silver;
+}
+.optionItems:hover {
+  background-color: rgb(223, 223, 223);
+}
+.optionItemMain {
+  font-weight: 900;
+}
+.options button {
+  position: relative;
+  left: 90%;
+}
+.searchFormWrapper {
+  width: 100%;
+}
+.selectTab {
+  display: flex;
+  justify-content: space-between;
+}

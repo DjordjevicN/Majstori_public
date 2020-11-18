@@ -1,0 +1,31 @@
+.newsCard {
+  width: 90%;
+  margin: 20px auto;
+  box-shadow: 1px 3px 8px #888888;
+  border-left: 6px solid var(--orange1);
+}
+.newsCardContent {
+  padding: 10px;
+}
+
+.newsCardTitle {
+  text-align: center;
+  padding: 5px 0 20px 0;
+  color: var(--shade6);
+}
+.newsCardMessage {
+  font-size: 13px;
+  color: var(--shade5);
+}
+.newsCardDate {
+  font-size: 10px;
+  padding-top: 10px;
+  color: var(--blue1);
+}
+.newsTabTitle {
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  text-decoration: underline;
+  color: var(--shade5);
+}

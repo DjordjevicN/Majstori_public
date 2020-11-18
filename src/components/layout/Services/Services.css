@@ -1,0 +1,94 @@
+.serviceRoot {
+  margin-top: 30px;
+}
+.serviceCardWrapper {
+  margin-top: 30px;
+}
+
+.serviceCardLeftAvatar {
+  width: 200px;
+}
+.serviceCardPaper {
+  width: 50%;
+  margin: 30px auto;
+  display: flex;
+  border-left: 6px solid var(--blue1);
+  box-shadow: 1px 3px 8px #888888;
+}
+.serviceCardRight {
+  margin-left: 10px;
+}
+.serviceCardRightTopName {
+  color: var(--shade6);
+  margin-bottom: 10px;
+}
+.serviceCardRightTopElement {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 13px;
+}
+.serviceCardRightTopElement p {
+  margin-left: 10px;
+  color: var(--blue1);
+}
+.serviceCardRightTopPrice {
+  color: var(--orange1);
+  margin: 10px 0;
+  font-weight: 600;
+}
+.serviceCardRightBottom h4 {
+  color: var(--shade6);
+}
+.serviceCardRightBottom p {
+  font-size: 13px;
+  margin: 10px 0 20px 0;
+}
+.serviceProfileBtn {
+  width: 100%;
+  background-color: var(--green1);
+  text-align: center;
+  color: var(--shade1);
+  font-size: 13px;
+  padding: 10px 0;
+}
+.serviceProfileActions {
+  margin: 0 auto;
+  /* text-align: center; */
+  padding: 10px 5px;
+}
+.serviceUserInfo {
+  font-size: 12px;
+}
+.serviceUserInfo span {
+  color: var(--blue1);
+}
+.serviceUserInfoProfileBTN {
+  background-color: var(--green1);
+  color: var(--shade1);
+  text-align: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.noUser {
+  height: 70vh;
+  display: grid;
+  place-items: center;
+}
+.noUser p {
+  width: 50%;
+}
+.serviceUserBTN {
+  background-color: var(--green1);
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+.serviceUserBTNLink {
+  color: var(--shade1);
+  text-decoration: none;
+}
+.serviceUserBTN:hover {
+  background-color: var(--green2);
+}

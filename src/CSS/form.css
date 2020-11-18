@@ -1,0 +1,33 @@
+.profileFormWrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+.profileFormTitle {
+  text-align: left;
+  padding: 20px 0 0 0;
+  color: var(--superLight);
+}
+.formActionsWrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  color: var(--shade1);
+}
+
+.UserFormBtn {
+  font-size: 30px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.formDelete {
+  background-color: var(--orange1);
+}
+.formDelete:hover {
+  background-color: var(--orange0);
+}
+.formAdd {
+  background-color: var(--green1);
+}
+.formAdd:hover {
+  background-color: var(--green2);
+}
