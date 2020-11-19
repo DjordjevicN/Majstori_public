@@ -37,6 +37,7 @@ function User(props) {
                     <p>{authUser.aboutMe}</p>
                 </div>
             </div>
+
         </div>
     );
 }

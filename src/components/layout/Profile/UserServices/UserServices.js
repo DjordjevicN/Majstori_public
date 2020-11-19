@@ -3,9 +3,9 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import * as actionCreator from '../../../../store/actions/actions'
 import { connect } from 'react-redux'
 
+
 function UserServices(props) {
     let myServices = props.myServices;
-
     return (
         <div className="dashServicesWrapper">
             <p className="dashServicesTitle">Usluge Koje Nudim</p>
@@ -21,17 +21,17 @@ function UserServices(props) {
                         <p onClick={() => {
                             props.deleteService(item.service_ID);
                         }}><DeleteForeverIcon className="dashServicesActionIcon" /></p>
+
                     </div>
                 </div>
             ))}
-
-
         </div>
     );
 }
 const mapStateToProps = (state) => {
     return {
-        myServices: state.User.myServices
+        myServices: state.User.myServices,
+
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -39,5 +39,4 @@ const mapDispatchToProps = (dispatch) => {
         deleteService: (id) => dispatch(actionCreator.deleteService(id))
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(UserServices);

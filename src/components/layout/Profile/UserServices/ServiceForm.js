@@ -5,6 +5,7 @@ import * as actionCreator from '../User/store/userActions'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 function ServiceForm(props) {
+
     const [openTab, setOpenTab] = useState(false)
     const [serviceCategory, setServiceCategory] = useState('Razno')
     const [servicePrice, setServicePrice] = useState(0)
@@ -22,6 +23,7 @@ function ServiceForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
+
             <h6 className='profileFormTitle'>DODAJ USLUGU</h6>
             <div className='formItem '>
                 <div className="selectFormWrapper">

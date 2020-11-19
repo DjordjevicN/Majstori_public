@@ -27,6 +27,7 @@ function ProfileForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
+
             {confirm ? <div className="confirmation">
                 <div className="confirmationContent">
                     <h4 className="confirmationTitle">Obrisi nalog</h4>

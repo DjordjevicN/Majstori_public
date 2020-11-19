@@ -145,3 +145,39 @@
 .singleTaskCard {
   width: 70%;
 }
+.quickAddTaskFormWrapper {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #3636365e;
+}
+.quickAddTaskFormContent {
+  width: 30%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+.closeQuickAddTaskForm {
+  font-size: 30px;
+  transition: 1s;
+  cursor: pointer;
+}
+.closeQuickAddTaskForm:hover {
+  transform: rotate(360deg);
+}
+.quickAddTaskBtn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-size: 60px;
+  color: var(--green1);
+  transition: 2s;
+  cursor: pointer;
+}
+.quickAddTaskBtn:hover {
+  transform: rotate(360deg);
+}

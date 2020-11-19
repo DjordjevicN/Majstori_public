@@ -109,16 +109,18 @@ li {
   place-items: center;
   z-index: 102;
   background-color: rgba(14, 14, 14, 0.596);
+  transition: 0.3s;
 }
 .confirmationContent {
   background-color: rgb(255, 255, 255);
-  padding: 30px 100px;
-  border-radius: 2px;
 }
 .confirmationTitle {
-  font-size: 24px;
+  background-color: var(--shade2);
+  padding: 40px 250px;
+}
+.confirmationTitle h4 {
+  font-size: 18px;
   color: var(--shade6);
-  margin: 10px 0 10px 0;
 }
 .confirmationAction {
   display: flex;
@@ -128,8 +130,22 @@ li {
 .confirmationAction p {
   cursor: pointer;
   padding: 10px;
+  border-radius: 50%;
+  transition: 0.3s;
 }
 .confirmationAction p:hover {
   border-radius: 50%;
   box-shadow: 1px 3px 8px #888888;
+}
+.addTaskTUT {
+  font-size: 10px;
+  color: var(--shade4);
+  transition: 0.3s;
+}
+.addTaskTUT:hover {
+  background-color: #262b31;
+  box-shadow: 1px 3px 8px #888888;
+  padding: 20px;
+  font-size: 17px;
+  color: var(--shade1);
 }

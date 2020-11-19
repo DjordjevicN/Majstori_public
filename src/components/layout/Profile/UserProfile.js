@@ -13,7 +13,7 @@ function UserProfile(props) {
                 {user && <div className="userProfilePreviewInfoCard">
                     <div className="userProfilePreviewInfoContent">
                         <div className='userProfilePreviewInfoPicWrap'>
-                            {user.avatar ? <img src={user.avatar} className='userProfilePreviewInfoPic' /> : <img className='userProfilePreviewInfoPic' src="/images/noProfile.jpg" alt="" />}
+                            {user.avatar ? <img src={user.avatar} className='userProfilePreviewInfoPic' alt='ll' /> : <img className='userProfilePreviewInfoPic' src="/images/noProfile.jpg" alt="" />}
 
                         </div>
                         <div className='userProfilePreviewInfo'>

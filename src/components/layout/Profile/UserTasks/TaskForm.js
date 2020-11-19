@@ -249,6 +249,7 @@ function ProfileForm(props) {
             <p className='servicesFormBtn' onClick={() => {
                 handleSubmit()
             }}>+DODAJ</p>
+            <p className='addTaskTUT'>Cena kreiranja taska je 1 kredit. Preostali kredit na vasem racunu: {props.authUser.credit}. Svakog prvog u mesecu mozete besplatno da dodate 30 kredita OVDE</p>
         </div>
     );
 }

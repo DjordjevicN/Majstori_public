@@ -4,11 +4,12 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
-
-
-
+import { IoMdAddCircle, IoIosClose } from "react-icons/io";
+import TaskForm from '../Profile/UserTasks/TaskForm'
+import MapComponent from '../MapComponent'
 function Tasks(props) {
     const [openTab, setOpenTab] = useState(false)
+    const [quickAdd, setQuickAdd] = useState(false)
     const [category, setCategory] = useState('');
     let tasks = props.tasks;
     const handleSearch = () => {
@@ -179,6 +180,21 @@ function Tasks(props) {
                         <p>Trenutno nema novih poslova</p>
                     </div>}
             </div>
+            {quickAdd ? <div className='quickAddTaskFormWrapper'>
+                <div className="quickAddTaskFormContent">
+                    <IoIosClose className="closeQuickAddTaskForm" onClick={() => {
+                        setQuickAdd(false)
+                    }} />
+                    <TaskForm />
+                </div>
+
+            </div> : null}
+
+
+            <IoMdAddCircle className='quickAddTaskBtn' onClick={() => {
+                setQuickAdd(true)
+            }} />
+
         </div>
     );
 }
