@@ -12,11 +12,13 @@ import thunk from 'redux-thunk';
 import NewsReducer from './components/layout/News/store/NewsReducer'
 import User from './components/layout/Profile/User/store/User'
 import globalReducer from './store/reducers/reducer'
+import adminReducer from './components/layout/GOD/store/adminReducer'
 
 const rootReducer = combineReducers({
   User,
   NewsReducer,
-  globalReducer
+  globalReducer,
+  adminReducer
 })
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)))

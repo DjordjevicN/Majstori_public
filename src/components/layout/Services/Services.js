@@ -153,12 +153,11 @@ function Services(props) {
                                     <div>
                                         <p className='serviceUserInfoEmail serviceUserInfo'>Email: <span>{item.email}</span></p>
                                         <p className='serviceUserInfoPhone serviceUserInfo'>Telefon: <span>{item.phoneNumber}</span></p>
-                                        <div className='serviceUserBTN'><Link to={`/userProfile/${item.id}`} className='serviceUserBTNLink'>Profil</Link></div>
+                                        <Link to={`/userProfile/${item.id}`} className='serviceUserBTNLink' onClick={() => {
+                                            props.getFullProfileById(item.id)
+                                        }}>Profil</Link>
 
-                                        <Link to={{
-                                            pathname: `/userProfile/${item.id}`,
-                                            user: item
-                                        }}>Tyler McGinnis</Link>
+
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +199,8 @@ const mapStateToProps = (state,) => {
 const mapDispatchToProps = (dispatch) => {
     return {
 
-        getSearchServices: (category) => dispatch(actionCreator.getSearchServices(category))
+        getSearchServices: (category) => dispatch(actionCreator.getSearchServices(category)),
+        getFullProfileById: (id) => dispatch(actionCreator.getFullProfileById(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Services)

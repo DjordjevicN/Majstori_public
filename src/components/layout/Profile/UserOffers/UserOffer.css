@@ -1,6 +1,6 @@
 .applicationDashCard {
   width: 90%;
-  margin: 0 auto;
+  margin: 15px auto;
   border-left: 6px solid var(--green1);
   box-shadow: 1px 3px 8px #888888;
 }

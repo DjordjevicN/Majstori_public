@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 .newsForm {
-  width: 30%;
+  width: 50%;
   margin: 30px;
   padding: 20px;
   background-color: var(--shade1);
@@ -24,4 +24,19 @@
   margin: 10px 0;
   padding: 13px 0;
   border: 1px solid var(--shade2);
+}
+.GOD_Actions {
+  display: flex;
+  justify-content: center;
+}
+.adminBTN {
+  margin: 0 20px;
+  padding: 5px 20px;
+  color: var(--shade1);
+  background-color: var(--blue1);
+  cursor: pointer;
+  filter: drop-shadow(3px 3px 4px #000);
+}
+.adminBTN:hover {
+  filter: drop-shadow(1px 1px 4px #000);
 }

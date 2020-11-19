@@ -35,6 +35,9 @@ const User = (state = initState, action) => {
         case "SET_LOCAL_STATE_LOGOUT":
             localStorage.setItem('authUser', action.payload)
             break;
+        case "DEDUCT_CREDIT":
+            newState.authUser.credit = action.payload;
+            break;
         // *************************************** 
         case "UPDATE_MY_OFFERS_STATE":
             newState.myOffers = action.payload;

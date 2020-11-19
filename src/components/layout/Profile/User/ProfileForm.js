@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import { Redirect } from 'react-router-dom'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -8,6 +8,7 @@ import * as actionCreator from './store/userActions'
 
 
 function ProfileForm(props) {
+    const [confirm, setConfirm] = useState(false)
     let isLoggedIn = props.authUser.id ? true : false;
 
     if (!isLoggedIn) { return <Redirect to='/' /> }
@@ -26,6 +27,23 @@ function ProfileForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
+            {confirm ? <div className="confirmation">
+                <div className="confirmationContent">
+                    <h4 className="confirmationTitle">Obrisi nalog</h4>
+                    <div className="confirmationAction">
+                        <p onClick={() => {
+                            handleDelete()
+                            setConfirm(false)
+                        }} >DA</p>
+                        <p onClick={() => {
+                            setConfirm(false)
+                        }} >NE</p>
+                    </div>
+                </div>
+            </div> : null}
+
+
+
             <h6 className='profileFormTitle'> UPDATE PROFILE</h6>
             <div className='formItem'>
                 <input type="file" onChange={(e) => {
@@ -87,7 +105,8 @@ function ProfileForm(props) {
                     handleSubmit()
                 }}><SaveIcon /></p>
                 <p className='UserFormBtn formDelete' onClick={() => {
-                    handleDelete()
+
+                    setConfirm(true)
                 }}><DeleteForeverIcon /></p>
             </div>
         </div>

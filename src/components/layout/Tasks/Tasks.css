@@ -142,3 +142,6 @@
   font-size: 10px;
   cursor: pointer;
 }
+.singleTaskCard {
+  width: 70%;
+}

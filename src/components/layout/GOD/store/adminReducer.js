@@ -1,15 +1,15 @@
-
 const initState = {
-    news: [],
+    allUsers: [],
+    allTasks: [],
+    allOffers: [],
     loading: false,
-    notification: ' news Notification'
-
+    notification: ''
 
 }
-const NewsReducer = (state = initState, action) => {
+const AdminState = (state = initState, action) => {
     let newState = { ...state };
     switch (action.type) {
-        case "SET_NEWS":
+        case "SET_ALL_USERS":
             newState.news = action.payload;
             break;
 
@@ -19,4 +19,4 @@ const NewsReducer = (state = initState, action) => {
     }
     return newState;
 }
-export default NewsReducer;
+export default AdminState;

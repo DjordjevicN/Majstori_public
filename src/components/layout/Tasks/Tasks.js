@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core/';
 import { connect } from 'react-redux'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ClearIcon from '@material-ui/icons/Clear';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
 
@@ -11,18 +9,7 @@ import * as actionCreator from '../../../store/actions/actions'
 
 function Tasks(props) {
     const [openTab, setOpenTab] = useState(false)
-    const [modal, setModal] = useState(false)
     const [category, setCategory] = useState('');
-
-
-
-    const [offerPrice, setOfferPrice] = useState('');
-    const [offerMessage, setOfferMessage] = useState('');
-    const [Task_User_id, setTask_user_id] = useState('');
-    const [Task_task_ID, setTask_task_ID] = useState('');
-
-
-
     let tasks = props.tasks;
     const handleSearch = () => {
         if (category === '') {
@@ -31,52 +18,8 @@ function Tasks(props) {
             props.getFilteredTasks(category)
         }
     }
-
-    const handleOffer = () => {
-        let date = new Date()
-        let day = date.getDate()
-        let month = date.getMonth()
-        let year = date.getFullYear()
-        let offerCreated_at = `${day}.${month}.${year}`
-
-        let offer = {
-            offerMessage,
-            offerPrice,
-            offerCreated_at,
-            offerApproved: false,
-            Task_User_id,
-            Task_task_ID,
-            User_id: props.authUser.id
-
-        }
-        props.sendOffer(offer)
-    }
     return (
         <div className='root'>
-            {modal ? <div className="applyModalFormWrapper">
-                <div className="applyModalForm">
-                    <div className="applyForm">
-                        <div >
-                            <p className='closeModal ' onClick={() => setModal(false)}><ClearIcon /></p>
-                        </div>
-                        <h6>PONUDA</h6>
-                        <div className="applyInputs">
-                            <div className='applyFormItem'><TextField variant="outlined" label='Cena' fullWidth onChange={(e) => {
-                                setOfferPrice(e.target.value)
-                            }} /></div>
-                            <div className='applyFormItem'><TextField multiline variant="outlined" label='Ponuda' fullWidth onChange={(e) => {
-                                setOfferMessage(e.target.value)
-                            }} /></div>
-                        </div>
-                        <p className='applyFormActions' onClick={() => {
-                            handleOffer()
-                            setModal(false)
-                        }}>POSALJI PONUDU</p>
-
-                    </div>
-                </div>
-            </div> : null}
-
             <div className='searchInputWrapper'>
                 <div className='searchInput'>
                     <div className="searchFormWrapper">
@@ -87,7 +30,8 @@ function Tasks(props) {
                                 setOpenTab(true)
                             }
                         }} >
-                            <p>{category}</p>
+                            {category === '' ? <p>Odaberi Kategoriju</p> : <p>{category}</p>
+                            }
                             <KeyboardArrowDownIcon />
                         </div>
                     </div>
@@ -197,8 +141,6 @@ function Tasks(props) {
                             }} >Auto/Moto</div>
                         </div>
                     </div>}
-
-
                     <button className="searchButtons" onClick={() => {
                         handleSearch()
                     }}>SEARCH</button>
@@ -219,7 +161,6 @@ function Tasks(props) {
                             </div>
                             <div className='taskCardBody'>
                                 <div> {item.taskDescription ? <p>{item.taskDescription.substring(0, 100)}<span> ...Vise u Detaljima</span></p> : null}</div>
-
                             </div>
                             <div className='taskCardInfo2'>
                                 <p className='taskCardItem hour'>Postovano <span>{item.taskCreated_at}</span> </p>
@@ -228,15 +169,9 @@ function Tasks(props) {
                                 <FavoriteIcon className='taskActionBtn' onClick={() => {
                                     console.log('add to favorite');
                                 }} />
-                                <Link to='/task/:id' className='taskActionBtn applyBtn'>DETALJNIJE</Link>
-
-                                <button className='taskActionBtn applyBtn' onClick={() => {
-                                    setModal(true)
-                                    setTask_user_id(item.User_id)
-                                    setTask_task_ID(item.task_ID)
-
-
-                                }}>APLICIRAJ</button>
+                                <Link to={`/task/${item.task_ID}`} onClick={() => {
+                                    props.getTaskById(item.task_ID)
+                                }} className='taskActionBtn applyBtn'>DETALJNIJE</Link>
                             </div>
                         </div>
                     </div>
@@ -244,12 +179,10 @@ function Tasks(props) {
                         <p>Trenutno nema novih poslova</p>
                     </div>}
             </div>
-
         </div>
     );
 }
 const mapStateToProps = (state) => {
-
     return {
         tasks: state.globalReducer.tasks,
         authUser: state.User.authUser
@@ -259,8 +192,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getLatestTasks: () => dispatch(actionCreator.getLatestTasks()),
         getFilteredTasks: (category) => dispatch(actionCreator.getFilteredTasks(category)),
-        sendOffer: (offer) => dispatch(actionCreator.sendOffer(offer))
-
+        getTaskById: (taskId) => dispatch(actionCreator.getTaskById(taskId)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks)

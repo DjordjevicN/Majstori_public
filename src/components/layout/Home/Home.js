@@ -13,8 +13,10 @@ import { RiFindReplaceLine } from "react-icons/ri";
 import { connect } from 'react-redux'
 
 function Home(props) {
+
     return (
         <div className='homeMainWrapper'>
+
             <div className="homeHeroWrapper">
                 <motion.div className="homeHeroTitle" animate={{ x: 0, opacity: 1 }}
                     initial={{ x: 50, opacity: 0 }}

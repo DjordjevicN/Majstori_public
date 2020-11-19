@@ -1,0 +1,53 @@
+.userProfilePreviewContent {
+  background-color: white;
+  width: 50%;
+  margin: 30px auto;
+  box-shadow: 1px 3px 8px #888888;
+}
+.userProfilePreviewInfoCard {
+  padding: 10px;
+}
+.userProfilePreviewInfoContent {
+  display: grid;
+  grid-template-columns: minmax(150px, 20%) 1fr;
+}
+.userProfilePreviewInfoPic {
+  width: 100%;
+}
+.userProfilePreviewInfo {
+  padding: 0 10px;
+}
+.infoItem {
+  font-size: 13px;
+  color: var(--green1);
+}
+.infoItem span {
+  color: var(--shade6);
+}
+.userPreviewName {
+  font-size: 30px;
+  color: var(--shade6);
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+.userProfilePreviewCard {
+  border-top: 1px solid var(--shade2);
+  margin-top: 20px;
+}
+.userProfilePreviewCardCategoryAndPrice {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px 0 10px;
+}
+.userProfilePreviewCardCategory {
+  font-size: 18px;
+  color: var(--green1);
+}
+.userProfilePreviewCardPrice {
+  font-size: 18px;
+  color: var(--orange1);
+}
+.userProfilePreviewCardDescription {
+  font-size: 13px;
+  padding: 20px 10px 10px 10px;
+}

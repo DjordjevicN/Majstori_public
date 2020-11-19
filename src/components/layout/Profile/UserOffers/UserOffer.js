@@ -15,7 +15,7 @@ function UserOffer(props) {
                 props.getMyOffers(authUserId)
             }} />
             {myOffers.length > 0 ? myOffers.map((item) => (
-                <div className="applicationDashCard" key={item.id}>
+                <div className="applicationDashCard" key={item.offer_ID}>
                     <div className="offerContent">
                         <div className="applicationDashInfoTop">
                             <div className="offerWho">{item.firstName ? <Link to={`UserProfile/${item.id}`} className="offerWhoLink"> {item.firstName} </Link> : <Link to={`UserProfile/${item.id}`} className="offerWhoLink">{item.email}</Link>} </div>

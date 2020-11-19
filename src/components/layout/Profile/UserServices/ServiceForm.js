@@ -9,11 +9,16 @@ function ServiceForm(props) {
     const [serviceCategory, setServiceCategory] = useState('Razno')
     const [servicePrice, setServicePrice] = useState(0)
     const [serviceDescription, setServiceDescription] = useState('Opis nije dodat')
+
     const handleSubmit = () => {
         let state = {
             serviceCategory, servicePrice, serviceDescription, User_id: props.authUser.id
         }
-        props.createNewService(state)
+        if (props.services.length < 20) {
+            props.createNewService(state)
+        } else {
+            console.log('VISE OD 20');
+        }
     }
     return (
         <div className='profileFormWrapper'>

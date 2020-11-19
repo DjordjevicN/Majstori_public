@@ -38,19 +38,30 @@
     border-right: 1px solid var(--lightBorder);
   }
   .dashMenuItem {
+    display: flex;
+    justify-content: center;
     font-size: 15px;
+    width: 100%;
     padding: 15px 5px;
     margin: 1px 4px 1px 0;
     background-color: var(--green1);
     border: none;
     color: var(--shade1);
+    transition: 0.3s;
+    transition-delay: 0.3s;
   }
   .dashMenuItem:hover {
     background-color: var(--green2);
+
+    margin: 10px 0;
+  }
+  .dashboardContent {
+    margin: 20px;
+    box-shadow: 1px 3px 8px #888888;
   }
   .profileFormComponentWrapper {
     background-color: rgb(255, 255, 255);
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 7fr 4fr;
@@ -60,4 +71,7 @@
     border-bottom: 1px solid var(--lightBorder);
     height: 100vh;
   }
+}
+.dashMenuItemIcon {
+  color: var(--green3);
 }

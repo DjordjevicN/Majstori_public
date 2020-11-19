@@ -9,10 +9,11 @@ export const sendNews = (value) => {
 }
 export const getAllNews = () => {
     return async (dispatch) => {
-        const response = await Axios.get("http://localhost:3001/getAllNews")
+        const response = await Axios.get("http://localhost:3001/getNews")
+        console.log(response);
         dispatch({
             type: "SET_NEWS",
-            payload: response.data.notification
+            payload: response.data.results
         })
     }
 } 

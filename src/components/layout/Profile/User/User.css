@@ -1,6 +1,7 @@
 .profileDashCard {
   margin-top: 30px;
-  box-shadow: 1px 3px 8px #888888;
+  /* box-shadow: 1px 3px 8px #888888; */
+  border: 1px solid var(--shade1);
 }
 .profileInformationDash {
   display: flex;

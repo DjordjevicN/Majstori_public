@@ -78,17 +78,18 @@
 .noUser p {
   width: 50%;
 }
-.serviceUserBTN {
-  background-color: var(--green1);
-  text-align: center;
-  margin-top: 20px;
-  padding: 10px 40px;
-  cursor: pointer;
-}
+
 .serviceUserBTNLink {
   color: var(--shade1);
+  background-color: var(--green1);
   text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 7px;
+  margin-top: 20px;
 }
-.serviceUserBTN:hover {
+.serviceUserBTNLink:hover {
   background-color: var(--green2);
 }

@@ -3,6 +3,8 @@ import { TextField } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { connect } from 'react-redux'
 import * as actionCreator from '../User/store/userActions'
+import * as globeActionCreator from '../../../../store/actions/actions'
+
 
 function ProfileForm(props) {
     const [openTab, setOpenTab] = useState(false)
@@ -15,6 +17,7 @@ function ProfileForm(props) {
     const [taskEndTime, setTaskEndTime] = useState('')
     const [taskStartDate, setTaskStartDate] = useState('')
     const [taskEndDate, setTaskEndDate] = useState('')
+
     const handleSubmit = () => {
 
         let date = new Date()
@@ -36,7 +39,15 @@ function ProfileForm(props) {
             taskCreated_at,
             User_id: props.authUser.id
         }
-        props.createTask(state)
+
+        if (props.authUser.credit >= 0) {
+            let usersCredit = {
+                credit: props.authUser.credit,
+                userId: props.authUser.id
+            }
+            props.deductCredit(usersCredit)
+            props.createTask(state)
+        }
     }
     return (
         <div className='profileFormWrapper'>
@@ -249,7 +260,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        createTask: (state) => dispatch(actionCreator.createTask(state))
+        createTask: (state) => dispatch(actionCreator.createTask(state)),
+        deductCredit: (usersCredit) => dispatch(globeActionCreator.deductCredit(usersCredit))
 
     }
 }

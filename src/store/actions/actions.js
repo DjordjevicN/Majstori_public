@@ -138,7 +138,49 @@ export const getServices = (value) => {
         })
     }
 }
+// GET USER BY ID
+export const getFullProfileById = (value) => {
+    console.log(value);
+    return async (dispatch) => {
+        const response = await Axios.get(`http://localhost:3001/getFullProfileById/${value}`)
+        console.log(response);
 
+        dispatch({
+            type: "SET_SERVICE_USER_VIEW",
+            payload: response.data.results
+        })
+    }
+}
+// GET TASK BY ID and HIS POSTER
+export const getTaskById = (value) => {
+
+    return async (dispatch) => {
+        const response = await Axios.get(`http://localhost:3001/getTaskById/${value}`)
+
+        dispatch({
+            type: "SET_TASK_VIEW",
+            payload: response.data.results[0]
+        })
+    }
+}
+
+
+// DEDUCT CREDIT
+export const deductCredit = (usersCredit) => {
+    let newCredit = usersCredit.credit - 1;
+    let value = {
+        credit: newCredit,
+        id: usersCredit.userId
+    }
+    return async (dispatch) => {
+        await Axios.post("http://localhost:3001/updateUsersCredit", { value });
+        dispatch({
+            type: "DEDUCT_CREDIT",
+            payload: value.credit
+        })
+
+    }
+}
 // ********* TO DO **********
 
 // CREATE ADMIN_LOG =>

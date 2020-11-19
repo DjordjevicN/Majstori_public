@@ -16,6 +16,7 @@ import './components/layout/Profile/UserOffers/UserOffer.css';
 import './components/layout/Profile/UserProposals/UserProposals.css';
 import './components/layout/News/News.css';
 import './components/layout/GOD/AdminDashboard.css'
+import './components/layout/Profile/UserProfile.css'
 import './CSS/Signup.css';
 import './CSS/Dashboard.css';
 import './CSS/form.css';
@@ -24,6 +25,7 @@ import './CSS/selectForm.css';
 import Menu from './components/layout/Menu'
 import Home from './components/layout/Home/Home'
 import Tasks from './components/layout/Tasks/Tasks'
+import Task from './components/layout/Tasks/Task'
 import Services from './components/layout/Services/Services'
 import SignUp from './components/layout/SignUp'
 import Login from './components/layout/Login'
@@ -62,6 +64,7 @@ function App(props) {
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />
           <Route path='/UserProfile/:id' component={UserProfile} />
+          <Route path='/Task/:id' component={Task} />
           <Route path='/UserDashboard' component={UserDashboard} />
           <Route path='/GOD' component={AdminDashboard} />
         </Switch>

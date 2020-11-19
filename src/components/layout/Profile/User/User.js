@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 function User(props) {
+
+
     let authUser = props.authUser
     return (
         <div className="profileDashWrapper">
+
             <div className="profileDashCard">
                 <div className="profileInformationDash">
                     <div className="dashImageWrap">
