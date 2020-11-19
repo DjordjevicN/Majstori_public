@@ -74,7 +74,6 @@ app.post('/loginUser', (req, res) => {
 
 // UPDATE USER PROFILE
 app.post('/updateUser', (req, res) => {
-
     let { id, firstName, lastName, address, email, password, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
 
     let sql = `UPDATE user SET 
@@ -87,6 +86,21 @@ app.post('/updateUser', (req, res) => {
     phoneNumber="${phoneNumber}",
     avatar="${avatar}",
     updated_at="${updated_at}"
+     WHERE id = ${id}`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to update user' })
+            throw err
+        };
+        res.send({ results, notification: 'User Updated' })
+    })
+})
+// UPDATE USER PROFILE CREDIT
+app.post('/updateUsersCredit', (req, res) => {
+    let { credit, id } = req.body.value;
+
+    let sql = `UPDATE user SET 
+    credit ='${credit}'
      WHERE id = ${id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
@@ -115,6 +129,18 @@ app.get('/getUserById/:id', (req, res) => {
             res.send({ notification: 'Fail to find user' })
             throw err
         };
+        res.send({ results, notification: 'Refresh' })
+    })
+})
+// GET FULL PROFILE BY ID
+app.get('/getFullProfileById/:id', (req, res) => {
+    let sql = `SELECT * FROM services JOIN user ON user.id = services.User_id AND  user.id = '${req.params.id}'`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to find user' })
+            throw err
+        };
+
         res.send({ results, notification: 'Refresh' })
     })
 })
@@ -258,6 +284,17 @@ app.get('/getLatestTasks', (req, res) => {
         res.send({ results, notification: 'Tasks loaded' })
     })
 })
+// GET TASK PAGE and USER
+app.get('/getTaskById/:id', (req, res) => {
+    let sql = `SELECT * FROM task JOIN user ON  task_ID = '${req.params.id}' AND user.id = task.User_id`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to find user' })
+            throw err
+        };
+        res.send({ results, notification: 'Refresh' })
+    })
+})
 // UPDATE TASK
 // CREATE TASK_OFFER
 app.post('/sendOffer', (req, res) => {
@@ -325,14 +362,6 @@ app.post('/approveProposal', (req, res) => {
 })
 // DELETE TASK_OFFER THAT I OWN
 
-
-
-app.get('/getUsersAssets/:id', (req, res) => {
-    // console.log('prolazi u back');
-    // console.log(req.params.id);
-})
-
-
 // ********* TO DO **********
 
 // CREATE ADMIN_LOG => 
@@ -354,12 +383,17 @@ app.post('/sendNews', (req, res) => {
 })
 
 
-
-
-
-
-
-
+//GET ALL NEWS
+app.get('/getNews', (req, res) => {
+    let sql = `SELECT * FROM news ORDER BY newsId DESC`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'There are no new news' })
+            throw err
+        };
+        res.send({ results, notification: 'New News are in' })
+    })
+})
 
 
 
@@ -369,16 +403,17 @@ app.listen('3001', () => {
     console.log(`Listening on port 3001`);
 })
 
-
-
-
-
-
-
-
-
-
 // GET ALL USERS
+// app.get('/getAllUsers', (req, res) => {
+//     let sql = `SELECT * FROM users ORDER BY id DESC`
+//     let query = db.query(sql, (err, results) => {
+//         if (err) {
+//             res.send({ notification: 'error' })
+//             throw err
+//         };
+//         res.send({ results, notification: 'New Users' })
+//     })
+// })
 // CREATE NEW USER AKA SIGNUP
 // UPDATE USER PROFILE
 // DELETE PROFILE
