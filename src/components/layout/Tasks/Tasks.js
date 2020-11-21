@@ -4,46 +4,28 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
-// import { IoMdAddCircle, IoIosClose } from "react-icons/io";
-// import TaskForm from '../Profile/UserTasks/TaskForm'
-// import MapComponent from '../MapComponent'
+import { BsChevronBarRight, BsChevronBarLeft } from "react-icons/bs";
+
+
 function Tasks(props) {
     const [openTab, setOpenTab] = useState(false)
-    const [paginationOffset, setPaginationOffset] = useState(0)
-    // const [quickAdd, setQuickAdd] = useState(false)
     const [category, setCategory] = useState('');
+
     let tasks = props.tasks;
-    console.log(paginationOffset);
-
-    const handleSearch = () => {
-        let filter = {
-            category,
-            paginationOffset
-        }
-
+    const handleSearch = (page) => {
         if (category === '') {
-            // props.getLatestTasks()
+            props.getLatestTasks()
         } else {
+            const filter = {
+                category,
+                page
+            }
             console.log(filter);
             props.getFilteredTasks(filter)
-
         }
     }
     return (
         <div className='root'>
-            {/* <button className="searchButtons" onClick={() => {
-                if (paginationOffset >= 5) {
-                    setPaginationOffset(paginationOffset - 5)
-                    console.log(paginationOffset);
-                    console.log('PREDHODNA');
-                    handleSearch()
-                }
-
-            }}>PREDHODNA</button> */}
-            {/* <button className="searchButtons" onClick={() => {
-                setPaginationOffset(paginationOffset + 5)
-                handleSearch()
-            }}>DALJE</button> */}
             <div className='searchInputWrapper'>
                 <div className='searchInput'>
                     <div className="searchFormWrapper">
@@ -167,9 +149,8 @@ function Tasks(props) {
                         </div>
                     </div>}
                     <button className="searchButtons" onClick={() => {
-                        setPaginationOffset(0)
-                        handleSearch()
-                    }}>SEARCH</button>
+                        handleSearch(0)
+                    }}>TRAZI</button>
                 </div>
             </div>
             <div className='taskCardWrapper'>
@@ -204,26 +185,49 @@ function Tasks(props) {
                 )) : <div className="noUser">
                         <p>Trenutno nema novih poslova</p>
                     </div>}
-                <button className="searchButtons" onClick={() => {
-                    setPaginationOffset(paginationOffset + 5)
-                    handleSearch()
-                }}>DALJE</button>
-
             </div>
-            {/* {quickAdd ? <div className='quickAddTaskFormWrapper'>
-                <div className="quickAddTaskFormContent">
-                    <IoIosClose className="closeQuickAddTaskForm" onClick={() => {
-                        setQuickAdd(false)
+            <div className='paginationWrapper'>
+                <div className="paginationContent">
+                    < BsChevronBarLeft className='paginationItem' onClick={() => {
+                        handleSearch(0)
+
                     }} />
-                    <TaskForm />
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(0)
+
+                    }}>1</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(10)
+                    }}>2</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(20)
+                    }}>3</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(30)
+                    }}>4</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(40)
+                    }}>5</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(50)
+                    }}>6</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(60)
+                    }}>7</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(70)
+                    }}>8</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(80)
+                    }}>9</p>
+                    <p className='paginationItem' onClick={() => {
+                        handleSearch(90)
+                    }}>10</p>
+                    <BsChevronBarRight className='paginationItem' onClick={() => {
+                        handleSearch(90)
+                    }} />
                 </div>
-
-            </div> : null}
-
-
-            <IoMdAddCircle className='quickAddTaskBtn' onClick={() => {
-                setQuickAdd(true)
-            }} /> */}
+            </div>
 
         </div>
     );
