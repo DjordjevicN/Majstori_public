@@ -253,7 +253,7 @@ app.get('/deleteTask/:id', (req, res) => {
 })
 // GET NEWEST TASKS
 app.get('/getNewestTasks', (req, res) => {
-    let sql = `SELECT * FROM task `
+    let sql = `SELECT * FROM task ORDER BY task_ID DESC LIMIT 5`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to load tasks' })
@@ -264,7 +264,9 @@ app.get('/getNewestTasks', (req, res) => {
 })
 // GET TASK WITH FILTER and  LIMIT TO LAST 10 
 app.post('/getFilteredTasks', (req, res) => {
-    let sql = `SELECT * FROM task WHERE taskCategory = '${req.body.value}' ORDER BY task_ID DESC LIMIT 10`
+    const { category, paginationOffset } = req.body.value;
+
+    let sql = `SELECT * FROM task WHERE taskCategory = '${category}' ORDER BY task_ID DESC LIMIT 5 OFFSET ${paginationOffset}`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to load tasks' })
@@ -275,7 +277,7 @@ app.post('/getFilteredTasks', (req, res) => {
 })
 // GET TASK LATEST 10 
 app.get('/getLatestTasks', (req, res) => {
-    let sql = `SELECT * FROM task ORDER BY task_ID DESC LIMIT 10`
+    let sql = `SELECT * FROM task ORDER BY task_ID DESC LIMIT 5`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to load tasks' })
