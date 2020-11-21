@@ -16,14 +16,13 @@
 }
 .optionsWrapper {
   display: block;
-  width: 28%;
+  width: 50%;
   box-shadow: 1px 3px 8px #888888;
   border: 1px solid var(--lightBorder);
-  border-radius: 8px;
   z-index: 101;
   background-color: rgb(255, 255, 255);
   position: absolute;
-  height: 300px;
+  height: 500px;
   overflow-y: scroll;
 }
 .optionsWrapper::-webkit-scrollbar {
@@ -46,7 +45,7 @@
 .optionItems {
   cursor: pointer;
   font-weight: 500;
-  padding: 10px 10px;
+  padding: 10px 20px;
   border-bottom: 1px solid silver;
 }
 .optionItems:hover {
@@ -54,6 +53,7 @@
 }
 .optionItemMain {
   font-weight: 900;
+  padding: 10px 0px;
 }
 .options button {
   position: relative;

@@ -4,23 +4,46 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
-import { IoMdAddCircle, IoIosClose } from "react-icons/io";
-import TaskForm from '../Profile/UserTasks/TaskForm'
-import MapComponent from '../MapComponent'
+// import { IoMdAddCircle, IoIosClose } from "react-icons/io";
+// import TaskForm from '../Profile/UserTasks/TaskForm'
+// import MapComponent from '../MapComponent'
 function Tasks(props) {
     const [openTab, setOpenTab] = useState(false)
-    const [quickAdd, setQuickAdd] = useState(false)
+    const [paginationOffset, setPaginationOffset] = useState(0)
+    // const [quickAdd, setQuickAdd] = useState(false)
     const [category, setCategory] = useState('');
     let tasks = props.tasks;
+    console.log(paginationOffset);
+
     const handleSearch = () => {
+        let filter = {
+            category,
+            paginationOffset
+        }
+
         if (category === '') {
-            props.getLatestTasks()
+            // props.getLatestTasks()
         } else {
-            props.getFilteredTasks(category)
+            console.log(filter);
+            props.getFilteredTasks(filter)
+
         }
     }
     return (
         <div className='root'>
+            {/* <button className="searchButtons" onClick={() => {
+                if (paginationOffset >= 5) {
+                    setPaginationOffset(paginationOffset - 5)
+                    console.log(paginationOffset);
+                    console.log('PREDHODNA');
+                    handleSearch()
+                }
+
+            }}>PREDHODNA</button> */}
+            {/* <button className="searchButtons" onClick={() => {
+                setPaginationOffset(paginationOffset + 5)
+                handleSearch()
+            }}>DALJE</button> */}
             <div className='searchInputWrapper'>
                 <div className='searchInput'>
                     <div className="searchFormWrapper">
@@ -66,10 +89,7 @@ function Tasks(props) {
                                 setOpenTab(false)
                                 setCategory('Bastovan')
                             }}>Bastovan</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Razno')
-                            }}>Razno</div>
+
                             {/* *********************  */}
                             <div className="optionItems optionItemMain" onClick={() => {
                                 setOpenTab(false)
@@ -140,9 +160,14 @@ function Tasks(props) {
                                 setOpenTab(false)
                                 setCategory('Auto/Moto')
                             }} >Auto/Moto</div>
+                            <div className="optionItems" onClick={() => {
+                                setOpenTab(false)
+                                setCategory('Razno')
+                            }}>Razno</div>
                         </div>
                     </div>}
                     <button className="searchButtons" onClick={() => {
+                        setPaginationOffset(0)
                         handleSearch()
                     }}>SEARCH</button>
                 </div>
@@ -179,8 +204,13 @@ function Tasks(props) {
                 )) : <div className="noUser">
                         <p>Trenutno nema novih poslova</p>
                     </div>}
+                <button className="searchButtons" onClick={() => {
+                    setPaginationOffset(paginationOffset + 5)
+                    handleSearch()
+                }}>DALJE</button>
+
             </div>
-            {quickAdd ? <div className='quickAddTaskFormWrapper'>
+            {/* {quickAdd ? <div className='quickAddTaskFormWrapper'>
                 <div className="quickAddTaskFormContent">
                     <IoIosClose className="closeQuickAddTaskForm" onClick={() => {
                         setQuickAdd(false)
@@ -193,7 +223,7 @@ function Tasks(props) {
 
             <IoMdAddCircle className='quickAddTaskBtn' onClick={() => {
                 setQuickAdd(true)
-            }} />
+            }} /> */}
 
         </div>
     );
@@ -207,7 +237,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getLatestTasks: () => dispatch(actionCreator.getLatestTasks()),
-        getFilteredTasks: (category) => dispatch(actionCreator.getFilteredTasks(category)),
+        getFilteredTasks: (filter) => dispatch(actionCreator.getFilteredTasks(filter)),
         getTaskById: (taskId) => dispatch(actionCreator.getTaskById(taskId)),
     }
 }

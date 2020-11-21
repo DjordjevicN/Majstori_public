@@ -3,10 +3,9 @@ import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actionCreator from '../User/store/userActions'
+import * as globalActionCreator from '../../../../store/actions/actions'
 import { FiRefreshCw } from "react-icons/fi";
-
 function UserOffer(props) {
-
     let authUserId = props.authUser.id
     let myOffers = props.myOffers;
     return (
@@ -18,7 +17,9 @@ function UserOffer(props) {
                 <div className="applicationDashCard" key={item.offer_ID}>
                     <div className="offerContent">
                         <div className="applicationDashInfoTop">
-                            <div className="offerWho">{item.firstName ? <Link to={`UserProfile/${item.id}`} className="offerWhoLink"> {item.firstName} </Link> : <Link to={`UserProfile/${item.id}`} className="offerWhoLink">{item.email}</Link>} </div>
+                            <div className="offerWho" onClick={() => {
+                                props.getFullProfileById(item.id)
+                            }}>{item.firstName ? <Link to={`userProfile/${item.id}`} className="offerWhoLink"> {item.firstName} </Link> : <Link to={`userProfile/${item.id}`} className="offerWhoLink">{item.email}</Link>} </div>
                             <div><TrendingFlatIcon /></div>
                             <div className="offerTaskName">{item.taskTitle}</div>
                         </div>
@@ -35,11 +36,9 @@ function UserOffer(props) {
                                 <p className='offerDate'>{item.offerCreated_at}</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            )) : <div>inbox is empty</div>}
-
+            )) : <div>Nema ponuda</div>}
         </div>
     );
 }
@@ -53,7 +52,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMyOffers: (authUserId) => dispatch(actionCreator.getMyOffers(authUserId))
+        getMyOffers: (authUserId) => dispatch(actionCreator.getMyOffers(authUserId)),
+        getFullProfileById: (id) => dispatch(globalActionCreator.getFullProfileById(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserOffer);

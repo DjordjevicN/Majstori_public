@@ -145,7 +145,21 @@
 .singleTaskCard {
   width: 70%;
 }
-.quickAddTaskFormWrapper {
+.loadMoreBTN {
+  text-align: center;
+  width: 10%;
+  margin: 50px auto;
+  background-color: var(--green1);
+  padding: 20px 40px;
+  color: var(--shade1);
+  cursor: pointer;
+  transition: 1s;
+}
+.loadMoreBTN:hover {
+  background-color: var(--green2);
+  width: 25%;
+}
+/* .quickAddTaskFormWrapper {
   display: grid;
   place-items: center;
   position: absolute;
@@ -180,4 +194,4 @@
 }
 .quickAddTaskBtn:hover {
   transform: rotate(360deg);
-}
+} */

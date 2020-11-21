@@ -23,7 +23,7 @@ const globalReducer = (state = initState, action) => {
             newState.serviceUsers = action.payload;
             break;
         case "UPDATE_ALL_TASK_STATE":
-            newState.tasks = action.payload;
+            newState.tasks = action.payload
             break;
         case "SET_SERVICE_USER_VIEW":
             newState.serviceUserView = action.payload;

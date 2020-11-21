@@ -7,6 +7,7 @@ import * as globeActionCreator from '../../../../store/actions/actions'
 
 
 function ProfileForm(props) {
+    const [confirm, setConfirm] = useState(false)
     const [openTab, setOpenTab] = useState(false)
     const [taskCategory, setTaskCategory] = useState('Razno')
     const [taskTitle, setTaskTitle] = useState('')
@@ -51,6 +52,25 @@ function ProfileForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
+
+            {confirm ? <div className="confirmation">
+                <div className="confirmationContent">
+                    <div className="confirmationTop">
+                        <h4 className="confirmationTitle">Kreiraj novi task ?</h4>
+                        <p className="confirmationSubtitle">Cena kreiranja taska je 1 kredit. Preostali kredit na vasem racunu: {props.authUser.credit}. Svakog prvog u mesecu mozete besplatno da dodate 30 kredita</p>
+                    </div>
+                    <div className="confirmationAction">
+                        <p onClick={() => {
+                            handleSubmit()
+                            setConfirm(false)
+                        }} >DA</p>
+                        <p onClick={() => {
+                            setConfirm(false)
+                        }} >NE</p>
+                    </div>
+                </div>
+            </div> : null}
+
             <h6 className='profileFormTitle'>KREIRAJ NOVI TASK</h6>
             <div className='formItem'>
                 <TextField fullWidth label="Naslov" variant="outlined" onChange={(e) => {
@@ -247,7 +267,7 @@ function ProfileForm(props) {
                 />
             </div>
             <p className='servicesFormBtn' onClick={() => {
-                handleSubmit()
+                setConfirm(true)
             }}>+DODAJ</p>
             <p className='addTaskTUT'>Cena kreiranja taska je 1 kredit. Preostali kredit na vasem racunu: {props.authUser.credit}. Svakog prvog u mesecu mozete besplatno da dodate 30 kredita OVDE</p>
         </div>

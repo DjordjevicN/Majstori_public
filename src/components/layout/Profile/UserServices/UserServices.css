@@ -62,7 +62,7 @@
   color: var(--shade1);
   background-color: var(--green1);
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 .servicesFormBtn:hover {
   background-color: var(--green2);

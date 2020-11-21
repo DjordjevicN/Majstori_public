@@ -28,9 +28,14 @@ function ProfileForm(props) {
     return (
         <div className='profileFormWrapper'>
 
+
+
             {confirm ? <div className="confirmation">
                 <div className="confirmationContent">
-                    <h4 className="confirmationTitle">Obrisi nalog</h4>
+                    <div className="confirmationTop">
+                        <h4 className="confirmationTitle">Obrisi nalog ?</h4>
+                        <p className="confirmationSubtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type  </p>
+                    </div>
                     <div className="confirmationAction">
                         <p onClick={() => {
                             handleDelete()
@@ -42,8 +47,6 @@ function ProfileForm(props) {
                     </div>
                 </div>
             </div> : null}
-
-
 
             <h6 className='profileFormTitle'> UPDATE PROFILE</h6>
             <div className='formItem'>

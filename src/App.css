@@ -113,14 +113,20 @@ li {
 }
 .confirmationContent {
   background-color: rgb(255, 255, 255);
+  width: 40%;
 }
-.confirmationTitle {
+
+.confirmationTop {
   background-color: var(--shade2);
-  padding: 40px 250px;
+  padding: 20px 30px;
 }
-.confirmationTitle h4 {
+.confirmationTop h4 {
+  padding: 10px 0;
   font-size: 18px;
   color: var(--shade6);
+}
+.confirmationTop p {
+  font-size: 15px;
 }
 .confirmationAction {
   display: flex;
