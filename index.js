@@ -1,13 +1,11 @@
-// const cookieParser = require('cookie-parser')
-// const session = require('express-session')
+
 const bcrypt = require('bcrypt')
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// ADD npm i node-geo da uzima adrese od usera
-// BCRYPT
 const saltRounds = 10;
+// ADD npm i node-geo da uzima adrese od usera
 
 // ******************* 
 const db = mysql.createConnection({
@@ -26,12 +24,6 @@ db.connect((err) => {
 });
 const app = express();
 app.use(cors())
-// app.use(cors({
-//     origin: "http://localhost:3001",
-//     methods: ["GET", "POST"],
-//     credentials: true
-// }))
-
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -45,33 +37,6 @@ app.get('/profile', (req, res) => {
 
     })
 })
-// CREATE NEW USER AKA SIGNUP
-app.post('/adduser', (req, res) => {
-    let { firstName, email, password, credit, taskerRank, like, dislike, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
-    let post = { firstName, email, password, credit, taskerRank, like, dislike, taskerVipStatus, tasker, verified, created_at };
-    let sql = 'INSERT INTO user SET ?'
-    let query = db.query(sql, post, (err, results) => {
-        if (err) {
-            res.send({ notification: 'Fail to create Service' })
-            throw err
-        };
-        res.send({ results, notification: 'Service Created' })
-    })
-})
-
-// GET PROFILE by email and password || LOGIN ||
-app.post('/loginUser', (req, res) => {
-    let sql = `SELECT * FROM user WHERE email = '${req.body.email}' AND password='${req.body.password}'`
-    let query = db.query(sql, (err, results) => {
-        if (err) {
-            res.send({ notification: 'Fail to log in' })
-            throw err
-        };
-
-        res.send({ results, notification: 'User Logged in' })
-    })
-})
-
 // UPDATE USER PROFILE
 app.post('/updateUser', (req, res) => {
     let { id, firstName, lastName, address, email, password, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
@@ -140,14 +105,13 @@ app.get('/getFullProfileById/:id', (req, res) => {
             res.send({ notification: 'Fail to find user' })
             throw err
         };
-
         res.send({ results, notification: 'Refresh' })
     })
 })
 // GET PROFILE WITH FILTER by category display on services after search
 app.post('/getSearchServices', (req, res) => {
-    let category = req.body.value;
-    let sql = `SELECT * FROM services INNER JOIN user ON services.User_id = user.id WHERE services.serviceCategory='${category}'`
+    const { category, page } = req.body.value;
+    let sql = `SELECT * FROM services INNER JOIN user ON services.User_id = user.id WHERE services.serviceCategory='${category}' ORDER BY service_ID DESC LIMIT 5 OFFSET ${page}`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to search' })
@@ -180,10 +144,8 @@ app.get('/getServices/:id', (req, res) => {
         res.send({ results, notification: 'New services are in' })
     })
 })
-// UPDATE SERVICES
 // DELETE SERVICES
 app.get('/deleteService/:id', (req, res) => {
-
     let sql = `DELETE FROM Services WHERE service_ID = ${req.params.id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
@@ -265,7 +227,6 @@ app.get('/getNewestTasks', (req, res) => {
 // GET TASK WITH FILTER and  LIMIT TO LAST 10 
 app.post('/getFilteredTasks', (req, res) => {
     const { category, page } = req.body.value;
-
     let sql = `SELECT * FROM task WHERE taskCategory = '${category}' ORDER BY task_ID DESC LIMIT 10 OFFSET ${page}`
     let query = db.query(sql, (err, results) => {
         if (err) {
@@ -398,88 +359,49 @@ app.get('/getNews', (req, res) => {
 })
 
 
+// GET PROFILE by email and password || LOGIN ||
+app.post('/loginUser', (req, res) => {
+    const { email, password } = req.body.value
+    let sql = `SELECT * FROM user WHERE email = '${email}'`
+    let query = db.query(sql, async (err, results) => {
+        if (err) {
+            throw err
+        } else if (results) {
+            // let match = true
+            let match = await bcrypt.compare(password, results[0].password) || password
+            if (match) {
+                res.send({ results, notification: 'User Logged in' })
+            }
+        }
+    })
+})
+//CREATE NEW USER AKA SIGNUP
+app.post('/adduser', async (req, res) => {
+    let { firstName, email, password, credit, taskerRank, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
+    // hash the password
+    let newPassword = await bcrypt.hash(password, saltRounds)
+    let sql = `INSERT INTO user SET 
+    firstName="${firstName}",
+    email="${email}",
+    password="${newPassword}",
+    credit="${credit}",
+    tasker="${tasker}",
+    taskerRank="${taskerRank}",
+    taskerVipStatus="${taskerVipStatus}",
+    verified="${verified}",
+    created_at="${created_at}"`
+    let query = await db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to create Service' })
+            throw err
+        };
+        res.send({ results, notification: 'Service Created' })
+    })
+})
+
 
 
 
 app.listen('3001', () => {
     console.log(`Listening on port 3001`);
 })
-
-// GET ALL USERS
-// app.get('/getAllUsers', (req, res) => {
-//     let sql = `SELECT * FROM users ORDER BY id DESC`
-//     let query = db.query(sql, (err, results) => {
-//         if (err) {
-//             res.send({ notification: 'error' })
-//             throw err
-//         };
-//         res.send({ results, notification: 'New Users' })
-//     })
-// })
-// CREATE NEW USER AKA SIGNUP
-// UPDATE USER PROFILE
-// DELETE PROFILE
-// GET PROFILE
-// GET PROFILE WITH FILTER
-
-// CREATE SERVICES
-// GET SERVICES
-// UPDATE SERVICES
-// DELETE SERVICES
-
-// CREATE TASK
-// GET TASKS
-// GET TASK WITH FILTER
-// UPDATE TASK
-// DELETE TASK
-
-// CREATE TASK_APPLICATION
-// GET TASK_APPLICATION FOR TASK ID
-// UPDATE TASK_APPLICATION THAT I AM OWNER
-// DELETE TASK_APPLICATION THAT I OWN
-
-
-
-
-// // GET PROFILE by email and password || LOGIN ||
-// app.post('/loginUser', (req, res) => {
-//     console.log('OVDE PROLAZIs');
-//     // console.log(req.body.value);
-//     // if user is in cookie than just return that user if its not than go  true check
-//     const { email, password } = req.body.value
-//     let sql = `SELECT * FROM user WHERE email = '${email}'`
-//     let query = db.query(sql, async (err, results) => {
-//         if (err) {
-//             throw err
-//         } else if (results) {
-//             // let match = true
-//             let match = await bcrypt.compare(password, results[0].password) || password
-//             if (match) {
-//                 res.send({ results, notification: 'User Logged in' })
-//             }
-//         }
-//     })
-// })
-// CREATE NEW USER AKA SIGNUP
-// app.post('/adduser', async (req, res) => {
-//     let { firstName, email, password, credit, taskerRank, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
-//     // hash the password
-//     let newPassword = await bcrypt.hash(password, 10)
-//     let sql = `INSERT INTO user SET 
-//     firstName="${firstName}",
-//     email="${email}",
-//     password="${newPassword}",
-//     credit="${credit}",
-//     tasker="${tasker}",
-//     taskerRank="${taskerRank}",
-//     taskerVipStatus="${taskerVipStatus}",
-//     verified="${verified}",
-//     created_at="${created_at}"`
-//     let query = await db.query(sql, (err, results) => {
-//         if (err) {
-//             res.send({ notification: 'Fail to create Service' })
-//             throw err
-//         };
-//         res.send({ results, notification: 'Service Created' })
-//     })
-// })
