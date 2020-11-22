@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { connect } from 'react-redux'
 import * as actionCreator from '../User/store/userActions'
 import * as globeActionCreator from '../../../../store/actions/actions'
-
-
+import options from '../../../OptionsData'
 function ProfileForm(props) {
     const [confirm, setConfirm] = useState(false)
     const [openTab, setOpenTab] = useState(false)
@@ -18,7 +17,18 @@ function ProfileForm(props) {
     const [taskEndTime, setTaskEndTime] = useState('')
     const [taskStartDate, setTaskStartDate] = useState('')
     const [taskEndDate, setTaskEndDate] = useState('')
-
+    let menuRef = useRef()
+    useEffect(() => {
+        let handler = (event) => {
+            if (!menuRef.current.contains(event.target)) {
+                setOpenTab(false)
+            }
+        }
+        document.addEventListener("mousedown", handler);
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
     const handleSubmit = () => {
 
         let date = new Date()
@@ -95,112 +105,22 @@ function ProfileForm(props) {
                         <KeyboardArrowDownIcon />
                     </div>
                 </div>
-                {openTab && <div className="optionsWrapper">
-                    <div className="options">
-                        <button onClick={() => {
-                            setOpenTab(false)
-                        }}>x</button>
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Dom')
-                        }} >Dom</div>
-
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Ciscenje')
-                        }}>Ciscenje</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Elektricar')
-                        }}>Elektricar</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Vodoinstalater')
-                        }}>Vodoinstalater</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Moler')
-                        }}>Moler</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Bastovan')
-                        }}>Bastovan</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Razno')
-                        }}>Razno</div>
-                        {/* *********************  */}
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Lepota')
-                        }} >Lepota</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Frizer')
-                        }}>Frizer</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Sminker')
-                        }}>Sminker</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Nokti')
-                        }}>Nokti</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Masaza')
-                        }}>Masaza</div>
-                        {/* *********************  */}
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Zivotinje')
-                        }} >Zivotinje</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Groomer')
-                        }}>Groomer</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Cuvar')
-                        }}>Cuvar</div>
-                        {/* *********************  */}
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Poljoprivreda')
-                        }} >Poljoprivreda</div>
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Tattoo')
-                        }} >Tattoo</div>
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Muzika')
-                        }} >Muzika</div>
-
-                        {/* *********************  */}
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Moda')
-                        }} >Moda</div>
-                        <div className="optionItems " onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Ciscenje')
-                        }} >Ciscenje</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Sivenje')
-                        }} >Sivenje</div>
-                        <div className="optionItems" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Sister')
-                        }} >Sister</div>
-                        {/* *********************  */}
-                        <div className="optionItems optionItemMain" onClick={() => {
-                            setOpenTab(false)
-                            setTaskCategory('Auto/Moto')
-                        }} >Auto/Moto</div>
+                {openTab ? <div className="optionsWrapper">
+                    <div className="options" ref={menuRef}>
+                        {options.map((item) => {
+                            if (item.main) {
+                                return <div key={item.id} className="optionItems optionItemMain" onClick={() => {
+                                    setTaskCategory(item.value)
+                                    setOpenTab(false)
+                                }} >{item.title}</div>
+                            }
+                            return <div key={item.id} className="optionItems " onClick={() => {
+                                setTaskCategory(item.value)
+                                setOpenTab(false)
+                            }} >{item.title}</div>
+                        })}
                     </div>
-                </div>}
+                </div> : <div ref={menuRef}></div>}
 
             </div>
             <div className='formItem'>

@@ -111,13 +111,11 @@ export const deleteUser = (value) => {
 
 // LOGIN USER
 export const loginUser = (value) => {
-
-    const { email, password } = value;
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.post("http://localhost:3001/loginUser", { email: email, password: password })
+        const response = await Axios.post("http://localhost:3001/loginUser", { value })
 
 
         if (response.data.results.length <= 0) {

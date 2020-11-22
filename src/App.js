@@ -35,8 +35,6 @@ import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
 
 
-
-
 function App(props) {
   useEffect(() => {
     const checkIfLoggedIn = () => {
@@ -44,7 +42,6 @@ function App(props) {
         let storage = JSON.parse(localStorage.getItem('authUser'))
         let email = storage.email;
         let password = storage.password
-        // props.loginUser(email)
         props.loginUser(email, password)
       }
     }

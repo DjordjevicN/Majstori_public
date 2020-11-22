@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Divider } from '@material-ui/core/';
 import CheckIcon from '@material-ui/icons/Check';
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
@@ -6,16 +6,41 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { connect } from 'react-redux'
 import * as actionCreator from '../../../store/actions/actions'
 import { Link } from 'react-router-dom'
-// import gravatar from 'gravatar'
-
-// <img src={gravatar.url('nikola.dj.87@gmail.com', { s: '200', r: 'pg', d: '404' })} /> 
-// on search return all profiles that have specific category order by highest completedTasks limit 10
+import options from '../../OptionsData'
 function Services(props) {
     const [openTab, setOpenTab] = useState(false)
     const [category, setCategory] = useState('Razno');
-    const handleSearch = () => {
-        props.getSearchServices(category)
+    const [page, setPage] = useState(0)
+    let filter = {
+        category,
+        page
     }
+    let menuRef = useRef()
+
+    const handleSearch = () => {
+        let filter = {
+            category,
+            page: 0
+        }
+        props.clearServiceFromState()
+        props.getSearchServices(filter)
+        setPage(5)
+    }
+    const loadMore = () => {
+        props.getSearchServices(filter)
+        setPage(page + 5)
+    }
+    useEffect(() => {
+        let handler = (event) => {
+            if (!menuRef.current.contains(event.target)) {
+                setOpenTab(false)
+            }
+        }
+        document.addEventListener("mousedown", handler);
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
     return (
         <div className='serviceRoot'>
             <div className='searchInputWrapper'>
@@ -32,114 +57,25 @@ function Services(props) {
                             <KeyboardArrowDownIcon />
                         </div>
                     </div>
-                    {openTab && <div className="optionsWrapper">
-                        <div className="options">
-                            <button className="closeSearch" onClick={() => {
-                                setOpenTab(false)
-                            }}>x</button>
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Dom')
-                            }} >Dom</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Ciscenje')
-                            }}>Ciscenje</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Elektricar')
-                            }}>Elektricar</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Vodoinstalater')
-                            }}>Vodoinstalater</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Moler')
-                            }}>Moler</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Bastovan')
-                            }}>Bastovan</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Razno')
-                            }}>Razno</div>
-                            {/* *********************  */}
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Lepota')
-                            }} >Lepota</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Frizer')
-                            }}>Frizer</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Sminker')
-                            }}>Sminker</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Nokti')
-                            }}>Nokti</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Masaza')
-                            }}>Masaza</div>
-                            {/* *********************  */}
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Zivotinje')
-                            }} >Zivotinje</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Groomer')
-                            }}>Groomer</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Cuvar')
-                            }}>Cuvar</div>
-                            {/* *********************  */}
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Poljoprivreda')
-                            }} >Poljoprivreda</div>
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Tattoo')
-                            }} >Tattoo</div>
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Muzika')
-                            }} >Muzika</div>
-
-                            {/* *********************  */}
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Moda')
-                            }} >Moda</div>
-                            <div className="optionItems " onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Ciscenje')
-                            }} >Ciscenje</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Sivenje')
-                            }} >Sivenje</div>
-                            <div className="optionItems" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Sister')
-                            }} >Sister</div>
-                            {/* *********************  */}
-                            <div className="optionItems optionItemMain" onClick={() => {
-                                setOpenTab(false)
-                                setCategory('Auto/Moto')
-                            }} >Auto/Moto</div>
+                    {openTab ? <div className="optionsWrapper">
+                        <div className="options" ref={menuRef}>
+                            {options.map((item) => {
+                                if (item.main) {
+                                    return <div key={item.id} className="optionItems optionItemMain" onClick={() => {
+                                        setCategory(item.value)
+                                        setOpenTab(false)
+                                    }} >{item.title}</div>
+                                }
+                                return <div key={item.id} className="optionItems " onClick={() => {
+                                    setCategory(item.value)
+                                    setOpenTab(false)
+                                }} >{item.title}</div>
+                            })}
                         </div>
-                    </div>}
+                    </div> : <div ref={menuRef}></div>}
                     <button className="searchButtons" onClick={() => {
                         handleSearch()
-                    }}>SEARCH</button>
+                    }}>TRAZI</button>
                 </div>
             </div>
             <div className='serviceCardWrapper' >
@@ -187,6 +123,9 @@ function Services(props) {
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                         </div>}
                 </div>
+                {props.serviceUsers.length > 0 ? <p className='loadMoreBTN' onClick={() => {
+                    loadMore()
+                }} >LOAD MORE</p> : <p className='NoTasks'>Pronadjite taks iz vase kategorije</p>}
             </div>
         </div>
     );
@@ -200,7 +139,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
 
         getSearchServices: (category) => dispatch(actionCreator.getSearchServices(category)),
-        getFullProfileById: (id) => dispatch(actionCreator.getFullProfileById(id))
+        getFullProfileById: (id) => dispatch(actionCreator.getFullProfileById(id)),
+        clearServiceFromState: () => dispatch(actionCreator.clearServiceFromState())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Services)

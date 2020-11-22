@@ -20,10 +20,10 @@ const globalReducer = (state = initState, action) => {
             newState.notification = action.payload;
             break;
         case "UPDATE_ALL_SERVICES_STATE":
-            newState.serviceUsers = action.payload;
+            newState.serviceUsers = newState.serviceUsers.concat(action.payload)
+
             break;
         case "CLEAR_ALL_TASKS_FORM_STATE":
-            // newState.tasks = action.payload
             newState.tasks = []
             break;
         case "UPDATE_ALL_TASK_STATE":
@@ -32,6 +32,9 @@ const globalReducer = (state = initState, action) => {
             break;
         case "SET_SERVICE_USER_VIEW":
             newState.serviceUserView = action.payload;
+            break;
+        case "CLEAR_ALL_SERVICES_FORM_STATE":
+            newState.serviceUsers = []
             break;
         case "SET_TASK_VIEW":
             newState.taskView = action.payload;

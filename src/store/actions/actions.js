@@ -16,6 +16,7 @@ export const getMyServices = (value) => {
 }
 // GET PROFILE WITH FILTER by category display on SERVICES after search
 export const getSearchServices = (value) => {
+    console.log(value);
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
@@ -27,6 +28,14 @@ export const getSearchServices = (value) => {
         })
         dispatch({
             type: 'LOADING_FALSE'
+        })
+    }
+}
+//CLEAR SERVICE LIST
+export const clearServiceFromState = (value) => {
+    return async (dispatch) => {
+        dispatch({
+            type: "CLEAR_ALL_SERVICES_FORM_STATE"
         })
     }
 }

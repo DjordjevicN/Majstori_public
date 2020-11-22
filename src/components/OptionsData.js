@@ -1,0 +1,22 @@
+let options = [
+    { id: 1, value: 'Dom', title: 'Dom', main: true },
+    { id: 2, value: 'Ciscenje', title: 'Ciscenje', main: false },
+    { id: 3, value: 'Elektricar', title: 'Elektricar', main: false },
+    { id: 4, value: 'Vodoinstalater', title: 'Vodoinstalater', main: false },
+    { id: 5, value: 'Moler', title: 'Moler', main: false },
+    { id: 6, value: 'Bastovan', title: 'Bastovan', main: false },
+    { id: 7, value: 'Lepota', title: 'Lepota', main: true },
+    { id: 8, value: 'Frizer', title: 'Frizer', main: false },
+    { id: 9, value: 'Manikir', title: 'Manikir', main: false },
+    { id: 10, value: 'Masaza', title: 'Masaza', main: false },
+    { id: 11, value: 'Zivotinje', title: 'Zivotinje', main: true },
+    { id: 12, value: 'Groomer', title: 'Groomer', main: false },
+    { id: 13, value: 'Cuvar', title: 'Cuvar', main: false },
+    { id: 14, value: 'Setac', title: 'Setac', main: false },
+    { id: 15, value: 'Poljoprivreda', title: 'Poljoprivreda', main: true },
+    { id: 16, value: 'Tattoo', title: 'Tattoo', main: true },
+    { id: 17, value: 'Muzika', title: 'Muzika', main: true },
+    { id: 18, value: 'Auto/Moto', title: 'Auto/Moto', main: true },
+    { id: 19, value: 'Razno', title: 'Razno', main: true },
+]
+export default options

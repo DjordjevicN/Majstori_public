@@ -16,7 +16,8 @@
 }
 .optionsWrapper {
   display: block;
-  width: 50%;
+  width: 30%;
+
   box-shadow: 1px 3px 8px #888888;
   border: 1px solid var(--lightBorder);
   z-index: 101;
