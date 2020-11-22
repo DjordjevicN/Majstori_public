@@ -4,25 +4,34 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
-import { BsChevronBarRight, BsChevronBarLeft } from "react-icons/bs";
 
 
 function Tasks(props) {
     const [openTab, setOpenTab] = useState(false)
     const [category, setCategory] = useState('');
-
+    const [page, setPage] = useState(0)
     let tasks = props.tasks;
-    const handleSearch = (page) => {
+    let filter = {
+        category,
+        page
+    }
+    const handleSearch = () => {
         if (category === '') {
-            props.getLatestTasks()
+            // props.clearTasksFromState()
+            // props.getLatestTasks()
         } else {
-            const filter = {
+            let filter = {
                 category,
-                page
+                page: 0
             }
-            console.log(filter);
+            props.clearTasksFromState()
             props.getFilteredTasks(filter)
+            setPage(10)
         }
+    }
+    const loadMore = () => {
+        props.getFilteredTasks(filter)
+        setPage(page + 10)
     }
     return (
         <div className='root'>
@@ -149,7 +158,8 @@ function Tasks(props) {
                         </div>
                     </div>}
                     <button className="searchButtons" onClick={() => {
-                        handleSearch(0)
+                        setPage(0)
+                        handleSearch()
                     }}>TRAZI</button>
                 </div>
             </div>
@@ -186,48 +196,10 @@ function Tasks(props) {
                         <p>Trenutno nema novih poslova</p>
                     </div>}
             </div>
-            <div className='paginationWrapper'>
-                <div className="paginationContent">
-                    < BsChevronBarLeft className='paginationItem' onClick={() => {
-                        handleSearch(0)
-
-                    }} />
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(0)
-
-                    }}>1</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(10)
-                    }}>2</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(20)
-                    }}>3</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(30)
-                    }}>4</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(40)
-                    }}>5</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(50)
-                    }}>6</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(60)
-                    }}>7</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(70)
-                    }}>8</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(80)
-                    }}>9</p>
-                    <p className='paginationItem' onClick={() => {
-                        handleSearch(90)
-                    }}>10</p>
-                    <BsChevronBarRight className='paginationItem' onClick={() => {
-                        handleSearch(90)
-                    }} />
-                </div>
-            </div>
+            {tasks.length > 0 ? <p className='loadMoreBTN' onClick={() => {
+                loadMore()
+                console.log(tasks);
+            }} >LOAD MORE</p> : <p className='NoTasks'>Pronadjite taks iz vase kategorije</p>}
 
         </div>
     );
@@ -243,31 +215,10 @@ const mapDispatchToProps = (dispatch) => {
         getLatestTasks: () => dispatch(actionCreator.getLatestTasks()),
         getFilteredTasks: (filter) => dispatch(actionCreator.getFilteredTasks(filter)),
         getTaskById: (taskId) => dispatch(actionCreator.getTaskById(taskId)),
+        clearTasksFromState: () => dispatch(actionCreator.clearTasksFromState())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -159,6 +159,10 @@
   background-color: var(--green2);
   width: 25%;
 }
+.NoTasks {
+  text-align: center;
+  margin-top: 20vh;
+}
 /* .quickAddTaskFormWrapper {
   display: grid;
   place-items: center;

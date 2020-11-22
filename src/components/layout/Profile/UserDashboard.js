@@ -49,7 +49,6 @@ function UserDashboard(props) {
                                 setDashForm(<NoForm />)
                                 setDashPage(<UserProposals />)
                             }}><DoneAllIcon className="dashMenuItemIcon" /></button>
-
                             <button className="dashMenuItem" onClick={() => {
                                 props.getAllNews()
                                 setDashPage(<News />)

@@ -140,11 +140,11 @@ export const loginUser = (value) => {
                 type: 'SET_LOCAL_STATE_LOGIN',
                 payload: response.data.results[0]
             })
-            const gewNewestTasks = await Axios.get(`http://localhost:3001/getNewestTasks`)
-            dispatch({
-                type: 'UPDATE_ALL_TASK_STATE',
-                payload: gewNewestTasks.data.results
-            })
+            // const gewNewestTasks = await Axios.get(`http://localhost:3001/getNewestTasks`)
+            // dispatch({
+            //     type: 'UPDATE_ALL_TASK_STATE',
+            //     payload: gewNewestTasks.data.results
+            // })
 
             //             dispatch(getMyProposals(myID))
             const getMyProposals = await Axios.get(`http://localhost:3001/getMyProposals/${myId}`,)

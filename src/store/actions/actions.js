@@ -51,7 +51,14 @@ export const deleteService = (value) => {
         })
     }
 }
-// GET TASK WITH FILTER
+// CLEAR_ALL_TASKS_FORM_STATE
+export const clearTasksFromState = (value) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'CLEAR_ALL_TASKS_FORM_STATE'
+        })
+    }
+}
 export const getFilteredTasks = (value) => {
 
     return async (dispatch) => {
