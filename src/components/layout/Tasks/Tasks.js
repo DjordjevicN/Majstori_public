@@ -103,7 +103,8 @@ function Tasks(props) {
                                     <p color='primary' className='taskCardItem price'>{item.taskPrice} din</p>
                                 </div>
                                 <div className='taskCardBody'>
-                                    <div> {item.taskDescription ? <p>{item.taskDescription.substring(0, 100)}<span> ...Vise u Detaljima</span></p> : null}</div>
+                                    <div> {item.taskDescription ? <p>{item.taskDescription.substring(0, 100)}<span> ...Vise u Detaljima</span></p> : null}
+                                    </div>
                                 </div>
                                 <div className='taskCardInfo2'>
                                     <p className='taskCardItem hour'>Postovano <span>{item.taskCreated_at}</span> </p>

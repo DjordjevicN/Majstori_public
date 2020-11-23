@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 // import { Icon } from 'leaflet';
-import { fakeMapData } from '../mapData.json';
+
+import { connect } from 'react-redux'
 // const iconMarker = new Icon({
 //     iconUrl: "/marker2.svg",
 //     iconSize: [40, 40]
 // })
-function MapComponent() {
+function MapComponent(props) {
     const [activePopup, setActivePopup] = useState(null);
-
-
+    let tasks = props.tasks
+    console.log(props);
     return (
         <div className='map'>
 
 
-            <Map center={[44.82081203, 20.41482925]} zoom={12}>
+            <Map center={[44.82081203, 20.41482925]} zoom={11}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 />
-                {fakeMapData.map((item) => (
-                    <div key={item.id}>
+                {tasks && tasks.map((item) => (
+                    <div key={item.task_ID}>
                         <Marker position={[
-                            item.location[0],
-                            item.location[1]
+                            item.taskLatitude,
+                            item.taskLongitude
                         ]}
                             onclick={() => {
                                 setActivePopup(item)
@@ -35,8 +36,8 @@ function MapComponent() {
                 ))}
                 {activePopup &&
                     <Popup position={[
-                        activePopup.location[0],
-                        activePopup.location[1]
+                        activePopup.taskLatitude,
+                        activePopup.taskLongitude
                     ]}
                         onClose={() => {
                             setActivePopup(null)
@@ -44,12 +45,13 @@ function MapComponent() {
                     >
                         <div>
                             <div className='popupTitle'>
-                                <h2>{activePopup.category}</h2>
-                                <p>{activePopup.price}</p>
+                                <h2>{activePopup.taskCategory}</h2>
+                                <p>{activePopup.taskPrice}</p>
                             </div>
 
-                            <p>{activePopup.description}</p>
-                            <p>{activePopup.phoneNumber}</p>
+
+                            <div> {activePopup.taskDescription ? <p>{activePopup.taskDescription.substring(0, 100)}<span> ...Vise u Detaljima</span></p> : null}</div>
+                            <button>detaljnije</button>
 
                         </div>
                     </Popup>
@@ -59,4 +61,12 @@ function MapComponent() {
     );
 }
 
-export default MapComponent;
+
+const mapStateToProps = (state) => {
+    return {
+        tasks: state.globalReducer.tasks
+
+    }
+}
+
+export default connect(mapStateToProps, null)(MapComponent)

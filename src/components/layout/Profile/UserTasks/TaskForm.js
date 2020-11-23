@@ -43,6 +43,8 @@ function ProfileForm(props) {
             taskPrice,
             taskDescription,
             taskAddress,
+            taskLatitude: 0,
+            taskLongitude: 0,
             taskStartTime,
             taskEndTime,
             taskStartDate,

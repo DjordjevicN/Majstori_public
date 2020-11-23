@@ -204,6 +204,11 @@ export const createTask = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
+        if (value.taskAddress) {
+            const response = await Axios.get(` https://api.opencagedata.com/geocode/v1/json?q=${value.taskAddress}&key=aa1b2e2507e3478f9059aabe4850e45f&language=en&pretty=1`)
+            value.taskLatitude = response.data.results[0].geometry.lat
+            value.taskLongitude = response.data.results[0].geometry.lng
+        }
         await Axios.post(`http://localhost:3001/createTask`, { value })
         dispatch(getMyTasks(value.User_id))
         dispatch({
