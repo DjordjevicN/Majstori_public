@@ -4,9 +4,11 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+require('dotenv').config()
 const saltRounds = 10;
 // ADD npm i node-geo da uzima adrese od usera
 
+const port = process.env.PORT || 3001
 // ******************* 
 const db = mysql.createConnection({
     user: 'root',
@@ -162,19 +164,22 @@ app.post('/createTask', (req, res) => {
         taskPrice,
         taskDescription,
         taskAddress,
+        taskLatitude,
+        taskLongitude,
         taskStartTime,
         taskEndTime,
         taskStartDate,
         taskEndDate,
         taskCreated_at,
         User_id } = req.body.value
-
     let post = {
         taskCategory,
         taskTitle,
         taskPrice,
         taskDescription,
         taskAddress,
+        taskLatitude,
+        taskLongitude,
         taskStartTime,
         taskEndTime,
         taskStartDate,
@@ -401,7 +406,6 @@ app.post('/adduser', async (req, res) => {
 
 
 
-
-app.listen('3001', () => {
-    console.log(`Listening on port 3001`);
+app.listen(port, () => {
+    console.log(`Listening on ${port}`);
 })
