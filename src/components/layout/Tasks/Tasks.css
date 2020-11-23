@@ -1,14 +1,22 @@
-.root {
-  margin-top: 5%;
+.tasksRoot {
+  margin-top: 20px;
+}
+.tasksRoot {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+}
+.taskCardWrapper {
+  /* height: 80vh;
+  overflow-y: scroll; */
 }
 .taskCard {
-  width: 50%;
+  width: 70%;
   margin: 20px auto;
   background-color: rgb(255, 255, 255);
-  /* border-radius: 8px; */
   box-shadow: 1px 3px 8px #888888;
   border-left: 6px solid var(--green2);
 }
+
 .taskCard:hover {
   border-left: 6px solid var(--blue1);
   background-color: var(--shade1);
