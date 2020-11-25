@@ -403,9 +403,64 @@ app.post('/adduser', async (req, res) => {
         res.send({ results, notification: 'Service Created' })
     })
 })
+// ADD CREDIT
+app.post('/addCredit', (req, res) => {
+    let { userId, credit, userVipStatus, userRank } = req.body.value;
+    let sql = `UPDATE user SET 
+    credit = "${credit}",
+    userVipStatus = "${userVipStatus}",
+    userRank = "${userRank}"
+     WHERE id = ${userId}`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to update user' })
+            throw err
+        };
+        res.send({ results, notification: 'User Updated' })
+    })
+})
 
 
+// ADD TO FAVORITE LIST
+app.post('/addFav', async (req, res) => {
+    let { authUserID, taskId } = req.body.value;
+    let sql = `INSERT INTO favorite SET 
+    fav_user_id="${authUserID}",
+    fav_task_id="${taskId}"`
+    let query = await db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to add to Favorite' })
+            throw err
+        };
+        res.send({ results, notification: 'Task added to favorite' })
+    })
+})
+// GET MY FAVORITE TASKS
+app.get('/getMyFavoriteTasks/:id', (req, res) => {
+    let sql = `SELECT * FROM favorite 
+    JOIN task ON task_ID = favorite.fav_task_id
+    JOIN user ON favorite.fav_user_id = user.id 
+    WHERE user.id = "${req.params.id}"`
 
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'There are no new offers' })
+            throw err
+        };
+        res.send({ results, notification: 'New offers are in' })
+    })
+})
+// DELETE TASK FROM FAVORITE
+app.get('/deleteFromFav/:id', (req, res) => {
+    let sql = `DELETE FROM favorite WHERE fav_id = ${req.params.id}`
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to delete ' })
+            throw err
+        };
+        res.send({ results, notification: ' Deleted' })
+    })
+})
 app.listen(port, () => {
     console.log(`Listening on ${port}`);
 })
