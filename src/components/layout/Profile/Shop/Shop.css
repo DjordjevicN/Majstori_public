@@ -1,0 +1,35 @@
+.shopWrapper {
+}
+.shopContent {
+  padding: 20px;
+}
+.cardsWrapper {
+  display: flex;
+  justify-content: center;
+}
+.card {
+  width: 30%;
+  background-color: aliceblue;
+  margin: 0 5px;
+}
+.cardTop {
+  text-align: center;
+  background-color: var(--green1);
+  color: var(--shade1);
+}
+.cardBottom {
+  padding: 10px;
+}
+.cardBottom h4 {
+  margin: 10px 0;
+}
+.shopBTN {
+  text-align: center;
+  margin: 20px;
+  background-color: var(--green1);
+  color: var(--shade1);
+  cursor: pointer;
+}
+.shopBTN:hover {
+  background-color: var(--green2);
+}

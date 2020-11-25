@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import * as actionCreator from '../News/store/NewsActions'
+import * as userActionCreator from '../Profile/User/store/userActions'
+import { connect } from 'react-redux';
+// PAGES
 import ProfileForm from '../Profile/User/ProfileForm';
 import ServiceForm from '../Profile/UserServices/ServiceForm';
 import TaskForm from '../Profile/UserTasks/TaskForm';
@@ -8,19 +12,21 @@ import UserTasks from '../Profile/UserTasks/UserTasks'
 import UserServices from '../Profile/UserServices/UserServices'
 import UserOffer from '../Profile/UserOffers/UserOffer'
 import News from '../News/News'
+import Shop from '../Profile/Shop/Shop'
+import FavoritePage from './FavoritePage/FavoritePage'
 import UserProposals from './UserProposals/UserProposals'
+// ICONS
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import WorkIcon from '@material-ui/icons/Work';
 import PersonIcon from '@material-ui/icons/Person';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import WarningIcon from '@material-ui/icons/Warning';
-import * as actionCreator from '../News/store/NewsActions'
-import { connect } from 'react-redux';
+
 function UserDashboard(props) {
     const [dashForm, setDashForm] = useState(<ProfileForm />)
     const [dashPage, setDashPage] = useState(<User />)
-
+    console.log(props.authUser);
     return (
         <div className='dashboardWrapper'>
             {/* MENU  */}
@@ -50,11 +56,20 @@ function UserDashboard(props) {
                                 setDashPage(<UserProposals />)
                             }}><DoneAllIcon className="dashMenuItemIcon" /></button>
                             <button className="dashMenuItem" onClick={() => {
+
+                                props.getMyFavoriteTasks(props.authUser.id)
+                                setDashPage(<FavoritePage />)
+                                setDashForm(<NoForm />)
+                            }}><p className="dashMenuItemIcon" >FAV</p></button>
+                            <button className="dashMenuItem" onClick={() => {
                                 props.getAllNews()
                                 setDashPage(<News />)
                                 setDashForm(<NoForm />)
-
                             }}><WarningIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashPage(<Shop />)
+                                setDashForm(<NoForm />)
+                            }}><p className="dashMenuItemIcon">SHOP</p></button>
                         </div>
                     </div>
                     {/* CONTENT  */}
@@ -78,12 +93,13 @@ function UserDashboard(props) {
 
 const mapStateToProps = (state) => {
     return {
-        prop: state.prop
+        authUser: state.User.authUser
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllNews: () => dispatch(actionCreator.getAllNews())
+        getAllNews: () => dispatch(actionCreator.getAllNews()),
+        getMyFavoriteTasks: (id) => dispatch(userActionCreator.getMyFavoriteTasks(id))
 
     }
 }

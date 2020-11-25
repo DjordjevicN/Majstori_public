@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import * as actionCreator from './components/layout/Profile/User/store/userActions'
-
+// SCC
 import './App.css';
 import './CSS/mainMenu.css';
 import './components/layout/Home/Home.css';
@@ -17,11 +17,14 @@ import './components/layout/Profile/UserProposals/UserProposals.css';
 import './components/layout/News/News.css';
 import './components/layout/GOD/AdminDashboard.css'
 import './components/layout/Profile/UserProfile.css'
+import './components/layout/Profile/Shop/Shop.css'
+import './components/layout/Profile/FavoritePage/FavoritePage.css'
 import './CSS/Signup.css';
 import './CSS/Dashboard.css';
 import './CSS/form.css';
 import './CSS/selectForm.css';
 
+// PAGES
 import Menu from './components/layout/Menu'
 import Home from './components/layout/Home/Home'
 import Tasks from './components/layout/Tasks/Tasks'
@@ -29,10 +32,10 @@ import Task from './components/layout/Tasks/Task'
 import Services from './components/layout/Services/Services'
 import SignUp from './components/layout/SignUp'
 import Login from './components/layout/Login'
-
 import UserDashboard from './components/layout/Profile/UserDashboard'
 import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
+
 
 
 function App(props) {

@@ -2,6 +2,7 @@
 const initState = {
     authUser: {},
     myTasks: [],
+    myFavoriteTasks: [],
     myServices: [],
     myOffers: [],
     myProposals: [],
@@ -47,6 +48,9 @@ const User = (state = initState, action) => {
             break;
         case "UPDATE_MY_TASK_STATE":
             newState.myTasks = action.payload;
+            break;
+        case "UPDATE_MY_FAVORITE_TASKS":
+            newState.myFavoriteTasks = action.payload;
             break;
         case "CREATE_SERVICE":
             newState.myServices = action.payload;

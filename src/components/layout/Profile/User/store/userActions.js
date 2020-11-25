@@ -1,5 +1,5 @@
 import Axios from 'axios';
-
+let hosting = "http://localhost:3001"
 // CREATE SERVICES 
 export const createNewService = (value) => {
 
@@ -7,8 +7,8 @@ export const createNewService = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post("http://localhost:3001/createNewService", { value })
-        const response = await Axios.get(`http://localhost:3001/getServices/${value.User_id}`)
+        await Axios.post(`${hosting}/createNewService`, { value })
+        const response = await Axios.get(`${hosting}/getServices/${value.User_id}`)
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
@@ -28,8 +28,8 @@ export const updateUser = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post("http://localhost:3001/updateUser", { value });
-        const response = await Axios.get(`http://localhost:3001/getUserById/${value.id}`)
+        await Axios.post(`${hosting}/updateUser`, { value });
+        const response = await Axios.get(`${hosting}/getUserById/${value.id}`)
 
         if (response.data.results.length <= 0) {
             dispatch({
@@ -66,7 +66,7 @@ export const createUser = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.post("http://localhost:3001/adduser", { newUser })
+        const response = await Axios.post(`${hosting}/adduser`, { newUser })
 
         dispatch({
             type: "NOTIFICATION",
@@ -93,7 +93,7 @@ export const logoutUser = () => {
 export const deleteUser = (value) => {
 
     return async (dispatch) => {
-        const response = await Axios.get(`http://localhost:3001/deleteUser/${value.id}`)
+        const response = await Axios.get(`${hosting}/deleteUser/${value.id}`)
 
         dispatch({
             type: 'SET_LOCAL_STATE_LOGOUT',
@@ -115,7 +115,7 @@ export const loginUser = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.post("http://localhost:3001/loginUser", { value })
+        const response = await Axios.post(`${hosting}/loginUser`, { value })
 
 
         if (response.data.results.length <= 0) {
@@ -145,21 +145,21 @@ export const loginUser = (value) => {
             // })
 
             //             dispatch(getMyProposals(myID))
-            const getMyProposals = await Axios.get(`http://localhost:3001/getMyProposals/${myId}`,)
+            const getMyProposals = await Axios.get(`${hosting}/getMyProposals/${myId}`,)
             // for each
             dispatch({
                 type: "SET_MY_PROPOSALS_STATE",
                 payload: getMyProposals.data.results
             })
             //             dispatch(getMyOffers(myID))
-            const getMyOffers = await Axios.get(`http://localhost:3001/getMyOffers/${myId}`,)
+            const getMyOffers = await Axios.get(`${hosting}/getMyOffers/${myId}`,)
 
             dispatch({
                 type: "UPDATE_MY_OFFERS_STATE",
                 payload: getMyOffers.data.results
             })
             //             dispatch(getServices(myID))
-            const getServices = await Axios.get(`http://localhost:3001/getServices/${response.data.results[0].id}`)
+            const getServices = await Axios.get(`${hosting}/getServices/${response.data.results[0].id}`)
 
             dispatch({
                 type: "CREATE_SERVICE",
@@ -167,7 +167,7 @@ export const loginUser = (value) => {
             })
 
             //             dispatch(getMyTasks(myID))
-            const getMyTasks = await Axios.get(`http://localhost:3001/getMyTasks/${response.data.results[0].id}`,)
+            const getMyTasks = await Axios.get(`${hosting}/getMyTasks/${response.data.results[0].id}`,)
 
             dispatch({
                 type: "UPDATE_MY_TASK_STATE",
@@ -191,7 +191,7 @@ export const loginUser = (value) => {
 // GET MY TASKS
 export const getMyTasks = (value) => {
     return async (dispatch) => {
-        const response = await Axios.get(`http://localhost:3001/getMyTasks/${value}`,)
+        const response = await Axios.get(`${hosting}/getMyTasks/${value}`,)
         dispatch({
             type: "UPDATE_MY_TASK_STATE",
             payload: response.data.results
@@ -209,7 +209,7 @@ export const createTask = (value) => {
             value.taskLatitude = response.data.results[0].geometry.lat
             value.taskLongitude = response.data.results[0].geometry.lng
         }
-        await Axios.post(`http://localhost:3001/createTask`, { value })
+        await Axios.post(`${hosting}/createTask`, { value })
         dispatch(getMyTasks(value.User_id))
         dispatch({
             type: 'LOADING_FALSE'
@@ -223,7 +223,7 @@ export const deleteTask = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.get(`http://localhost:3001/deleteTask/${value.taskId}`)
+        const response = await Axios.get(`${hosting}/deleteTask/${value.taskId}`)
         await dispatch(getMyTasks(value.userId))
 
 
@@ -243,7 +243,7 @@ export const getMyOffers = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.get(`http://localhost:3001/getMyOffers/${value}`,)
+        const response = await Axios.get(`${hosting}/getMyOffers/${value}`,)
         // for each
         dispatch({
             type: "UPDATE_MY_OFFERS_STATE",
@@ -266,7 +266,7 @@ export const getMyProposals = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.get(`http://localhost:3001/getMyProposals/${value}`,)
+        const response = await Axios.get(`${hosting}/getMyProposals/${value}`,)
         // for each
         dispatch({
             type: "SET_MY_PROPOSALS_STATE",
@@ -280,5 +280,64 @@ export const getMyProposals = (value) => {
         dispatch({
             type: 'LOADING_FALSE'
         })
+    }
+}
+// ADD CREDIT
+export const addCredit = (value) => {
+    console.log(value);
+    return async (dispatch) => {
+        dispatch({
+            type: "LOADING_TRUE"
+        })
+        await Axios.post(`${hosting}/addCredit`, { value });
+        dispatch({
+            type: "LOADING_FALSE"
+        })
+    }
+}
+// GET MY FAVORITE TASKS
+export const getMyFavoriteTasks = (value) => {
+    console.log(value);
+    return async (dispatch) => {
+        dispatch({
+            type: "LOADING_TRUE"
+        })
+        const response = await Axios.get(`${hosting}/getMyFavoriteTasks/${value}`,)
+        console.log(response);
+        dispatch({
+            type: "UPDATE_MY_FAVORITE_TASKS",
+            payload: response.data.results
+        })
+        dispatch({
+            type: 'LOADING_FALSE'
+        })
+    }
+}
+//   ADD TO FAV TABLE
+export const addFav = (value) => {
+    return async (dispatch) => {
+        dispatch({
+            type: "LOADING_TRUE"
+        })
+        await Axios.post(`${hosting}/addFav`, { value });
+        await dispatch(getMyFavoriteTasks(value.authUserID))
+        dispatch({
+            type: "LOADING_FALSE"
+        })
+    }
+}
+
+// DELETE TASK FROM FAVORITE
+export const deleteFromFav = (value) => {
+
+    return async (dispatch) => {
+        const response = await Axios.get(`${hosting}/deleteFromFav/${value}`)
+        console.log(response);
+
+        // dispatch({
+        //     type: "NOTIFICATION",
+        //     payload: response.data.notification
+        // })
+
     }
 }

@@ -18,5 +18,9 @@ let options = [
     { id: 17, value: 'Muzika', title: 'Muzika', main: true },
     { id: 18, value: 'Auto/Moto', title: 'Auto/Moto', main: true },
     { id: 19, value: 'Razno', title: 'Razno', main: true },
+    { id: 20, value: 'IT', title: 'IT', main: true },
+    { id: 21, value: 'Web developer', title: 'Web developer', main: false },
+    { id: 22, value: 'Frontend', title: 'Frontend', main: false },
+    { id: 23, value: 'Backend', title: 'Backend', main: false },
 ]
 export default options

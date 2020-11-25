@@ -4,6 +4,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom'
 import * as actionCreator from '../../../store/actions/actions'
+import * as userActionCreator from '../Profile/User/store/userActions'
 import options from '../../OptionsData'
 import Map from '../MapComponent'
 
@@ -46,9 +47,21 @@ function Tasks(props) {
         props.getFilteredTasks(filter)
         setPage(page + 10)
     }
+    const addToFav = (taskId) => {
+        let value = {
+            authUserID: props.authUser.id,
+            taskId
+        }
+        props.addFav(value)
+
+
+        // ako nije dodaj ako jeste vrati notifikaciju
+
+
+
+    }
     return (
         <div className='tasksRoot'>
-
             <div className="tasksWrapper">
                 <div className='searchInputWrapper'>
                     <div className='searchInput'>
@@ -111,7 +124,7 @@ function Tasks(props) {
                                 </div>
                                 <div className='taskCardAction'>
                                     <FavoriteIcon className='taskActionBtn' onClick={() => {
-                                        console.log('add to favorite');
+                                        addToFav(item.task_ID);
                                     }} />
                                     <Link to={`/task/${item.task_ID}`} onClick={() => {
                                         props.getTaskById(item.task_ID)
@@ -138,6 +151,7 @@ function Tasks(props) {
 }
 const mapStateToProps = (state) => {
     return {
+        favTasks: state.User.myFavoriteTasks,
         tasks: state.globalReducer.tasks,
         authUser: state.User.authUser
     }
@@ -147,7 +161,8 @@ const mapDispatchToProps = (dispatch) => {
         getLatestTasks: () => dispatch(actionCreator.getLatestTasks()),
         getFilteredTasks: (filter) => dispatch(actionCreator.getFilteredTasks(filter)),
         getTaskById: (taskId) => dispatch(actionCreator.getTaskById(taskId)),
-        clearTasksFromState: () => dispatch(actionCreator.clearTasksFromState())
+        clearTasksFromState: () => dispatch(actionCreator.clearTasksFromState()),
+        addFav: (value) => dispatch(userActionCreator.addFav(value))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
