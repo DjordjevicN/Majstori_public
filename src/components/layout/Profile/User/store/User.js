@@ -30,11 +30,8 @@ const User = (state = initState, action) => {
         case "UPDATE_USER":
             newState.authUser = action.payload;
             break;
-        case "SET_LOCAL_STATE_LOGIN":
-            localStorage.setItem('authUser', JSON.stringify(action.payload))
-            break;
         case "SET_LOCAL_STATE_LOGOUT":
-            localStorage.setItem('authUser', action.payload)
+            localStorage.removeItem('userToken')
             break;
         case "SET_LOCAL_STATE_TOKEN":
             localStorage.setItem('userToken', action.payload)

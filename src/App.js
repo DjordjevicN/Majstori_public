@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import * as actionCreator from './components/layout/Profile/User/store/userActions'
 // SCC
+import 'react-notifications-component/dist/theme.css'
 import './App.css';
 import './CSS/mainMenu.css';
 import './components/layout/Home/Home.css';
@@ -37,6 +38,10 @@ import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
 
 
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css/animate.compat.css'
+// import { NotificationContainer, NotificationManager } from 'react-notifications';
 function App(props) {
   useEffect(() => {
     props.getMyData()
@@ -47,6 +52,7 @@ function App(props) {
 
     <BrowserRouter>
       <div className="App">
+        <ReactNotification />
         <Menu />
         <Switch>
           <Route path='/' exact component={Home} />

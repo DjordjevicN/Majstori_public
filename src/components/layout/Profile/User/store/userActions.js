@@ -1,20 +1,26 @@
 import Axios from 'axios';
+import * as notifications from '../../../../Notifications'
 let hosting = "http://localhost:3001"
 // CREATE SERVICES 
 let userToken = localStorage.getItem('userToken');
 
 export const createNewService = (value) => {
-
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post(`${hosting}/createNewService`, { value })
+        let post = await Axios.post(`${hosting}/createNewService`, { value })
         const response = await Axios.get(`${hosting}/getServices/${value.User_id}`)
+
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
         })
+        if (post.data.status) {
+            notifications.success(post.data.notification)
+        } else {
+            notifications.fail(post.data.notification)
+        }
         dispatch({
             type: "CREATE_SERVICE",
             payload: response.data.results
@@ -26,18 +32,23 @@ export const createNewService = (value) => {
 }
 // UPDATE USER PROFILE  
 export const updateUser = (value) => {
+
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post(`${hosting}/updateUser`, { value });
+        let post = await Axios.post(`${hosting}/updateUser`, { value }, {
+            headers: {
+                authorization: userToken
+            }
+        });
         const response = await Axios.get(`${hosting}/getUserById/${value.id}`)
-
         if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
                 payload: response.data.notification
             })
+
             dispatch({
                 type: "LOADING_FALSE"
             })
@@ -46,15 +57,16 @@ export const updateUser = (value) => {
                 type: 'UPDATE_USER',
                 payload: response.data.results[0]
             })
-            dispatch({
-                type: 'SET_LOCAL_STATE_LOGIN',
-                payload: response.data.results[0]
-            })
+
             dispatch({
                 type: "NOTIFICATION",
                 payload: response.data.notification
             })
-
+            if (post.data.status) {
+                notifications.success(post.data.notification)
+            } else {
+                notifications.fail(post.data.notification)
+            }
             dispatch({
                 type: "LOADING_FALSE"
             })
@@ -68,12 +80,17 @@ export const createUser = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.post(`${hosting}/adduser`, { newUser })
+        const response = await Axios.post(`${hosting}/createUser`, { newUser })
 
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
         })
+        if (response.data.status) {
+            notifications.success(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         dispatch({
             type: 'LOADING_FALSE'
         })
@@ -87,17 +104,18 @@ export const logoutUser = () => {
             type: "LOGOUT_USER"
         })
         dispatch({
-            type: 'SET_LOCAL_STATE_LOGOUT',
-            payload: false
+            type: 'SET_LOCAL_STATE_LOGOUT'
         })
     }
 }
 // DELETE USER FROM DATABASE
 export const deleteUser = (value) => {
-
     return async (dispatch) => {
-        const response = await Axios.get(`${hosting}/deleteUser/${value.id}`)
-
+        const response = await Axios.get(`${hosting}/deleteUser/${value.id}`, {
+            headers: {
+                authorization: userToken
+            }
+        })
         dispatch({
             type: 'SET_LOCAL_STATE_LOGOUT',
             payload: false
@@ -109,6 +127,11 @@ export const deleteUser = (value) => {
         dispatch({
             type: "LOGOUT_USER"
         })
+        if (response.data.status) {
+            notifications.deleted(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
     }
 }
 // GET USER
@@ -123,7 +146,7 @@ export const getMyData = (value) => {
             }
         });
         console.log(response);
-        if (!response) {
+        if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
                 payload: response.data.notification
@@ -174,18 +197,18 @@ export const getMyData = (value) => {
             dispatch({
                 type: "LOADING_FALSE"
             })
-
-
         }
     }
 }
 // LOGIN USER
 export const loginUser = (value) => {
+
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
         const response = await Axios.post(`${hosting}/loginUser`, { value });
+        console.log(response);
         if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
@@ -230,11 +253,20 @@ export const createTask = (value) => {
             value.taskLatitude = response.data.results[0].geometry.lat
             value.taskLongitude = response.data.results[0].geometry.lng
         }
-        await Axios.post(`${hosting}/createTask`, { value })
+        let post = await Axios.post(`${hosting}/createTask`, { value })
         dispatch(getMyTasks(value.User_id))
         dispatch({
             type: 'LOADING_FALSE'
         })
+        dispatch({
+            type: "NOTIFICATION",
+            payload: post.data.notification
+        })
+        if (post.data.status) {
+            notifications.success(post.data.notification)
+        } else {
+            notifications.fail(post.data.notification)
+        }
     }
 }
 // DELETE TASK
@@ -245,9 +277,13 @@ export const deleteTask = (value) => {
             type: "LOADING_TRUE"
         })
         const response = await Axios.get(`${hosting}/deleteTask/${value.taskId}`)
+
+        if (response.data.status) {
+            notifications.warning(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         await dispatch(getMyTasks(value.userId))
-
-
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
@@ -259,7 +295,6 @@ export const deleteTask = (value) => {
 }
 // GET MY OFFERS
 export const getMyOffers = (value) => {
-
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
@@ -305,12 +340,21 @@ export const getMyProposals = (value) => {
 }
 // ADD CREDIT
 export const addCredit = (value) => {
-    console.log(value);
+
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post(`${hosting}/addCredit`, { value });
+        let response = await Axios.post(`${hosting}/addCredit`, { value });
+        dispatch({
+            type: "NOTIFICATION",
+            payload: response.data.notification
+        })
+        if (response.data.status) {
+            notifications.warning(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         dispatch({
             type: "LOADING_FALSE"
         })
@@ -318,13 +362,22 @@ export const addCredit = (value) => {
 }
 // GET MY FAVORITE TASKS
 export const getMyFavoriteTasks = (value) => {
-    console.log(value);
+
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
         const response = await Axios.get(`${hosting}/getMyFavoriteTasks/${value}`,)
         console.log(response);
+        dispatch({
+            type: "NOTIFICATION",
+            payload: response.data.notification
+        })
+        if (response.data.status) {
+            notifications.warning(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         dispatch({
             type: "UPDATE_MY_FAVORITE_TASKS",
             payload: response.data.results
@@ -340,8 +393,17 @@ export const addFav = (value) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        await Axios.post(`${hosting}/addFav`, { value });
-        await dispatch(getMyFavoriteTasks(value.authUserID))
+        let response = await Axios.post(`${hosting}/addFav`, { value });
+        getMyFavoriteTasks(value.authUserID)
+        dispatch({
+            type: "NOTIFICATION",
+            payload: response.data.notification
+        })
+        if (response.data.status) {
+            notifications.success(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         dispatch({
             type: "LOADING_FALSE"
         })

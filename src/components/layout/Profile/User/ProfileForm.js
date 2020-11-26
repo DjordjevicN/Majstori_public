@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import * as actionCreator from './store/userActions'
 
 
+
 function ProfileForm(props) {
     const [confirm, setConfirm] = useState(false)
     let isLoggedIn = props.authUser.id ? true : false;
@@ -27,9 +28,6 @@ function ProfileForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
-
-
-
             {confirm ? <div className="confirmation">
                 <div className="confirmationContent">
                     <div className="confirmationTop">
@@ -83,13 +81,7 @@ function ProfileForm(props) {
 
                 }} />
             </div>
-            <div className='formItem'>
-                <TextField fullWidth label="Password" variant="outlined" onChange={(e) => {
-                    e.preventDefault()
-                    state.password = e.target.value
 
-                }} />
-            </div>
             <div className='formItem'>
                 <TextField fullWidth label="Broj Telefona" variant="outlined" onChange={(e) => {
                     e.preventDefault()

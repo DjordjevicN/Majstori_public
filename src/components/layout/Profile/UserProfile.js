@@ -3,10 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 function UserProfile(props) {
-    console.log(props.user);
+
     let user = props.user[0];
     let services = props.user;
-    console.log(user);
+
     return (
         <div className='userProfilePreviewWrapper'>
             <div className="userProfilePreviewContent">
