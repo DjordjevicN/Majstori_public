@@ -4,10 +4,11 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
+const auth = require('./auth')
 const cors = require('cors')
-require('dotenv').config()
 const saltRounds = 10;
-const secretWord = 'secretWORD';
+require('dotenv').config()
+
 // ADD npm i node-geo da uzima adrese od usera
 
 const port = process.env.PORT || 3001
@@ -41,30 +42,36 @@ app.get('/profile', (req, res) => {
 
     })
 })
+// GET MY DATA
+app.get('/getMyData', auth, (req, res) => {
+    let id = req.user.user.id
+    let sql = `SELECT * FROM user WHERE id = '${id}'`
+    let query = db.query(sql, (err, results) => {
+        if (err) throw err;
+        delete results[0].password;
+        res.send({ results, notification: 'User Logged in' })
+
+
+    })
+})
 // GET PROFILE by email and password || LOGIN ||
 app.post('/loginUser', (req, res) => {
     const { email, password } = req.body.value
-    console.log(req.headers);
     let sql = `SELECT * FROM user WHERE email = '${email}'`
     let query = db.query(sql, async (err, results) => {
         if (err) {
             throw err
         } else if (results) {
             // let match = true
-            let match = await bcrypt.compare(password, results[0].password) || password
+            let match = await bcrypt.compare(password, results[0].password)
             if (match) {
-
-                console.log(results[0].email);
-                let user = results[0].email;
-                let token = jwt.sign({ user }, secretWord);
-
-                console.log(token);
-
-                let decoded = jwt.verify(token, 'ssecretWord');
-                console.log("DECODED");
-                console.log(decoded)
-
-                // res.send({ results, notification: 'User Logged in' })
+                let user = {
+                    email: results[0].email,
+                    id: results[0].id
+                }
+                delete results[0].password;
+                let token = jwt.sign({ user }, process.env.TOKEN_SECRET);
+                res.send({ token, results, notification: 'User Logged in' })
             }
         }
     })
