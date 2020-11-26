@@ -1,6 +1,8 @@
 import Axios from 'axios';
 let hosting = "http://localhost:3001"
 // CREATE SERVICES 
+let userToken = localStorage.getItem('userToken');
+
 export const createNewService = (value) => {
 
     return async (dispatch) => {
@@ -77,6 +79,7 @@ export const createUser = (value) => {
         })
     }
 }
+
 // LOGOUT USER
 export const logoutUser = () => {
     return (dispatch) => {
@@ -108,17 +111,19 @@ export const deleteUser = (value) => {
         })
     }
 }
-
-// LOGIN USER
-export const loginUser = (value) => {
+// GET USER
+export const getMyData = (value) => {
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
-        const response = await Axios.post(`${hosting}/loginUser`, { value })
-
-
-        if (response.data.results.length <= 0) {
+        const response = await Axios.get(`${hosting}/getMyData`, {
+            headers: {
+                authorization: userToken
+            }
+        });
+        console.log(response);
+        if (!response) {
             dispatch({
                 type: "NOTIFICATION",
                 payload: response.data.notification
@@ -127,26 +132,14 @@ export const loginUser = (value) => {
                 type: "LOADING_FALSE"
             })
         } else {
-            // //getServices()
             let myId = response.data.results[0].id;
             dispatch({
                 type: 'LOGIN_USER',
                 payload: response.data.results[0]
             })
 
-            dispatch({
-                type: 'SET_LOCAL_STATE_LOGIN',
-                payload: response.data.results[0]
-            })
-            // const gewNewestTasks = await Axios.get(`http://localhost:3001/getNewestTasks`)
-            // dispatch({
-            //     type: 'UPDATE_ALL_TASK_STATE',
-            //     payload: gewNewestTasks.data.results
-            // })
-
-            //             dispatch(getMyProposals(myID))
             const getMyProposals = await Axios.get(`${hosting}/getMyProposals/${myId}`,)
-            // for each
+
             dispatch({
                 type: "SET_MY_PROPOSALS_STATE",
                 payload: getMyProposals.data.results
@@ -183,6 +176,34 @@ export const loginUser = (value) => {
             })
 
 
+        }
+    }
+}
+// LOGIN USER
+export const loginUser = (value) => {
+    return async (dispatch) => {
+        dispatch({
+            type: "LOADING_TRUE"
+        })
+        const response = await Axios.post(`${hosting}/loginUser`, { value });
+        if (response.data.results.length <= 0) {
+            dispatch({
+                type: "NOTIFICATION",
+                payload: response.data.notification
+            })
+            dispatch({
+                type: "LOADING_FALSE"
+            })
+        } else {
+            dispatch({
+                type: 'LOGIN_USER',
+                payload: response.data.results[0]
+            })
+            dispatch({
+                type: 'SET_LOCAL_STATE_TOKEN',
+                payload: response.data.token
+            })
+            dispatch(getMyData())
         }
     }
 }
@@ -326,7 +347,6 @@ export const addFav = (value) => {
         })
     }
 }
-
 // DELETE TASK FROM FAVORITE
 export const deleteFromFav = (value) => {
 

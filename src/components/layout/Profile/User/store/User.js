@@ -36,6 +36,9 @@ const User = (state = initState, action) => {
         case "SET_LOCAL_STATE_LOGOUT":
             localStorage.setItem('authUser', action.payload)
             break;
+        case "SET_LOCAL_STATE_TOKEN":
+            localStorage.setItem('userToken', action.payload)
+            break;
         case "DEDUCT_CREDIT":
             newState.authUser.credit = action.payload;
             break;

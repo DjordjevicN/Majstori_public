@@ -37,18 +37,9 @@ import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
 
 
-
 function App(props) {
   useEffect(() => {
-    const checkIfLoggedIn = () => {
-      if (localStorage.getItem('authUser')) {
-        let storage = JSON.parse(localStorage.getItem('authUser'))
-        let email = storage.email;
-        let password = storage.password
-        props.loginUser(email, password)
-      }
-    }
-    checkIfLoggedIn()
+    props.getMyData()
     return
     /* eslint-disable-next-line */
   }, []);
@@ -81,7 +72,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    loginUser: (email, password) => dispatch(actionCreator.loginUser({ email, password }))
+    loginUser: (email, password) => dispatch(actionCreator.loginUser({ email, password })),
+    getMyData: () => dispatch(actionCreator.getMyData())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
