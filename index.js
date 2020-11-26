@@ -3,9 +3,11 @@ const bcrypt = require('bcrypt')
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
 const cors = require('cors')
 require('dotenv').config()
 const saltRounds = 10;
+const secretWord = 'secretWORD';
 // ADD npm i node-geo da uzima adrese od usera
 
 const port = process.env.PORT || 3001
@@ -37,6 +39,58 @@ app.get('/profile', (req, res) => {
         if (err) throw err;
         res.send(results)
 
+    })
+})
+// GET PROFILE by email and password || LOGIN ||
+app.post('/loginUser', (req, res) => {
+    const { email, password } = req.body.value
+    console.log(req.headers);
+    let sql = `SELECT * FROM user WHERE email = '${email}'`
+    let query = db.query(sql, async (err, results) => {
+        if (err) {
+            throw err
+        } else if (results) {
+            // let match = true
+            let match = await bcrypt.compare(password, results[0].password) || password
+            if (match) {
+
+                console.log(results[0].email);
+                let user = results[0].email;
+                let token = jwt.sign({ user }, secretWord);
+
+                console.log(token);
+
+                let decoded = jwt.verify(token, 'ssecretWord');
+                console.log("DECODED");
+                console.log(decoded)
+
+                // res.send({ results, notification: 'User Logged in' })
+            }
+        }
+    })
+})
+//CREATE NEW USER AKA SIGNUP
+app.post('/adduser', async (req, res) => {
+    let { firstName, email, password, credit, taskerRank, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
+
+    // hash the password
+    let newPassword = await bcrypt.hash(password, saltRounds)
+    let sql = `INSERT INTO user SET 
+    firstName="${firstName}",
+    email="${email}",
+    password="${newPassword}",
+    credit="${credit}",
+    tasker="${tasker}",
+    taskerRank="${taskerRank}",
+    taskerVipStatus="${taskerVipStatus}",
+    verified="${verified}",
+    created_at="${created_at}"`
+    let query = await db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ notification: 'Fail to create Service' })
+            throw err
+        };
+        res.send({ results, notification: 'Service Created' })
     })
 })
 // UPDATE USER PROFILE
@@ -364,61 +418,23 @@ app.get('/getNews', (req, res) => {
 })
 
 
-// GET PROFILE by email and password || LOGIN ||
-app.post('/loginUser', (req, res) => {
-    const { email, password } = req.body.value
-    let sql = `SELECT * FROM user WHERE email = '${email}'`
-    let query = db.query(sql, async (err, results) => {
-        if (err) {
-            throw err
-        } else if (results) {
-            // let match = true
-            let match = await bcrypt.compare(password, results[0].password) || password
-            if (match) {
-                res.send({ results, notification: 'User Logged in' })
-            }
-        }
-    })
-})
-//CREATE NEW USER AKA SIGNUP
-app.post('/adduser', async (req, res) => {
-    let { firstName, email, password, credit, taskerRank, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
-    // hash the password
-    let newPassword = await bcrypt.hash(password, saltRounds)
-    let sql = `INSERT INTO user SET 
-    firstName="${firstName}",
-    email="${email}",
-    password="${newPassword}",
-    credit="${credit}",
-    tasker="${tasker}",
-    taskerRank="${taskerRank}",
-    taskerVipStatus="${taskerVipStatus}",
-    verified="${verified}",
-    created_at="${created_at}"`
-    let query = await db.query(sql, (err, results) => {
-        if (err) {
-            res.send({ notification: 'Fail to create Service' })
-            throw err
-        };
-        res.send({ results, notification: 'Service Created' })
-    })
-})
-// ADD CREDIT
-app.post('/addCredit', (req, res) => {
-    let { userId, credit, userVipStatus, userRank } = req.body.value;
-    let sql = `UPDATE user SET 
+    /
+    // ADD CREDIT
+    app.post('/addCredit', (req, res) => {
+        let { userId, credit, userVipStatus, userRank } = req.body.value;
+        let sql = `UPDATE user SET 
     credit = "${credit}",
     userVipStatus = "${userVipStatus}",
     userRank = "${userRank}"
      WHERE id = ${userId}`
-    let query = db.query(sql, (err, results) => {
-        if (err) {
-            res.send({ notification: 'Fail to update user' })
-            throw err
-        };
-        res.send({ results, notification: 'User Updated' })
+        let query = db.query(sql, (err, results) => {
+            if (err) {
+                res.send({ notification: 'Fail to update user' })
+                throw err
+            };
+            res.send({ results, notification: 'User Updated' })
+        })
     })
-})
 
 
 // ADD TO FAVORITE LIST
