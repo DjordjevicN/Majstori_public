@@ -49,7 +49,7 @@ app.get('/getMyData', auth, (req, res) => {
     let query = db.query(sql, (err, results) => {
         if (err) throw err;
         delete results[0].password;
-        res.send({ results, notification: 'User Logged in' })
+        res.send({ results, notification: '' })
 
 
     })
@@ -62,7 +62,6 @@ app.post('/loginUser', (req, res) => {
         if (err) {
             throw err
         } else if (results) {
-            // let match = true
             let match = await bcrypt.compare(password, results[0].password)
             if (match) {
                 let user = {
@@ -77,10 +76,8 @@ app.post('/loginUser', (req, res) => {
     })
 })
 //CREATE NEW USER AKA SIGNUP
-app.post('/adduser', async (req, res) => {
-    let { firstName, email, password, credit, taskerRank, taskerVipStatus, tasker, verified, created_at } = req.body.newUser;
-
-    // hash the password
+app.post('/createUser', async (req, res) => {
+    let { firstName, email, password, credit, userRank, userVipStatus, tasker, verified, created_at } = req.body.newUser;
     let newPassword = await bcrypt.hash(password, saltRounds)
     let sql = `INSERT INTO user SET 
     firstName="${firstName}",
@@ -88,28 +85,26 @@ app.post('/adduser', async (req, res) => {
     password="${newPassword}",
     credit="${credit}",
     tasker="${tasker}",
-    taskerRank="${taskerRank}",
-    taskerVipStatus="${taskerVipStatus}",
+    userRank="${userRank}",
+    userVipStatus="${userVipStatus}",
     verified="${verified}",
     created_at="${created_at}"`
     let query = await db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to create Service' })
+            res.send({ status: false, notification: 'Profil vec postoji' })
             throw err
         };
-        res.send({ results, notification: 'Service Created' })
+        res.send({ status: true, results, notification: 'Profil kreiran' })
     })
 })
 // UPDATE USER PROFILE
-app.post('/updateUser', (req, res) => {
-    let { id, firstName, lastName, address, email, password, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
-
+app.post('/updateUser', auth, (req, res) => {
+    let { id, firstName, lastName, address, email, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
     let sql = `UPDATE user SET 
     firstName ='${firstName}' ,
     lastName = '${lastName}',
     address="${address}",
     email="${email}",
-    password="${password}",
     aboutMe="${aboutMe}",
     phoneNumber="${phoneNumber}",
     avatar="${avatar}",
@@ -117,10 +112,10 @@ app.post('/updateUser', (req, res) => {
      WHERE id = ${id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to update user' })
+            res.send({ status: false, notification: 'Neuspesno' })
             throw err
         };
-        res.send({ results, notification: 'User Updated' })
+        res.send({ status: true, results, notification: 'Profil Uspesno Obnovljen' })
     })
 })
 // UPDATE USER PROFILE CREDIT
@@ -132,21 +127,21 @@ app.post('/updateUsersCredit', (req, res) => {
      WHERE id = ${id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to update user' })
+            res.send({ status: false, notification: '' })
             throw err
         };
-        res.send({ results, notification: 'User Updated' })
+        res.send({ status: true, results, notification: `` })
     })
 })
 // DELETE PROFILE
-app.get('/deleteUser/:id', (req, res) => {
+app.get('/deleteUser/:id', auth, (req, res) => {
     let sql = `DELETE FROM user WHERE id = ${req.params.id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to delete user' })
+            res.send({ status: false, notification: 'Profil Neuspesno Obrisan' })
             throw err
         };
-        res.send({ results, notification: 'User Deleted' })
+        res.send({ status: true, results, notification: 'Profil Obrisan' })
     })
 })
 // GET PROFILE BY ID
@@ -190,10 +185,10 @@ app.post('/createNewService', (req, res) => {
     let sql = 'INSERT INTO services SET ?'
     let query = db.query(sql, post, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to create Service' })
+            res.send({ status: false, notification: 'Neuspesno' })
             throw err
         };
-        res.send({ results, notification: 'Service Created' })
+        res.send({ results, notification: 'Kreirano', status: true })
     })
 })
 // GET SERVICE BY USERS ID || MY SERVICES
@@ -251,10 +246,10 @@ app.post('/createTask', (req, res) => {
     let sql = 'INSERT INTO task SET ?'
     let query = db.query(sql, post, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to create Task' })
+            res.send({ status: false, notification: '' })
             throw err
         };
-        res.send({ results, notification: 'Task Created' })
+        res.send({ status: true, results, notification: 'Novi Posao Kreiran' })
     })
 })
 // GET MY TASKS
@@ -273,10 +268,10 @@ app.get('/deleteTask/:id', (req, res) => {
     let sql = `DELETE FROM task WHERE task_ID = ${req.params.id}`
     let query = db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to remove service' })
+            res.send({ status: false, notification: '' })
             throw err
         };
-        res.send({ results, notification: 'Service Removed' })
+        res.send({ status: true, results, notification: 'Posao Uklonjen' })
     })
 })
 // GET NEWEST TASKS
@@ -436,26 +431,27 @@ app.get('/getNews', (req, res) => {
      WHERE id = ${userId}`
         let query = db.query(sql, (err, results) => {
             if (err) {
-                res.send({ notification: 'Fail to update user' })
+                res.send({ status: false, notification: '' })
                 throw err
             };
-            res.send({ results, notification: 'User Updated' })
+            res.send({ status: true, results, notification: 'Zlatnici uspesno obnovljeni' })
         })
     })
 
 
 // ADD TO FAVORITE LIST
 app.post('/addFav', async (req, res) => {
+    console.log(req.body.value);
     let { authUserID, taskId } = req.body.value;
     let sql = `INSERT INTO favorite SET 
     fav_user_id="${authUserID}",
     fav_task_id="${taskId}"`
     let query = await db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to add to Favorite' })
+            res.send({ status: false, notification: 'Posao dodat u favorite' })
             throw err
         };
-        res.send({ results, notification: 'Task added to favorite' })
+        res.send({ status: true, results, notification: 'Posao dodat u favorite' })
     })
 })
 // GET MY FAVORITE TASKS
@@ -467,10 +463,10 @@ app.get('/getMyFavoriteTasks/:id', (req, res) => {
 
     let query = db.query(sql, (err, results) => {
         if (err) {
-            res.send({ notification: 'There are no new offers' })
+            res.send({ status: false, notification: '' })
             throw err
         };
-        res.send({ results, notification: 'New offers are in' })
+        res.send({ status: true, results, notification: '' })
     })
 })
 // DELETE TASK FROM FAVORITE
