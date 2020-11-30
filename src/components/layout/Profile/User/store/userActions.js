@@ -2,7 +2,7 @@ import Axios from 'axios';
 import * as notifications from '../../../../Notifications'
 let hosting = "http://localhost:3001"
 // CREATE SERVICES 
-let userToken = localStorage.getItem('userToken');
+
 
 export const createNewService = (value) => {
     return async (dispatch) => {
@@ -32,7 +32,7 @@ export const createNewService = (value) => {
 }
 // UPDATE USER PROFILE  
 export const updateUser = (value) => {
-
+    let userToken = localStorage.getItem('userToken');
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
@@ -110,6 +110,7 @@ export const logoutUser = () => {
 }
 // DELETE USER FROM DATABASE
 export const deleteUser = (value) => {
+    let userToken = localStorage.getItem('userToken');
     return async (dispatch) => {
         const response = await Axios.get(`${hosting}/deleteUser/${value.id}`, {
             headers: {
@@ -136,6 +137,7 @@ export const deleteUser = (value) => {
 }
 // GET USER
 export const getMyData = (value) => {
+    let userToken = localStorage.getItem('userToken');
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
@@ -202,7 +204,6 @@ export const getMyData = (value) => {
 }
 // LOGIN USER
 export const loginUser = (value) => {
-
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
