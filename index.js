@@ -50,44 +50,7 @@ app.use(morgan("dev"))
 
 
 // *****
-app.post("/picture", async (req, res) => {
 
-    try {
-        if (!req.files) {
-            res.send({
-                status: false,
-                message: "No files"
-            })
-        } else {
-
-            const { picture } = req.files
-            console.log(picture);
-            console.log(picture.name);
-            let randomNumber = Math.floor(Math.random() * Math.floor(10000000000000000000))
-            let pictureName = `${randomNumber}${picture.name}.jpg`
-
-
-            let sql = `UPDATE user SET avatar="${pictureName}" WHERE id = ${picture.name}`
-            let query = db.query(sql, (err, results) => {
-                if (err) {
-                    res.send({ status: false, notification: 'Neuspesno' })
-                    throw err
-                };
-                picture.mv("./uploads/" + pictureName)
-                res.send({ status: true, results, notification: 'Slika promenjena' })
-            })
-
-
-
-            // res.send({
-            //     status: true,
-            //     message: "File is uploaded"
-            // })
-        }
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
 // *****
 // *********************************************************
 app.get('/', (req, res) => {
@@ -445,6 +408,33 @@ app.post('/approveProposal', (req, res) => {
         };
         res.send({ results, notification: 'Proposal Updated' })
     })
+})
+app.post("/picture", async (req, res) => {
+
+    try {
+        if (!req.files) {
+            res.send({
+                status: false,
+                message: "No files"
+            })
+        } else {
+            const { picture } = req.files
+            const id = req.body.userId
+            let randomNumber = Math.floor(Math.random() * Math.floor(10000000000000000000))
+            let pictureName = `${randomNumber}${picture.name}.jpg`
+            let sql = `UPDATE user SET avatar="${pictureName}" WHERE id = ${id}`
+            let query = db.query(sql, (err, results) => {
+                if (err) {
+                    res.send({ status: false, notification: 'Neuspesno' })
+                    throw err
+                };
+                picture.mv("./uploads/" + pictureName)
+                res.send({ status: true, results, notification: 'Slika promenjena' })
+            })
+        }
+    } catch (e) {
+        res.status(500).send(e)
+    }
 })
 // DELETE TASK_OFFER THAT I OWN
 
