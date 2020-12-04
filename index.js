@@ -9,8 +9,6 @@ const cors = require('cors')
 const saltRounds = 10;
 require('dotenv').config()
 
-// ADD npm i node-geo da uzima adrese od usera
-
 const port = process.env.PORT || 3001
 // ******************* 
 const db = mysql.createConnection({
@@ -33,14 +31,18 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // *********************************************************
+app.get('/', (req, res) => {
+    res.send('ZANATLIJE BACKEND CHECK FULL')
+})
 // GET ALL USERS
 app.get('/profile', (req, res) => {
-    let sql = `SELECT * FROM user`
-    let query = db.query(sql, (err, results) => {
-        if (err) throw err;
-        res.send(results)
+    res.send('PROFIL TAB RADI')
+    // let sql = `SELECT * FROM user`
+    // let query = db.query(sql, (err, results) => {
+    //     if (err) throw err;
+    //     res.send(results)
 
-    })
+    // })
 })
 // GET MY DATA
 app.get('/getMyData', auth, (req, res) => {
@@ -48,13 +50,13 @@ app.get('/getMyData', auth, (req, res) => {
     let sql = `SELECT * FROM user WHERE id = '${id}'`
     let query = db.query(sql, (err, results) => {
         if (err) throw err;
-        delete results[0].password;
+        // delete results[0].password;
         res.send({ results, notification: '' })
 
 
     })
 })
-// GET PROFILE by email and password || LOGIN ||
+/// GET PROFILE by email and password || LOGIN ||
 app.post('/loginUser', (req, res) => {
     const { email, password } = req.body.value
     let sql = `SELECT * FROM user WHERE email = '${email}'`
@@ -100,6 +102,7 @@ app.post('/createUser', async (req, res) => {
 // UPDATE USER PROFILE
 app.post('/updateUser', auth, (req, res) => {
     let { id, firstName, lastName, address, email, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
+    console.log(avatar);
     let sql = `UPDATE user SET 
     firstName ='${firstName}' ,
     lastName = '${lastName}',
@@ -288,7 +291,7 @@ app.get('/getNewestTasks', (req, res) => {
 // GET TASK WITH FILTER and  LIMIT TO LAST 10 
 app.post('/getFilteredTasks', (req, res) => {
     const { category, page } = req.body.value;
-    let sql = `SELECT * FROM task WHERE taskCategory = '${category}' ORDER BY task_ID DESC LIMIT 10 OFFSET ${page}`
+    let sql = `SELECT * FROM task JOIN user ON user.id = User_id WHERE taskCategory = '${category}' ORDER BY task_ID DESC LIMIT 10 OFFSET ${page}`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to load tasks' })
@@ -342,10 +345,10 @@ app.post('/sendOffer', (req, res) => {
     let sql = 'INSERT INTO offer SET ?'
     let query = db.query(sql, post, (err, results) => {
         if (err) {
-            res.send({ notification: 'Fail to create Task' })
+            res.send({ notification: 'ERROR', status: false })
             throw err
         };
-        res.send({ results, notification: 'Task Created' })
+        res.send({ results, notification: 'Poslato', status: true })
     })
 })
 // GET TASK_OFFER FOR MY ID
@@ -394,7 +397,7 @@ app.post('/approveProposal', (req, res) => {
 app.post('/sendNews', (req, res) => {
 
     let { newsTitle, newsMessage, newsCreated_at } = req.body.value.news
-    console.log(newsTitle, newsMessage, newsCreated_at);
+    // console.log(newsTitle, newsMessage, newsCreated_at);
     let post = { newsTitle, newsMessage, newsCreated_at };
     let sql = 'INSERT INTO news SET ?'
     let query = db.query(sql, post, (err, results) => {
@@ -441,7 +444,6 @@ app.get('/getNews', (req, res) => {
 
 // ADD TO FAVORITE LIST
 app.post('/addFav', async (req, res) => {
-    console.log(req.body.value);
     let { authUserID, taskId } = req.body.value;
     let sql = `INSERT INTO favorite SET 
     fav_user_id="${authUserID}",
