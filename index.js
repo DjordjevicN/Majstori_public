@@ -9,6 +9,15 @@ const cors = require('cors')
 const saltRounds = 10;
 require('dotenv').config()
 
+// ********************
+const fileUpload = require('express-fileupload')
+const morgan = require("morgan")
+
+
+
+
+
+// ********************
 const port = process.env.PORT || 3001
 // ******************* 
 const db = mysql.createConnection({
@@ -28,8 +37,58 @@ db.connect((err) => {
 const app = express();
 app.use(cors())
 app.use(express.json())
+app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+app.use(fileUpload({
+    createParentPath: true,
+    // uriDecodeFileNames: true
+}))
+app.use(morgan("dev"))
+
+
+
+// *****
+app.post("/picture", async (req, res) => {
+
+    try {
+        if (!req.files) {
+            res.send({
+                status: false,
+                message: "No files"
+            })
+        } else {
+
+            const { picture } = req.files
+            console.log(picture);
+            console.log(picture.name);
+            let randomNumber = Math.floor(Math.random() * Math.floor(10000000000000000000))
+            let pictureName = `${randomNumber}${picture.name}.jpg`
+
+
+            let sql = `UPDATE user SET avatar="${pictureName}" WHERE id = ${picture.name}`
+            let query = db.query(sql, (err, results) => {
+                if (err) {
+                    res.send({ status: false, notification: 'Neuspesno' })
+                    throw err
+                };
+                picture.mv("./uploads/" + pictureName)
+                res.send({ status: true, results, notification: 'Slika promenjena' })
+            })
+
+
+
+            // res.send({
+            //     status: true,
+            //     message: "File is uploaded"
+            // })
+        }
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+// *****
 // *********************************************************
 app.get('/', (req, res) => {
     res.send('ZANATLIJE BACKEND CHECK FULL')
