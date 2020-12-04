@@ -1,15 +1,25 @@
+.mainWrapper {
+  /* position: absolute; */
+  background-color: rgb(22, 22, 34);
+  width: 100%;
+}
+.mainMenuContent {
+  display: flex;
+  justify-content: space-between;
+}
 .topBarWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.menuWrap {
-  display: none;
-}
 
+.menuItemPhoto {
+  width: 50px;
+  border-radius: 50px;
+}
 .menuLink {
-  color: var(--lightGreen);
+  color: white;
   list-style: none;
   text-decoration: none;
   padding: 10px 20px;
@@ -18,7 +28,7 @@
   transition: 0.3s;
 }
 .menuBurger {
-  display: grid;
+  display: none;
   place-items: center;
   cursor: pointer;
   padding-right: 20px;
@@ -61,9 +71,18 @@
 .redColor {
   color: var(--redDark);
 }
-@media screen and (min-width: 780px) {
+.menuItemProfileLink {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding-right: 20px;
+}
+/* @media screen and (min-width: 780px) {
   .menuBurger {
     display: none;
+  }
+  .menuItemProfile {
+    display: block;
   }
   .menuWrap {
     display: block;
@@ -74,4 +93,4 @@
     background-color: var(--lightGreen);
     color: white;
   }
-}
+} */

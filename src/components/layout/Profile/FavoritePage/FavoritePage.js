@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import * as actionCreator from '../../../../store/actions/actions'
 import * as userActionCreator from '../User/store/userActions'
 function FavoritePage(props) {
-    console.log(props);
     let id = 6
     return (
         <div className="favWrapper">

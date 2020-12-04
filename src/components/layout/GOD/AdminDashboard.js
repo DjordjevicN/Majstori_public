@@ -6,8 +6,8 @@ import AdminSendNews from './AdminSendNews'
 function AdminDashboard() {
     const [location, setLocation] = useState('')
     let handleLocation = async () => {
-        let response = await Axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=aa1b2e2507e3478f9059aabe4850e45f&language=en&pretty=1`)
-        console.log(response);
+        await Axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=aa1b2e2507e3478f9059aabe4850e45f&language=en&pretty=1`)
+
 
     }
     return (
@@ -21,7 +21,7 @@ function AdminDashboard() {
                 }} />
                 <button onClick={() => {
                     handleLocation()
-                    console.log(location);
+
                 }} >send</button>
             </div>
         </div>

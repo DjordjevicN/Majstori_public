@@ -12,7 +12,6 @@ function Login(props) {
   // Redirect to Profile
   let isLoggedIn = props.authUser.id ? true : false;
   if (isLoggedIn) { return <Redirect to='/UserDashboard' /> }
-  if (isLoggedIn) { console.log('dddd'); }
   const handleSubmit = () => {
     props.loginUser(email, password)
   }

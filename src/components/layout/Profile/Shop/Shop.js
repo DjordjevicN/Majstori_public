@@ -4,7 +4,6 @@ import * as userActionCreator from '../User/store/userActions'
 import * as actionCreator from '../../../../store/actions/actions'
 function Shop(props) {
     let userId = props.authUser.id;
-    console.log(userId);
     const handlePack = (cred) => {
 
         let value = {

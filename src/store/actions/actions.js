@@ -1,5 +1,6 @@
 
 import Axios from 'axios';
+import * as notifications from '../../components/Notifications'
 // Axios.defaults.withCredentials = true;
 
 // GET SERVICES ALL
@@ -16,7 +17,6 @@ export const getMyServices = (value) => {
 }
 // GET PROFILE WITH FILTER by category display on SERVICES after search
 export const getSearchServices = (value) => {
-    console.log(value);
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
@@ -116,6 +116,11 @@ export const sendOffer = (value) => {
             type: "NOTIFICATION",
             payload: response.data.notification
         })
+        if (response.data.status) {
+            notifications.success(response.data.notification)
+        } else {
+            notifications.fail(response.data.notification)
+        }
         dispatch({
             type: 'LOADING_FALSE'
         })
@@ -157,17 +162,15 @@ export const getServices = (value) => {
 }
 // GET USER BY ID
 export const getFullProfileById = (value) => {
-    console.log(value);
     return async (dispatch) => {
         const response = await Axios.get(`http://localhost:3001/getFullProfileById/${value}`)
-        console.log(response);
-
         dispatch({
             type: "SET_SERVICE_USER_VIEW",
             payload: response.data.results
         })
     }
 }
+
 // GET TASK BY ID and HIS POSTER
 export const getTaskById = (value) => {
 
@@ -198,6 +201,7 @@ export const deductCredit = (usersCredit) => {
 
     }
 }
+
 // ********* TO DO **********
 
 // CREATE ADMIN_LOG =>

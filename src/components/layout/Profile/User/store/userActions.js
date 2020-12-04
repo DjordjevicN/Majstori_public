@@ -147,7 +147,7 @@ export const getMyData = (value) => {
                 authorization: userToken
             }
         });
-        console.log(response);
+
         if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
@@ -209,7 +209,6 @@ export const loginUser = (value) => {
             type: "LOADING_TRUE"
         })
         const response = await Axios.post(`${hosting}/loginUser`, { value });
-        console.log(response);
         if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
@@ -369,7 +368,6 @@ export const getMyFavoriteTasks = (value) => {
             type: "LOADING_TRUE"
         })
         const response = await Axios.get(`${hosting}/getMyFavoriteTasks/${value}`,)
-        console.log(response);
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
@@ -414,8 +412,7 @@ export const addFav = (value) => {
 export const deleteFromFav = (value) => {
 
     return async (dispatch) => {
-        const response = await Axios.get(`${hosting}/deleteFromFav/${value}`)
-        console.log(response);
+        await Axios.get(`${hosting}/deleteFromFav/${value}`)
 
         // dispatch({
         //     type: "NOTIFICATION",

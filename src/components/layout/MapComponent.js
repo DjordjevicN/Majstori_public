@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { FiClock, FiTag } from "react-icons/fi";
+// FiHeart, FiSearch, FiTag, FiKey,FiCheckCircle,FiMapPin, FiUsers,FiClock,
 // import { Icon } from 'leaflet';
 
+import { FaMoneyBill } from "react-icons/fa";
 import { connect } from 'react-redux'
 // const iconMarker = new Icon({
 //     iconUrl: "/marker2.svg",
@@ -10,7 +13,6 @@ import { connect } from 'react-redux'
 function MapComponent(props) {
     const [activePopup, setActivePopup] = useState(null);
     let tasks = props.tasks
-    console.log(props);
     return (
         <div className='map'>
 
@@ -43,16 +45,28 @@ function MapComponent(props) {
                             setActivePopup(null)
                         }}
                     >
-                        <div>
-                            <div className='popupTitle'>
-                                <h2>{activePopup.taskCategory}</h2>
-                                <p>{activePopup.taskPrice}</p>
+                        <div className='mapPopupWrapper'>
+                            <div className="mapPopupContent">
+                                <div className="mapPopupTitle">
+                                    <h2>{activePopup.taskTitle}</h2>
+                                </div>
+                                <div className="mapPopupInfo">
+                                    <div className="mapPopupInfoItem">
+                                        <FiTag className="mapPopupInfoIconTag" />
+                                        <p>{activePopup.taskCategory}</p>
+                                    </div>
+                                    <div className="mapPopupInfoItem">
+                                        <FaMoneyBill className="mapPopupInfoIconPrice" />
+                                        <p>{activePopup.taskPrice}</p>
+                                    </div>
+                                    <div className="mapPopupInfoItem">
+                                        <FiClock className="mapPopupInfoIconTime" />
+                                        <p>{activePopup.taskStartDate}</p>
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <div> {activePopup.taskDescription ? <p>{activePopup.taskDescription.substring(0, 100)}<span> ...Vise u Detaljima</span></p> : null}</div>
-                            <button>detaljnije</button>
-
+                            <div className='mapPopupDescription'> {activePopup.taskDescription ? <p>{activePopup.taskDescription.substring(0, 100)}<span> ...</span></p> : null}</div>
+                            <p className='mapPopupBTN'>Detaljnije</p>
                         </div>
                     </Popup>
                 }

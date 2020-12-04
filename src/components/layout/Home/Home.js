@@ -1,128 +1,150 @@
 import React from 'react';
-import HomeSignup from './HomeSignup';
-import { motion } from "framer-motion";
-import { Link } from 'react-router-dom'
-import Footer from '../Footer'
-import { GiClawHammer } from "react-icons/gi";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
-import { GoCalendar } from "react-icons/go";
-import { IoMdLaptop } from "react-icons/io";
-import { FaFileSignature } from "react-icons/fa";
-import { RiFindReplaceLine } from "react-icons/ri";
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
+import { FiCheckCircle, FiClock, FiMapPin, FiUsers } from "react-icons/fi";
+// FiHeart, FiSearch, FiTag, FiKey,
+import Footer from '../Footer'
 function Home(props) {
+    let isLoggedIn = props.authUser.id ? true : false;
 
     return (
         <div className='homeMainWrapper'>
 
-            <div className="homeHeroWrapper">
-                <motion.div className="homeHeroTitle" animate={{ x: 0, opacity: 1 }}
-                    initial={{ x: 50, opacity: 0 }}
-                    transition={{
-                        delay: .8,
-                        x: { type: "spring", stiffness: 150 },
-                        default: { duration: .3 },
-                    }}>
-                    <h1>Work. Life. Balanced</h1>
-                </motion.div>
-                <motion.div className="HomeSignupWrapper" animate={{ x: 0, opacity: 1 }}
-                    initial={{ x: 50, opacity: 0 }}
-                    transition={{
-                        delay: .5,
-                        x: { type: "spring", stiffness: 150 },
-                        default: { duration: .3 },
-                    }}>
-                    {props.authUser.id ? null : <HomeSignup />}
-                </motion.div>
-            </div>
-            <div className="homePromisesWrapper">
-                <div className='homePromisesContent'>
-                    <h1 className="homePromisesTitle">
-                        Work with us
-                    </h1>
-                    <div className="homePromisesItems">
-                        <div className="homePromisesItem">
-                            <div>
-                                <GiClawHammer className='homePromisesItemIcon' />
-                                <h4>Find Job You Love</h4>
+
+            <div className="homeContent">
+                <div className="homeHero">
+                    <div className="homeHeroTitle">
+                        <h1>Najlaksi nacin da pronadjete novi posao</h1>
+                        <h4>Pronadji posao, zantatliju ili postavi posao</h4>
+                        {isLoggedIn ? <p className='homeCTABtn'> <Link className='link' to='/tasks'>Trazi</Link></p> : <p className='homeCTABtn'><Link className='link' to='/tasks'>Uloguj se</Link></p>}
+                    </div>
+                </div>
+                <div className="newTasksWrapper">
+                    <div className="newTasksContent">
+                        <div className="contentWrap">
+                            <div className="newTasksTitle">
+                                <h2>NOVI POSLOVI</h2>
+                                <p>Ovde izlaze novi poslovi svakoga sata</p>
                             </div>
-                        </div>
-                        <div className="homePromisesItem">
-                            <div>
-                                <FaRegMoneyBillAlt className='homePromisesItemIcon' />
-                                <h4>At rates you choose</h4>
-                            </div>
-                        </div>
-                        <div className="homePromisesItem">
-                            <div>
-                                <GoCalendar className='homePromisesItemIcon' />
-                                <h4>At your time</h4>
+                            <div className="newTasksCard">
+                                <div className="newTasksCorner">
+                                    <img className="newTasksCornerImage" src="./images/taskerRank1.png" alt="" />
+                                </div>
+                                <div className="newTasksCardContent">
+                                    <div className="newTasksUser">
+                                        <FiCheckCircle className="newTasksUserIcon" />
+                                        <p>Tamara Bosak</p>
+                                    </div>
+                                    <div className="homeTaskTitle">
+                                        <h2>Treba mi majstor za sijalice</h2>
+                                        <p> simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled </p>
+                                    </div>
+                                    <div className="newTasksInfo">
+                                        <div className="userType newTasksInfoDetails">
+                                            <FiUsers className="userTypeIcon" />
+                                            <p>User type</p>
+                                        </div>
+                                        <div className="tasksTown newTasksInfoDetails">
+                                            <FiMapPin className="tasksTownIcon" />
+                                            <p>Town</p>
+                                        </div>
+                                        <div className="tasksTime newTasksInfoDetails">
+                                            <FiClock className="tasksTimeIcon" />
+                                            <p>23.2.2020</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="cardActionWrap">
+                                    <p className='newTasksCTA'><Link className='link' to='/task/:id'>Detaljnije</Link></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="homeSplitBannerWrapper">
-                <div className="homeSplitBannerContent">
-                    <h1 className="homeSplitBannerTitle">
-                        How it Works
-                    </h1>
-                    <div className="homeSplitBannerGrid">
-                        <div className="homeSplitBannerImage">
-                            <img src="/images/map.jpg" alt="map" />
+                <div className="howClientWrapper">
+                    <div className="howClientContent">
+                        <div className="howClientTitle">
+                            <h2>KAO KLIJENT</h2>
+                            <p>Kreiraj nalog kao zanatlija ili kao klijent. Kao zanatlije mozes da postavljas
+poslove i da ocekujes ponude od zanatlija ili da direktno trazis zanatliju po profilima.</p>
                         </div>
-                        <div className="homeSplitBannerTextBlock">
-                            <div className="homeSplitBannerItem">
-                                <AiOutlineCheckCircle className='homeSplitBannerIcon' />
-                                <p>explanations how it works</p>
+                        <div className="howClientCards">
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/client.png" alt="" />
+                                <h4>Napravi nalog</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry. </p>
                             </div>
-                            <div className="homeSplitBannerItem">
-                                <AiOutlineCheckCircle className='homeSplitBannerIcon' />
-                                <p>explanations how it works</p>
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/createJob.png" alt="" />
+                                <h4>Kreiraj posao</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry.  </p>
                             </div>
-                            <div className="homeSplitBannerItem">
-                                <AiOutlineCheckCircle className='homeSplitBannerIcon' />
-                                <p>explanations how it works</p>
-                            </div>
-                            <div className="homeSplitBannerItem">
-                                <AiOutlineCheckCircle className='homeSplitBannerIcon' />
-                                <p>explanations how it works</p>
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/hire.png" alt="" />
+                                <h4>Zaposli zanatliju</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry. </p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div className="bannerSplit">
+                    <div className="left">
+                        <div className="leftContent">
+                            <h2 className="leftTitle">Napravi nalog</h2>
+                            <p>s simply dummy text of the printing and typesetting
+                            industry. Lorem Ipsum has been the industry's standard
+ dummy text ever since the 1500s, when </p>
+                            <p className="bannerSplitCTA">Napravi nalog</p>
+                        </div>
 
-            <div className="letsStartCTAWrapper">
-                <div className="letsStartCTATitle">
-                    <h4>Getting started is easy</h4>
-                </div>
-                <div className="letsStartCTAItems">
-                    <div className="letsStartCTAItem">
-                        <IoMdLaptop className="letsStartCTAIcon" />
-                        <h6>Register</h6>
-                        <p>Napravi nalog kako bi dobio pristup opcijama</p>
                     </div>
-                    <div className="letsStartCTAItem">
-                        <FaFileSignature className="letsStartCTAIcon" />
-                        <h6>Usluge</h6>
-                        <p>Napisi sta zelis da radis</p>
-                    </div>
-                    <div className="letsStartCTAItem">
-                        <RiFindReplaceLine className="letsStartCTAIcon" />
-                        <h6>Pronadji</h6>
-                        <p>Pronadji poslove na listi ili na mapi</p>
+                    <div className="right">
+                        <div className="rightContent">
+                            <h2 className="rightTitle">Napravi nalog</h2>
+                            <p>s simply dummy text of the printing and typesetting
+                            industry. Lorem Ipsum has been the industry's standard
+ dummy text ever since the 1500s, when </p>
+                            <p className="bannerSplitCTA">Napravi nalog</p>
+                        </div>
                     </div>
                 </div>
+                <div className="howClientWrapper">
+                    <div className="howClientContent">
+                        <div className="howClientTitle">
+                            <h2>KAO ZANATLIJA</h2>
+                            <p>Kreiraj nalog kao zanatlija i moses da ponudis svoje usluge i da cekas poziv ili da bidujes na poslilve</p>
+                        </div>
+                        <div className="howClientCards">
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/zanatlija.png" alt="" />
+                                <h4>Napravi nalog</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry. </p>
+                            </div>
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/findJob.png" alt="" />
+                                <h4>Kreiraj posao</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry.  </p>
+                            </div>
+                            <div className="howClientCard">
+                                <img className="howClientCardImage" src="./images/apply.png" alt="" />
+                                <h4>Zaposli zanatliju</h4>
+                                <p>s simply dummy text of the printing and typesetting
+                                industry. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <button className="buttonCTA letsStartCTAButton">   <Link className='buttonCTALink' to='/signup'>REGISTRUJ SE</Link></button>
 
             </div>
-
             <Footer />
         </div>
+
     );
 }
 const mapStateToProps = (state) => {

@@ -1,4 +1,4 @@
-.dashMenu {
+/* .dashMenu {
   display: flex;
   justify-content: space-between;
   width: 80%;
@@ -63,8 +63,7 @@
     background-color: rgb(255, 255, 255);
     width: 100%;
     margin: 0 auto;
-    /* display: flex;
-    justify-content: space-evenly; */
+  
     display: grid;
     grid-template-columns: 1fr 7fr 4fr;
   }
@@ -76,4 +75,4 @@
 }
 .dashMenuItemIcon {
   color: var(--green3);
-}
+} */

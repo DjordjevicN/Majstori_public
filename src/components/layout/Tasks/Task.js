@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import { TextField } from '@material-ui/core/';
 import ClearIcon from '@material-ui/icons/Clear';
 import * as actionCreator from '../../../store/actions/actions'
-
+import * as userActionCreator from '../Profile/User/store/userActions'
+import { FiClock, FiMapPin, FiTag, FiHeart } from "react-icons/fi";
+// FiHeart, FiSearch, FiTag, FiKey,FiCheckCircle,
 
 
 function Task(props) {
     let task = props.task
+
     const [modal, setModal] = useState(false)
     const [offerPrice, setOfferPrice] = useState('');
     const [offerMessage, setOfferMessage] = useState('');
     const [Task_User_id, setTask_user_id] = useState('');
     const [Task_task_ID, setTask_task_ID] = useState('');
+    const addToFav = (taskId) => {
+        let value = {
+            authUserID: props.authUser.id,
+            taskId
+        }
+        props.addFav(value)
+        // ako nije dodaj ako jeste vrati notifikaciju
+    }
     const handleOffer = () => {
         let date = new Date()
         let day = date.getDate()
@@ -41,6 +51,7 @@ function Task(props) {
             console.log('NEMA VISE KREDITA');
         }
     }
+    // kategorija, grad, datum i vreme, favorit, description, title, userName,user rank
     return (
         <div className="singleTaskWrapper">
             {modal ? <div className="applyModalFormWrapper">
@@ -66,7 +77,49 @@ function Task(props) {
                     </div>
                 </div>
             </div> : null}
+
+
             <div className="singleTaskContent">
+                <div className="singleTaskCard">
+                    <div className="singleTaskTitle">
+                        <h2>{task.taskTitle}</h2>
+                    </div>
+                    <div className="singleTaskInfo">
+                        <div className="singleTaskInfoBlock">
+
+                            <div className="singleTaskPrice taskInfoDetails">
+                                <FiTag className="singleTaskPriceIcon" />
+                                <p>{task.taskPrice}</p>
+                            </div>
+                            <div className="taskTown taskInfoDetails">
+                                <FiMapPin className="singleTaskTownIcon" />
+                                {task.town ? <p>{task.town}</p> : null}
+                            </div>
+                            <div className="taskTime taskInfoDetails">
+                                <FiClock className="singleTaskTimeIcon" />
+                                <p>{task.taskStartDate}</p>
+                            </div>
+                            <div className="taskFav taskInfoDetails">
+                                <FiHeart className='singleTaskFavIcon' onClick={() => {
+                                    addToFav(task.task_ID);
+                                }} />
+                                <p>Sacuvaj</p>
+                            </div>
+                        </div>
+                        <p className='singleTaskActionBTN' onClick={() => {
+                            setModal(true)
+                            setTask_user_id(task.User_id)
+                            setTask_task_ID(task.task_ID)
+                        }}>APLICIRAJ</p>
+                    </div>
+                    <div className="singleTaskDescription">
+                        <h2>Opis posla</h2>
+                        {task.taskDescription}
+                    </div>
+                </div>
+
+            </div>
+            {/* <div className="singleTaskContent">
                 <div className='taskCard singleTaskCard' key={task.task_ID}>
                     <div className='taskCardContent' >
                         <div>
@@ -97,7 +150,7 @@ function Task(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
@@ -111,7 +164,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         sendOffer: (offer) => dispatch(actionCreator.sendOffer(offer)),
-        deductCredit: (usersCredit) => dispatch(actionCreator.deductCredit(usersCredit))
+        deductCredit: (usersCredit) => dispatch(actionCreator.deductCredit(usersCredit)),
+        addFav: (value) => dispatch(userActionCreator.addFav(value))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)

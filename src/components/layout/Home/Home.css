@@ -1,153 +1,223 @@
-.homeHeroWrapper {
-  display: grid;
-  grid-template-columns: minmax(250px, 60%) 1fr;
-  background-image: url("/images/shoping.jpg");
+.heroImage {
+  width: 100%;
+}
+.homeHero {
+  background-image: url("/images/hero2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 90vh;
-}
-.HomeSignupWrapper {
+  height: 100vh;
+  width: 100%;
   display: grid;
   place-items: center;
 }
-.HomeSignupForm {
-  background-color: var(--shade1);
-  opacity: 1;
-  padding: 30px 30px;
-  border-radius: 2px;
-  box-shadow: 1px 3px 8px #888888;
-  /* max-width: 600px; */
-  min-width: 300px;
-}
-.HomeSignupTitle {
-  text-align: center;
-  padding: 20px 0;
-  color: var(--shade6);
-}
-.HomeSignupLinkBtn {
-  font-size: 13px;
-  padding: 10px;
-  /* text-decoration: none; */
-}
-.signupLegal {
-  font-size: 10px;
-  padding: 20px 0;
-}
-.homePromisesWrapper {
-  margin-top: 50px;
-}
-.homePromisesContent {
-  text-align: center;
-  background-image: url("/images/popJob2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .homeHeroTitle {
-  display: grid;
-  place-items: center;
+  text-align: center;
+  color: white;
 }
 .homeHeroTitle h1 {
-  color: var(--shade1);
-  font-size: 56px;
   font-weight: 400;
 }
-.homePromisesTitle {
-  padding: 50px 0 90px 0;
-  font-weight: 400;
-  color: var(--shade6);
+.homeHeroTitle h4 {
+  font-weight: 200;
 }
-.homePromisesItems {
+.homeCTABtn {
+  background-color: rgb(255, 64, 64);
+  display: inline-block;
+  padding: 8px 40px;
+  margin-top: 70px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.homeCTABtn:hover {
+  background-color: rgb(248, 107, 107);
+}
+.newTasksCornerImage {
+  width: 30px;
+  position: relative;
+  top: 20px;
+}
+.newTasksUser {
   display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 90px;
-}
-.homePromisesItem {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  box-shadow: 1px 3px 8px #888888;
-  background-color: var(--green3);
-  display: grid;
-  place-items: center;
-  text-align: center;
-}
-.homePromisesItem h4 {
-  color: var(--shade1);
-  font-size: 12px;
-  font-weight: 300;
-}
-.homePromisesItemIcon {
-  font-size: 55px;
-  color: var(--green1);
-}
-/* ******************  */
-.homeSplitBannerContent {
-  text-align: center;
-}
-.homeSplitBannerTitle {
-  font-weight: 400;
-  font-size: 34px;
-  color: var(--shade6);
-  padding: 30px 0 90px 0;
-}
-.homeSplitBannerGrid {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-.homeSplitBannerTextBlock {
-  display: grid;
-  place-items: center;
-}
-.homeSplitBannerItem {
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
-.homeSplitBannerIcon {
-  color: var(--green1);
-  padding-right: 20px;
-  font-size: 20px;
-}
-.letsStartCTAWrapper {
-  text-align: center;
-  margin-top: 30px;
-}
-.letsStartCTATitle {
-  padding-bottom: 90px;
-}
-.letsStartCTATitle h4 {
-  font-size: 34px;
-  font-weight: 400;
-  color: var(--shade6);
-}
-.letsStartCTAItems {
+.newTasksInfo {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  align-items: center;
 }
-.letsStartCTAWrapper {
-  background-color: aliceblue;
-  padding: 60px 0;
+.newTasksUserIcon {
+  color: rgb(43, 255, 0);
+  padding: 0 2px 0 0;
 }
-.letsStartCTAItem h6 {
-  font-size: 20px;
-  font-weight: 400;
-  color: var(--green6);
+.userTypeIcon {
+  color: rgb(25, 136, 2);
+  padding: 0 2px 0 0;
 }
-.letsStartCTAItem p {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--green6);
+.userType {
+  display: flex;
+  align-items: center;
 }
-.letsStartCTAIcon {
-  font-size: 60px;
-  color: var(--blue1);
+
+.tasksTown {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid black;
 }
-.letsStartCTAButton {
-  background-color: var(--blue1);
+.tasksTownIcon {
+  color: rgb(1, 156, 177);
+}
+.tasksTime {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid black;
+}
+.tasksTimeIcon {
+  color: rgb(250, 73, 73);
+}
+.newTasksInfoDetails {
+  padding: 0 10px 0 5px;
+}
+
+.newTasksInfoDetails p {
+  padding-left: 4px;
+}
+.newTasksTitle {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.newTasksCard {
+  display: flex;
+  border: 1px solid rgb(233, 233, 233);
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  transition: 0.3s;
+}
+.newTasksCard:hover {
+  filter: drop-shadow(5px 5px 10px rgb(211, 211, 211));
+}
+.newTasksCornerImage {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.newTasksCardContent {
+  padding: 20px 0;
+}
+.newTasksUser {
+  margin-bottom: 5px;
+}
+.homeTaskTitle h2 {
+  margin-bottom: 5px;
+}
+.homeTaskTitle p {
+  margin-bottom: 15px;
+}
+.newTasksCTA {
+  background-color: rgb(250, 73, 73);
+  padding: 10px 20px;
+  margin: 20px;
+  border-radius: 2px;
+}
+.newTasksCTA:hover {
+  background-color: rgb(247, 100, 100);
+}
+.cardActionWrap {
+  display: grid;
+  place-items: center;
+}
+.howClientWrapper {
   margin-top: 100px;
-  padding: 20px 40px;
+}
+.howClientTitle {
+  text-align: center;
+  margin: 50px auto;
+  width: 70%;
+}
+.howClientTitle h2 {
+  margin: 20px;
+}
+
+.howClientCardImage {
+  width: 90px;
+}
+.howClientCards {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+}
+.howClientCard {
+  padding: 0 10px;
+}
+.howClientCard h4 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.bannerSplit {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0;
+  color: white;
+}
+.bannerSplitImage {
+  width: 100%;
+}
+.right {
+  background-image: url("/images/right.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  display: grid;
+  place-items: center;
+}
+.left {
+  background-image: url("/images/left.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  display: grid;
+  place-items: center;
+}
+.leftContent {
+  padding: 40px;
+}
+.left p {
+  color: rgb(168, 168, 168);
+}
+.leftTitle {
+  font-weight: 200;
+  font-size: 36px;
+}
+.rightContent {
+  padding: 40px;
+}
+
+.rightTitle {
+  font-weight: 200;
+  font-size: 36px;
+}
+.right p {
+  color: rgb(168, 168, 168);
+}
+.bannerSplitCTA {
+  border: 1px solid rgb(206, 206, 206);
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 50px;
+  margin: 20px 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.bannerSplitCTA:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }

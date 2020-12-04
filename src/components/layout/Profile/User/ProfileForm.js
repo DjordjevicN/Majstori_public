@@ -5,15 +5,23 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux'
 import * as actionCreator from './store/userActions'
+import FormData from 'form-data'
 
 
 
 function ProfileForm(props) {
+    console.log(props.authUser.avatar);
     const [confirm, setConfirm] = useState(false)
     let isLoggedIn = props.authUser.id ? true : false;
-
     if (!isLoggedIn) { return <Redirect to='/' /> }
     let state = props.authUser;
+    const handleFile = (e) => {
+        let file = e.target.files[0]
+        let data = new FormData();
+        data.append('file', file, file.fileName);
+        console.log(data);
+        state.avatar = data;
+    }
     const handleSubmit = () => {
         let date = new Date()
         let day = date.getDate()
@@ -22,10 +30,12 @@ function ProfileForm(props) {
         let updated_at = `${day}.${month}.${year}`
         state.updated_at = updated_at;
         props.updateUser(state)
+        console.log(state);
     }
     const handleDelete = async () => {
         props.deleteUser(state)
     }
+
     return (
         <div className='profileFormWrapper'>
             {confirm ? <div className="confirmation">
@@ -50,7 +60,8 @@ function ProfileForm(props) {
             <div className='formItem'>
                 <input type="file" onChange={(e) => {
                     e.preventDefault()
-                    state.avatar = e.target.files;
+                    handleFile(e)
+                    // state.avatar = e.target.files;
                 }} />
             </div>
             <div className='formItem'>

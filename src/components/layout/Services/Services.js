@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Divider } from '@material-ui/core/';
-import CheckIcon from '@material-ui/icons/Check';
-import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { connect } from 'react-redux'
 import * as actionCreator from '../../../store/actions/actions'
 import { Link } from 'react-router-dom'
 import options from '../../OptionsData'
+import { FiTag } from "react-icons/fi";
+// FiHeart, FiSearch, FiTag, FiKey,FiCheckCircle, FiClock, FiMapPin,FiHeart
 function Services(props) {
     const [openTab, setOpenTab] = useState(false)
     const [category, setCategory] = useState('Razno');
@@ -16,7 +15,8 @@ function Services(props) {
         page
     }
     let menuRef = useRef()
-
+    let users = props.serviceUsers;
+    console.log(users);
     const handleSearch = () => {
         let filter = {
             category,
@@ -78,56 +78,61 @@ function Services(props) {
                     }}>TRAZI</button>
                 </div>
             </div>
-            <div className='serviceCardWrapper' >
-                <div className='serviceCard'>
-                    {props.serviceUsers.length > 0 ? props.serviceUsers.map((item) => (
-                        <div className='serviceCardPaper' key={item.service_ID}>
-                            <div className='serviceCardLeft'>
-                                {/* fix this on hosting  */}
-                                <img className='serviceCardLeftAvatar' src='/images/johnDoe.jpg' alt="ll" />
-                                <div className='serviceProfileActions'>
-                                    <div>
-                                        <p className='serviceUserInfoEmail serviceUserInfo'>Email: <span>{item.email}</span></p>
-                                        <p className='serviceUserInfoPhone serviceUserInfo'>Telefon: <span>{item.phoneNumber}</span></p>
-                                        <Link to={`/userProfile/${item.id}`} className='serviceUserBTNLink' onClick={() => {
-                                            props.getFullProfileById(item.id)
-                                        }}>Profil</Link>
+            <div>
+                <div className="taskerCardsWrapper">
+                    <div className="taskerCardsContent">
+                        {users && users.map((item) => (
+                            <div className="taskerCard" key={item.service_ID}>
+                                <div className="taskerCardOuter">
+                                    <img className='taskerCardRank' src={`/images/taskerRank${item.userRank}.png`} alt="" />
+                                </div>
+                                <Link className="taskerCardLink" to={`/userProfile/${item.User_id}`} onClick={() => {
+                                    props.getFullProfileById(item.id)
+                                }}>  <div className="taskerCardInner">
+                                        <div className="taskerCardInnerInfo">
+                                            <div className="avatar">
+                                                <img className="avatarImage" src={`/images/johnDoe.jpg`} alt="" />
+                                            </div>
+                                            <div className="taskerDetails">
+                                                <div className="taskerName">
+                                                    {item.firstName ? <h2>{item.firstName}</h2> : <h2>{item.email}</h2>}
 
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='serviceCardRight'>
-                                <div className='serviceCardRightTop'>
-                                    <div className='serviceCardRightTopElementWrapper'>
-                                        <h2 className='serviceCardRightTopName'>{item.firstName} {item.lastName}</h2>
-                                        <div className='serviceCardRightTopElement'>
-                                            <CheckIcon className='serviceCardRightTopElementIcon' />
-                                            <p>{item.completedTasks} - Zavrsenih Poslova</p>
+                                                </div>
+                                                <div>
+                                                    {item.completedTasks ? <p className='finishedTasks'>
+                                                        {item.completedTasks} Zavrsenih poslova
+                                                </p> : <p className='finishedTasks'>0 Zavrsenih poslova</p>}
+                                                </div>
+                                                <div className="taskerCardInnerService">
+                                                    <div className="taskerServicePriceCategory">
+                                                        <h3>{item.serviceCategory}</h3>
+                                                        <div className="taskerServicePrice">
+                                                            <FiTag className="taskerServicePriceCategoryIcon" />
+                                                            {item.servicePrice > 0 ? <p>{item.servicePrice}</p> : <p> Kontakt</p>}
+                                                        </div>
+                                                    </div>
+                                                    <div className="categoryDescription">
+                                                        <p>{item.serviceDescription}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="taskerGrade">
+                                                <div className="gradeIcon">
+                                                    {item.taskerGrade ? <h3>{item.taskerGrade}</h3> : <h3>50%</h3>}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='serviceCardRightTopElement'>
-                                            <StarOutlinedIcon className='serviceCardRightTopElementIcon' />
-                                            <p> {item.like} - Pozitivnih ocena</p>
-                                        </div>
                                     </div>
-                                    <p className='serviceCardRightTopPrice'><span>{item.serviceCategory}</span> - {item.servicePrice}</p>
-                                </div>
-                                <Divider />
-                                <div className='serviceCardRightBottom'>
-                                    <h4>Kako mogu da pomognem</h4>
-                                    <p >{item.serviceDescription}</p>
-                                </div>
+                                </Link>
                             </div>
-                        </div>
-                    )) : <div className="noUser">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        </div>}
+                        ))}
+                    </div>
                 </div>
                 {props.serviceUsers.length > 0 ? <p className='loadMoreBTN' onClick={() => {
                     loadMore()
-                }} >LOAD MORE</p> : <p className='NoTasks'>Pronadjite taks iz vase kategorije</p>}
+                }} >+ Ucitaj Jos</p> : <p className='NoTasks'>Pronadjite posao iz zeljene kategorije</p>}
             </div>
-        </div>
+        </div >
     );
 }
 const mapStateToProps = (state,) => {

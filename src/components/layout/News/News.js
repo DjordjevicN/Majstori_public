@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 function News(props) {
     let news = props.news;
-    console.log(news);
     return (
         <div className='newsWrapper' >
             <h5 className='newsTabTitle'>NEWS</h5>

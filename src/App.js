@@ -36,7 +36,7 @@ import Login from './components/layout/Login'
 import UserDashboard from './components/layout/Profile/UserDashboard'
 import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
-
+// import Footer from './components/layout/Footer'
 
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
@@ -60,12 +60,12 @@ function App(props) {
           <Route path='/services' component={Services} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />
-          <Route path='/UserProfile/:id' component={UserProfile} />
+          <Route path='/userProfile/:id' component={UserProfile} />
           <Route path='/Task/:id' component={Task} />
           <Route path='/UserDashboard' component={UserDashboard} />
           <Route path='/GOD' component={AdminDashboard} />
         </Switch>
-
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );

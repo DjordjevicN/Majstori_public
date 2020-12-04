@@ -2,6 +2,7 @@
 const initState = {
     tasks: [],
     taskView: {},
+    userProfileView: {},
     serviceUsers: [],
     serviceUserView: [],
     loading: false,

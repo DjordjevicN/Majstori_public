@@ -1,82 +1,104 @@
 .tasksRoot {
   margin-top: 20px;
+  height: 100vh;
 }
 .tasksRoot {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 }
+
 .taskCardWrapper {
-  /* height: 80vh;
-  overflow-y: scroll; */
+  width: 80%;
+  margin: 30px auto;
 }
 .taskCard {
-  width: 70%;
-  margin: 20px auto;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 1px 3px 8px #888888;
-  border-left: 6px solid var(--green2);
+  border: 1px solid rgb(236, 236, 236);
+  margin: 10px 0;
+  background-color: white;
+  transition: 0.3s;
 }
-
 .taskCard:hover {
-  border-left: 6px solid var(--blue1);
-  background-color: var(--shade1);
+  background-color: rgb(253, 248, 221);
+  filter: drop-shadow(5px 5px 5px rgb(216, 216, 216));
 }
+.taskCorner {
+  position: relative;
+}
+/* .taskCardContent {
+  margin-top: 10px;
+} */
 .taskCardContent {
-  padding: 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0 10px 10px 10px;
 }
-.taskCardTitle {
-  font-size: 20px;
-  color: var(--shade5);
+.taskCornerImage {
+  width: 30px;
+}
+.taskUser {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
-.taskCardInfo1 {
+.taskUserIcon {
+  color: green;
+  padding-right: 5px;
+}
+.taskTitle h2 {
+  font-size: 20px;
+}
+.taskTitle p {
+  font-size: 15px;
+  margin-top: 5px;
+}
+.taskInfo {
+  margin: 0 auto;
+}
+.taskInfoDetails {
   display: flex;
-  justify-content: flex-start;
+  padding: 4px;
+  align-items: center;
 }
-.taskCardItem {
-  margin-right: 20px;
-  font-size: 12px;
+.taskPriceIcon {
+  color: green;
+  padding-right: 5px;
 }
-.taskCardItem span {
-  color: var(--green1);
+.taskTownIcon {
+  color: rgb(0, 204, 255);
+  padding-right: 5px;
 }
-.price {
-  color: var(--orange1);
-  font-weight: 600;
+.taskTimeIcon {
+  color: orange;
+  padding-right: 5px;
 }
-.taskCardBody {
-  margin-top: 10px;
+.taskTime p {
   font-size: 13px;
 }
-.taskCardBody span {
-  color: var(--blue1);
+.taskFavIcon {
+  color: red;
+  padding-right: 5px;
 }
-.hour {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.taskCardAction {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.taskActionBtn {
-  font-size: 10px;
-  color: var(--orange1);
-  margin-right: 10px;
+.taskFav:hover {
   cursor: pointer;
 }
-
+.taskCTA {
+  background-color: red;
+  display: inline-block;
+  padding: 10px 20px;
+}
+.taskCTA:hover {
+  background-color: rgb(252, 77, 77);
+}
 .applyBtn {
   color: var(--shade1);
-  background-color: var(--green1);
+  background-color: rgb(252, 77, 77);
   border: none;
   padding: 5px 30px;
   font-weight: 600;
   text-decoration: none;
 }
 .applyBtn:hover {
-  background-color: var(--green2);
+  background-color: rgb(247, 101, 101);
 }
 .searchInputWrapper {
   margin: 0 auto;
@@ -90,27 +112,18 @@
   width: 100%;
   margin: 0 auto;
 }
+
 .searchButtons {
   border: none;
   color: var(--shade1);
-  background-color: var(--green1);
+  background-color: rgb(252, 77, 77);
   width: 90px;
   margin-left: 20px;
   cursor: pointer;
   box-shadow: 1px 3px 8px #888888;
 }
 .searchButtons:hover {
-  background-color: var(--green2);
-}
-.closeSearch {
-  border: none;
-  background-color: var(--orange1);
-  padding: 3px 8px;
-  color: var(--shade1);
-  cursor: pointer;
-}
-.closeSearch:hover {
-  background-color: var(--orange0);
+  background-color: rgb(253, 101, 101);
 }
 .applyModalFormWrapper {
   background-color: rgba(39, 39, 39, 0.747);
@@ -123,7 +136,7 @@
   place-items: center;
 }
 .applyModalForm {
-  width: 30%;
+  width: 40%;
   background-color: var(--shade1);
   padding: 40px;
 }
@@ -145,65 +158,78 @@
   display: flex;
   justify-content: flex-end;
   padding: 10px 15px;
-  color: var(--shade1);
-  background-color: var(--green1);
+  color: white;
+  background-color: rgb(255, 66, 66);
   font-size: 10px;
   cursor: pointer;
 }
-.singleTaskCard {
-  width: 70%;
-}
+
 .loadMoreBTN {
+  color: white;
+  width: 50%;
+  background-color: rgb(255, 66, 66);
   text-align: center;
-  width: 10%;
-  margin: 50px auto;
-  background-color: var(--green1);
-  padding: 20px 40px;
-  color: var(--shade1);
+  margin: 0 auto;
+  padding: 10px 40px;
   cursor: pointer;
-  transition: 1s;
+  transition: 0.3s;
+  margin-bottom: 100px;
 }
 .loadMoreBTN:hover {
-  background-color: var(--green2);
-  width: 25%;
+  background-color: rgb(248, 107, 107);
 }
 .NoTasks {
   text-align: center;
   margin-top: 20vh;
 }
-/* .quickAddTaskFormWrapper {
-  display: grid;
-  place-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
+.singleTaskCard {
+  width: 80%;
+  margin: 0 auto;
+}
+.singleTaskWrapper {
   width: 100%;
-  background-color: #3636365e;
+  margin-top: 30px;
 }
-.quickAddTaskFormContent {
-  width: 30%;
-  background-color: #ffffff;
+.singleTaskContent {
+  width: 100%;
+  margin: 0 auto;
+}
+.singleTaskCard {
   padding: 20px;
-  border-radius: 8px;
+  background-color: white;
+  filter: drop-shadow(10px 10px 10px rgb(207, 207, 207));
 }
-.closeQuickAddTaskForm {
-  font-size: 30px;
-  transition: 1s;
+.singleTaskInfo {
+  display: flex;
+  justify-content: space-between;
+}
+.singleTaskInfoBlock {
+  display: flex;
+}
+.singleTaskActionBTN {
+  background-color: rgb(255, 66, 66);
   cursor: pointer;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 2px;
 }
-.closeQuickAddTaskForm:hover {
-  transform: rotate(360deg);
+.singleTaskTownIcon,
+.singleTaskTimeIcon,
+.singleTaskFavIcon {
+  padding: 0 5px;
+  margin: 0 10px;
+  border-left: 1px solid rgb(172, 172, 172);
 }
-.quickAddTaskBtn {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  font-size: 60px;
-  color: var(--green1);
-  transition: 2s;
-  cursor: pointer;
+.singleTaskTownIcon {
+  color: rgb(0, 204, 255);
 }
-.quickAddTaskBtn:hover {
-  transform: rotate(360deg);
-} */
+.singleTaskTimeIcon {
+  color: orange;
+}
+.singleTaskFavIcon {
+  color: red;
+}
+.singleTaskPriceIcon {
+  color: green;
+  padding-right: 10px;
+}

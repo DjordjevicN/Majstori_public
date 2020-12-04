@@ -27,17 +27,17 @@
   overflow-y: scroll;
 }
 .optionsWrapper::-webkit-scrollbar {
-  background-color: var(--lightGreen);
+  background-color: red;
   width: 5px;
 }
 .optionsWrapper::-webkit-scrollbar-track {
   background: var(--lighterText);
 }
 .optionsWrapper::-webkit-scrollbar-thumb {
-  background: var(--lightGreen);
+  background: rgb(196, 196, 196);
 }
 .optionsWrapper::-webkit-scrollbar-thumb:hover {
-  background: var(--lightGreenHover);
+  background: rgb(241, 116, 116);
 }
 
 .options {

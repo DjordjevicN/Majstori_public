@@ -4,10 +4,10 @@ import * as userActionCreator from '../Profile/User/store/userActions'
 import { connect } from 'react-redux';
 // PAGES
 import ProfileForm from '../Profile/User/ProfileForm';
+import User from '../Profile/User/User'
 import ServiceForm from '../Profile/UserServices/ServiceForm';
 import TaskForm from '../Profile/UserTasks/TaskForm';
 import NoForm from '../../forms/NoForm';
-import User from '../Profile/User/User'
 import UserTasks from '../Profile/UserTasks/UserTasks'
 import UserServices from '../Profile/UserServices/UserServices'
 import UserOffer from '../Profile/UserOffers/UserOffer'
@@ -26,64 +26,14 @@ import WarningIcon from '@material-ui/icons/Warning';
 function UserDashboard(props) {
     const [dashForm, setDashForm] = useState(<ProfileForm />)
     const [dashPage, setDashPage] = useState(<User />)
-    console.log(props.authUser);
     return (
         <div className='dashboardWrapper'>
             {/* MENU  */}
             <div className="dashboardContent">
-                <div className='profileFormComponentWrapper'>
-
-                    <div className="dashMenuWrap">
-                        <div className="dashMenu">
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashForm(<ProfileForm />)
-                                setDashPage(<User />)
-                            }}><PersonIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashForm(<ServiceForm />)
-                                setDashPage(<UserServices />)
-                            }}><WorkIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashForm(<TaskForm />)
-                                setDashPage(<UserTasks />)
-                            }}><LibraryBooksIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashForm(<NoForm />)
-                                setDashPage(<UserOffer />)
-                            }}><LibraryAddCheckIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashForm(<NoForm />)
-                                setDashPage(<UserProposals />)
-                            }}><DoneAllIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-
-                                props.getMyFavoriteTasks(props.authUser.id)
-                                setDashPage(<FavoritePage />)
-                                setDashForm(<NoForm />)
-                            }}><p className="dashMenuItemIcon" >FAV</p></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                props.getAllNews()
-                                setDashPage(<News />)
-                                setDashForm(<NoForm />)
-                            }}><WarningIcon className="dashMenuItemIcon" /></button>
-                            <button className="dashMenuItem" onClick={() => {
-                                setDashPage(<Shop />)
-                                setDashForm(<NoForm />)
-                            }}><p className="dashMenuItemIcon">SHOP</p></button>
-                        </div>
-                    </div>
-                    {/* CONTENT  */}
-                    <div className="dashMainContentWrapper">
-                        {dashPage}
-
-                    </div>
-                    {/* FORM  */}
-                    <div className="dashFormWrapper">
-                        {dashForm}
-
-                    </div>
-
-                </div>
+                <User />
+                <div>profile, menu </div>
+                <div>mid content</div>
+                <div>right col</div>
             </div>
 
         </div>
@@ -104,3 +54,58 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
+
+
+// {/* <div className='profileFormComponentWrapper'>
+
+// <div className="dashMenuWrap">
+//     <div className="dashMenu">
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashForm(<ProfileForm />)
+//             setDashPage(<User />)
+//         }}><PersonIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashForm(<ServiceForm />)
+//             setDashPage(<UserServices />)
+//         }}><WorkIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashForm(<TaskForm />)
+//             setDashPage(<UserTasks />)
+//         }}><LibraryBooksIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashForm(<NoForm />)
+//             setDashPage(<UserOffer />)
+//         }}><LibraryAddCheckIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashForm(<NoForm />)
+//             setDashPage(<UserProposals />)
+//         }}><DoneAllIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+
+//             props.getMyFavoriteTasks(props.authUser.id)
+//             setDashPage(<FavoritePage />)
+//             setDashForm(<NoForm />)
+//         }}><p className="dashMenuItemIcon" >FAV</p></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             props.getAllNews()
+//             setDashPage(<News />)
+//             setDashForm(<NoForm />)
+//         }}><WarningIcon className="dashMenuItemIcon" /></button>
+//         <button className="dashMenuItem" onClick={() => {
+//             setDashPage(<Shop />)
+//             setDashForm(<NoForm />)
+//         }}><p className="dashMenuItemIcon">SHOP</p></button>
+//     </div>
+// </div>
+// {/* CONTENT  */}
+// <div className="dashMainContentWrapper">
+//     {dashPage}
+
+// </div>
+// {/* FORM  */}
+// <div className="dashFormWrapper">
+//     {dashForm}
+
+// </div>
+
+// </div> */}
