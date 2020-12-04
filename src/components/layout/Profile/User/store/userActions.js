@@ -30,6 +30,7 @@ export const createNewService = (value) => {
         })
     }
 }
+
 // UPDATE USER PROFILE  
 export const updateUser = (value) => {
     let userToken = localStorage.getItem('userToken');

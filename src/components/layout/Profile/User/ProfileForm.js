@@ -7,10 +7,7 @@ import { connect } from 'react-redux'
 import * as actionCreator from './store/userActions'
 import FormData from 'form-data'
 
-import Axios from 'axios'
-
 function ProfileForm(props) {
-    console.log(props.authUser.avatar);
     const [confirm, setConfirm] = useState(false)
     let isLoggedIn = props.authUser.id ? true : false;
     if (!isLoggedIn) { return <Redirect to='/' /> }
@@ -18,13 +15,12 @@ function ProfileForm(props) {
 
     const handleFile = async (e) => {
         const formData = new FormData()
-        formData.append("picture", e.target.files[0], props.authUser.id)
-        const res = await fetch("http://localhost:3001/picture", {
+        formData.append("picture", e.target.files[0])
+        formData.append('userId', props.authUser.id)
+        await fetch("http://localhost:3001/picture", {
             method: "POST",
             body: formData
         }).then(res => res.json())
-        alert(JSON.stringify(res))
-
     }
     const handleSubmit = () => {
         let date = new Date()
