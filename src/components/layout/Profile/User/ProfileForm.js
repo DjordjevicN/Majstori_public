@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import * as actionCreator from './store/userActions'
 import FormData from 'form-data'
 
-
+import Axios from 'axios'
 
 function ProfileForm(props) {
     console.log(props.authUser.avatar);
@@ -15,12 +15,16 @@ function ProfileForm(props) {
     let isLoggedIn = props.authUser.id ? true : false;
     if (!isLoggedIn) { return <Redirect to='/' /> }
     let state = props.authUser;
-    const handleFile = (e) => {
-        let file = e.target.files[0]
-        let data = new FormData();
-        data.append('file', file, file.fileName);
-        console.log(data);
-        state.avatar = data;
+
+    const handleFile = async (e) => {
+        const formData = new FormData()
+        formData.append("picture", e.target.files[0], props.authUser.id)
+        const res = await fetch("http://localhost:3001/picture", {
+            method: "POST",
+            body: formData
+        }).then(res => res.json())
+        alert(JSON.stringify(res))
+
     }
     const handleSubmit = () => {
         let date = new Date()
@@ -30,7 +34,7 @@ function ProfileForm(props) {
         let updated_at = `${day}.${month}.${year}`
         state.updated_at = updated_at;
         props.updateUser(state)
-        console.log(state);
+
     }
     const handleDelete = async () => {
         props.deleteUser(state)
@@ -58,7 +62,7 @@ function ProfileForm(props) {
 
             <h6 className='profileFormTitle'> UPDATE PROFILE</h6>
             <div className='formItem'>
-                <input type="file" onChange={(e) => {
+                <input type="file" name="picture" onChange={(e) => {
                     e.preventDefault()
                     handleFile(e)
                     // state.avatar = e.target.files;
@@ -133,3 +137,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm)
+
+
+
+// console.log(e.target.files[0]);
+        // const formData = new FormData();
+        // formData.append("picture", e.target.files[0])
+
+        // let res = await Axios.post("http://localhost:3001/picture", {
+        //     body: formData
+        // }).then(res = res.json())
+        // alert(JSON.stringify(res))

@@ -30,10 +30,59 @@ function UserDashboard(props) {
         <div className='dashboardWrapper'>
             {/* MENU  */}
             <div className="dashboardContent">
-                <User />
-                <div>profile, menu </div>
-                <div>mid content</div>
-                <div>right col</div>
+                <div className='profileFormComponentWrapper'>
+
+                    <div className="dashMenuWrap">
+                        <div className="dashMenu">
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashForm(<ProfileForm />)
+                                setDashPage(<User />)
+                            }}><PersonIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashForm(<ServiceForm />)
+                                setDashPage(<UserServices />)
+                            }}><WorkIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashForm(<TaskForm />)
+                                setDashPage(<UserTasks />)
+                            }}><LibraryBooksIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashForm(<NoForm />)
+                                setDashPage(<UserOffer />)
+                            }}><LibraryAddCheckIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashForm(<NoForm />)
+                                setDashPage(<UserProposals />)
+                            }}><DoneAllIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+
+                                props.getMyFavoriteTasks(props.authUser.id)
+                                setDashPage(<FavoritePage />)
+                                setDashForm(<NoForm />)
+                            }}><p className="dashMenuItemIcon" >FAV</p></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                props.getAllNews()
+                                setDashPage(<News />)
+                                setDashForm(<NoForm />)
+                            }}><WarningIcon className="dashMenuItemIcon" /></button>
+                            <button className="dashMenuItem" onClick={() => {
+                                setDashPage(<Shop />)
+                                setDashForm(<NoForm />)
+                            }}><p className="dashMenuItemIcon">SHOP</p></button>
+                        </div>
+                    </div>
+
+                    <div className="dashMainContentWrapper">
+                        {dashPage}
+
+                    </div>
+
+                    <div className="dashFormWrapper">
+                        {dashForm}
+
+                    </div>
+
+                </div>
             </div>
 
         </div>
@@ -56,7 +105,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
 
 
-// {/* <div className='profileFormComponentWrapper'>
+//  <div className='profileFormComponentWrapper'>
 
 // <div className="dashMenuWrap">
 //     <div className="dashMenu">
@@ -97,15 +146,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
 //         }}><p className="dashMenuItemIcon">SHOP</p></button>
 //     </div>
 // </div>
-// {/* CONTENT  */}
+
 // <div className="dashMainContentWrapper">
 //     {dashPage}
 
 // </div>
-// {/* FORM  */}
+
 // <div className="dashFormWrapper">
 //     {dashForm}
 
 // </div>
 
-// </div> */}
+// </div> 

@@ -9,8 +9,6 @@ function Home(props) {
 
     return (
         <div className='homeMainWrapper'>
-
-
             <div className="homeContent">
                 <div className="homeHero">
                     <div className="homeHeroTitle">

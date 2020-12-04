@@ -13,7 +13,7 @@ function User(props) {
             <div className="profileDashCard">
                 <div className="profileInformationDash">
                     <div className="dashImageWrap">
-                        <img src="./images/johnDoe.jpg" alt="ll" className="dashImage" />
+                        <img src={`http://localhost:3001/uploads/${authUser.avatar}`} alt="profile photo" className="dashImage" />
                     </div>
                     <div className="dashInformationBlock">
                         {authUser.firstName === '' ? <h3 className="profileDashName">{authUser.email}</h3> : <h3 className="profileDashName">{`${authUser.firstName} ${authUser.lastName}`}</h3>}
