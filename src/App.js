@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 import * as actionCreator from './components/layout/Profile/User/store/userActions'
+import * as globalActionCreator from './store/actions/actions'
 // SCC
 import 'react-notifications-component/dist/theme.css'
 import './App.css';
@@ -45,6 +46,8 @@ import 'animate.css/animate.compat.css'
 function App(props) {
   useEffect(() => {
     props.getMyData()
+    props.getAllTasks()
+
     return
     /* eslint-disable-next-line */
   }, []);
@@ -79,7 +82,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
 
     loginUser: (email, password) => dispatch(actionCreator.loginUser({ email, password })),
-    getMyData: () => dispatch(actionCreator.getMyData())
+    getMyData: () => dispatch(actionCreator.getMyData()),
+    getAllTasks: () => dispatch(globalActionCreator.getAllTasks())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

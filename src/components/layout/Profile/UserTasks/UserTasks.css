@@ -1,9 +1,18 @@
-.dashTaskCard {
+.taskDashPageWrapper {
   width: 90%;
+  margin: 0 auto;
+}
+.dashTaskCard {
+  width: 100%;
   margin: 10px auto;
   box-shadow: 1px 3px 8px #888888;
   border-left: 6px solid var(--green1);
 }
+.noTasks {
+  margin: 50px;
+  text-align: center;
+}
+
 .dashTaskCard:hover {
   background-color: var(--shade1);
   border-left: 6px solid var(--blue1);
@@ -34,4 +43,88 @@
   display: flex;
   padding: 15px 0px 14px 11px;
   color: #888888;
+}
+/* ********************* */
+
+.taskDashPageWrapper {
+  width: 100%;
+}
+.taskDashSectionTitle h3 {
+  padding: 20px 20px 20px 0;
+  color: #888888;
+}
+.taskDashTitle h3 {
+  font-size: 1.5vw;
+}
+.taskDashCardWrapper {
+  background-color: rgb(255, 255, 255);
+  filter: drop-shadow(5px 5px 5px rgb(223, 223, 223));
+  transition: 0.3s;
+}
+.taskDashCardWrapper:hover {
+  background-color: rgb(255, 251, 236);
+  filter: drop-shadow(5px 5px 5px rgb(192, 192, 192));
+}
+
+.taskDashCardInner {
+  display: grid;
+  grid-template-columns: 6fr 1fr 1fr;
+  padding: 0 20px 20px 20px;
+}
+.taskDashCardCTA p {
+  color: white;
+  background-color: rgb(233, 97, 97);
+  padding: 7px 10px;
+  border-radius: 4px;
+  margin: 15px;
+  text-align: center;
+}
+.taskDashCardInnerApplicantsImage {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+}
+.taskDashCardInnerAppliers {
+  text-align: center;
+}
+.taskDashInfo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+.taskDashPrice,
+.taskDashLocation,
+.taskDashCategory,
+.taskDashDate {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+}
+.taskDashPrice p,
+.taskDashLocation p,
+.taskDashCategory p,
+.taskDashDate p {
+  font-size: 13px;
+}
+.taskDashDateIcon {
+  color: orange;
+  padding: 0 5px;
+}
+.taskDashCategoryIcon {
+  color: green;
+  padding: 0 5px;
+}
+.taskDashCardOuter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.taskDashDeleteTask {
+  display: flex;
+}
+.taskDashDeleteTaskIcon {
+  color: red;
+  font-size: 20px;
+  padding: 0 10px;
+  cursor: pointer;
 }

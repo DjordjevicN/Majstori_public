@@ -4,11 +4,17 @@
 }
 .tasksRoot {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px;
 }
 
+.taskCardContent {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0 10px 10px 10px;
+}
 .taskCardWrapper {
-  width: 80%;
+  width: 100%;
   margin: 30px auto;
 }
 .taskCard {
@@ -24,14 +30,7 @@
 .taskCorner {
   position: relative;
 }
-/* .taskCardContent {
-  margin-top: 10px;
-} */
-.taskCardContent {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  padding: 0 10px 10px 10px;
-}
+
 .taskCornerImage {
   width: 30px;
 }
@@ -178,10 +177,7 @@
 .loadMoreBTN:hover {
   background-color: rgb(248, 107, 107);
 }
-.NoTasks {
-  text-align: center;
-  margin-top: 20vh;
-}
+
 .singleTaskCard {
   width: 80%;
   margin: 0 auto;
@@ -232,4 +228,7 @@
 .singleTaskPriceIcon {
   color: green;
   padding-right: 10px;
+}
+.dashTaskCardBody {
+  width: 70px;
 }

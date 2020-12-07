@@ -100,7 +100,7 @@ export const getAllTasks = () => {
     return async (dispatch) => {
         const response = await Axios.get(`http://localhost:3001/getNewestTasks`)
         dispatch({
-            type: 'UPDATE_ALL_TASK_STATE',
+            type: "UPDATE_HOME_TASK_STATE",
             payload: response.data.results
         })
     }

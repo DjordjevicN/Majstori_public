@@ -60,7 +60,7 @@ function Tasks(props) {
             <div className="mapWrapper">
                 <Map />
             </div>
-            <div className="tasksWrapper">
+            < div className="tasksWrapper" >
                 <div className='searchInputWrapper'>
                     <div className='searchInput'>
                         <div className="searchFormWrapper">
@@ -180,11 +180,13 @@ function Tasks(props) {
                 </div>
 
 
-                {tasks.length > 0 ? <p className='loadMoreBTN' onClick={() => {
-                    loadMore()
-                }} >+ Ucitaj jos</p> : <p className='NoTasks'>Pronadjite taks iz vase kategorije</p>}
-            </div>
-        </div>
+                {
+                    tasks.length > 0 ? <p className='loadMoreBTN' onClick={() => {
+                        loadMore()
+                    }} >+ Ucitaj jos</p> : <p className='noTasks'>Pronadjite taks iz vase kategorije</p>
+                }
+            </ div>
+        </div >
     );
 }
 const mapStateToProps = (state) => {

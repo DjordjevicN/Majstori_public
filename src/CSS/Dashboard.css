@@ -1,78 +1,145 @@
-.dashMenu {
+.dashboardContent {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  margin: 20px auto;
 }
-.dashMenuItem {
-  font-size: 14px;
-  padding: 5px 15px;
-  margin: 1px 0px;
-  background-color: var(--green1);
-  border: none;
-  color: var(--shade1);
+.userSideMenu {
+  width: 300px;
+  height: 100vh;
+  background-color: rgb(218, 218, 218);
+}
+
+.userSideMenuProfile {
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+.userSideMenuProfileAvatar {
+  background-image: url("/images/sideMenuBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 80px;
+}
+.userSideMenuProfileAvatarBox {
+  display: flex;
+}
+
+.userSideMenuProfileImage {
+  position: relative;
+  top: 80px;
+  margin: 0px auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+.userSideMenuInformation {
+  display: flex;
+  color: #7a7a7a;
+}
+.userSideMenuInformationBox {
+  margin: 0 auto;
+  /* text-align: center; */
+  padding: 10px 0;
+}
+.userSideMenuName {
+  margin-bottom: 7px;
+}
+.userSideMenuName h4 {
+  font-size: 24px;
+  color: rgb(59, 59, 59);
+}
+.userSideMenuInformationItem {
+  padding-top: 5px;
+}
+.userSideMenuPhone,
+.userSideMenuEmail,
+.userSideMenuUpdated,
+.userSideMenuCreated,
+.userSideMenuName {
+  display: flex;
+  align-items: center;
+}
+.userSideMenuItems {
+  padding-top: 20px;
+}
+.userSideMenuItems p {
+  margin: 0 auto;
+  font-weight: 600;
+  color: rgb(134, 134, 134);
+  padding-top: 10px;
+  transition: 0.3s;
+}
+.userSideMenuItems p:hover {
+  color: rgb(41, 41, 41);
+  letter-spacing: 1px;
+}
+
+.userSideMenuItem {
+  display: flex;
   cursor: pointer;
+  margin-top: 5px;
 }
-.dashMenuItem:hover {
-  background-color: var(--green2);
+.menuToggleWrapper {
+  margin-top: 25%;
 }
-.dashMainContentWrapper {
-  width: 97%;
-  margin: 0 auto;
+.menuToggle {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 70px 2px;
+  border-radius: 50px;
+  background-color: rgb(218, 218, 218);
+  transition: 0.3s;
+  opacity: 0.3;
 }
-.dashFormWrapper {
-  width: 97%;
-  margin: 0 auto;
+.menuToggle:hover {
+  opacity: 1;
+  filter: drop-shadow(5px 5px 5px rgb(190, 190, 190));
 }
-@media screen and (min-width: 780px) {
-  .dashMenu {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 30%;
-    width: 8%;
-  }
-  .dashMenuWrap {
-    display: grid;
-    place-items: center;
-    border-right: 1px solid var(--lightBorder);
-  }
-  .dashMenuItem {
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    width: 100%;
-    padding: 15px 5px;
-    margin: 1px 4px 1px 0;
-    background-color: var(--green1);
-    border: none;
-    color: var(--shade1);
-    transition: 0.3s;
-    transition-delay: 0.3s;
-  }
-  .dashMenuItem:hover {
-    background-color: var(--green2);
-
-    margin: 10px 0;
-  }
-  .dashboardContent {
-    margin: 20px;
-    box-shadow: 1px 3px 8px #888888;
-  }
-  .profileFormComponentWrapper {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: 1fr 7fr 4fr;
-  }
-  .dashFormWrapper {
-    border-left: 1px solid var(--lightBorder);
-    border-bottom: 1px solid var(--lightBorder);
-    height: 100vh;
-  }
+.additionalWrapper {
+  /* width: 150px; */
 }
-.dashMenuItemIcon {
-  color: var(--green3);
+.additionalContent {
+  display: flex;
+}
+.additionalInfoCard {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  margin: 10px auto;
+  color: white;
+  filter: drop-shadow(3px 3px 5px rgb(230, 230, 230));
+  transition: 0.3s;
+}
+.additionalInfoCard:hover {
+  filter: drop-shadow(3px 3px 5px rgb(197, 197, 197));
+}
+.additionalInfoCard p,
+.additionalInfoCard h3 {
+  filter: drop-shadow(3px 3px 4px rgb(66, 66, 66));
+}
+.additionalInfoCard p {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.completedJobs {
+  background-color: #a7d5ff;
+}
+.userStatus {
+  background-color: #ffdca7;
+}
+.userStatus p {
+  font-size: 15px;
+}
+.usersToken {
+  background-color: #ffa7a7;
+}
+.usersToken p {
+  font-size: 15px;
+}
+.ongoingJobs {
+  background-color: #c3ffa7;
+}
+.dashboardContentDisplay {
+  width: 60%;
 }

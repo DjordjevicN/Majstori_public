@@ -2,6 +2,7 @@
 const initState = {
     tasks: [],
     taskView: {},
+    homePageTasks: [],
     userProfileView: {},
     serviceUsers: [],
     serviceUserView: [],
@@ -28,8 +29,10 @@ const globalReducer = (state = initState, action) => {
             newState.tasks = []
             break;
         case "UPDATE_ALL_TASK_STATE":
-            // newState.tasks = action.payload
             newState.tasks = newState.tasks.concat(action.payload)
+            break;
+        case "UPDATE_HOME_TASK_STATE":
+            newState.homePageTasks = action.payload;
             break;
         case "SET_SERVICE_USER_VIEW":
             newState.serviceUserView = action.payload;

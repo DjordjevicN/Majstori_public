@@ -130,7 +130,7 @@ function Services(props) {
                 </div>
                 {props.serviceUsers.length > 0 ? <p className='loadMoreBTN' onClick={() => {
                     loadMore()
-                }} >+ Ucitaj Jos</p> : <p className='NoTasks'>Pronadjite posao iz zeljene kategorije</p>}
+                }} >+ Ucitaj Jos</p> : <p className='noTasks'>Pronadjite posao iz zeljene kategorije</p>}
             </div>
         </div >
     );

@@ -46,7 +46,7 @@
   /* justify-content: space-evenly; */
   align-items: center;
 }
-.newTasksUserIcon {
+.homeTaskPriceIcon {
   color: rgb(43, 255, 0);
   padding: 0 2px 0 0;
 }
@@ -54,7 +54,7 @@
   color: rgb(25, 136, 2);
   padding: 0 2px 0 0;
 }
-.userType {
+.homeTaskPrice {
   display: flex;
   align-items: center;
 }
@@ -88,10 +88,11 @@
   margin-bottom: 30px;
 }
 .newTasksCard {
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.1fr 6fr 1fr;
   border: 1px solid rgb(233, 233, 233);
   width: 60%;
-  margin: 0 auto;
+  margin: 10px auto;
   background-color: white;
   transition: 0.3s;
 }
@@ -189,6 +190,7 @@
 }
 .leftContent {
   padding: 40px;
+  text-align: center;
 }
 .left p {
   color: rgb(168, 168, 168);
@@ -199,6 +201,7 @@
 }
 .rightContent {
   padding: 40px;
+  text-align: center;
 }
 
 .rightTitle {

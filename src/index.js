@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/'
-import green from '@material-ui/core/colors/green';
+import blue from '@material-ui/core/colors/blue';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
@@ -25,7 +25,7 @@ const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)))
 // const store = createStore(reducer, applyMiddleware(thunk))
 const theme = createMuiTheme({
   palette: {
-    primary: green,
+    primary: blue,
   }
 })
 
