@@ -299,9 +299,9 @@ app.get('/deleteTask/:id', (req, res) => {
         res.send({ status: true, results, notification: 'Posao Uklonjen' })
     })
 })
-// GET NEWEST TASKS
+// GET NEWEST TASKS HOME
 app.get('/getNewestTasks', (req, res) => {
-    let sql = `SELECT * FROM task ORDER BY task_ID DESC LIMIT 5`
+    let sql = `SELECT * FROM task JOIN user ON user.id = User_id ORDER BY task_ID DESC LIMIT 3`
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ notification: 'Fail to load tasks' })
@@ -322,7 +322,7 @@ app.post('/getFilteredTasks', (req, res) => {
         res.send({ results, notification: 'Tasks loaded' })
     })
 })
-// GET TASK LATEST 10 
+// GET TASK LATEST 5 
 app.get('/getLatestTasks', (req, res) => {
     let sql = `SELECT * FROM task ORDER BY task_ID DESC LIMIT 5`
     let query = db.query(sql, (err, results) => {
