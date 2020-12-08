@@ -25,10 +25,7 @@
 }
 .taskCard:hover {
   background-color: rgb(253, 248, 221);
-  filter: drop-shadow(5px 5px 5px rgb(216, 216, 216));
-}
-.taskCorner {
-  position: relative;
+  box-shadow: 1px 3px 8px #d4d4d4;
 }
 
 .taskCornerImage {
@@ -99,27 +96,35 @@
 .applyBtn:hover {
   background-color: rgb(247, 101, 101);
 }
-.searchInputWrapper {
+
+.taskSearchInputWrapper {
   margin: 0 auto;
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px rgb(216, 216, 216));
+  background-color: white;
 }
 .searchInput {
   display: flex;
-  width: 50%;
-  margin: 0 auto;
-}
-.selectTab {
-  width: 100%;
-  margin: 0 auto;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
+.selectTab {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+  cursor: pointer;
+}
+.selectTab p {
+  color: var(--lighterText);
+  padding-left: 9px;
+}
 .searchButtons {
   border: none;
   color: var(--shade1);
   background-color: rgb(252, 77, 77);
-  width: 90px;
-  margin-left: 20px;
+  padding: 13px 50px;
   cursor: pointer;
-  box-shadow: 1px 3px 8px #888888;
 }
 .searchButtons:hover {
   background-color: rgb(253, 101, 101);
@@ -165,7 +170,7 @@
 
 .loadMoreBTN {
   color: white;
-  width: 50%;
+  width: 42%;
   background-color: rgb(255, 66, 66);
   text-align: center;
   margin: 0 auto;
@@ -193,7 +198,7 @@
 .singleTaskCard {
   padding: 20px;
   background-color: white;
-  filter: drop-shadow(10px 10px 10px rgb(207, 207, 207));
+  filter: drop-shadow(5px 5px 5px rgb(216, 216, 216));
 }
 .singleTaskInfo {
   display: flex;
@@ -206,8 +211,11 @@
   background-color: rgb(255, 66, 66);
   cursor: pointer;
   color: white;
-  padding: 10px 20px;
+  padding: 13px 40px;
   border-radius: 2px;
+}
+.singleTaskActionBTN:hover {
+  background-color: rgb(255, 88, 88);
 }
 .singleTaskTownIcon,
 .singleTaskTimeIcon,

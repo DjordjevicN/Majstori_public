@@ -1,7 +1,6 @@
 .serviceRoot {
   margin-top: 30px;
 }
-
 .taskerCardRank {
   width: 30px;
 }
@@ -28,13 +27,11 @@
   margin: 10px auto;
   transition: 0.3s;
 }
-
 .taskerCard:hover {
   background-color: rgb(253, 248, 221);
   filter: drop-shadow(10px 10px 10px rgb(223, 223, 223));
 }
 .taskerGrade {
-  /* margin: 0 auto; */
   display: grid;
   place-items: center;
 }
@@ -93,4 +90,10 @@
 }
 .userProfileGradeIcon h3 {
   font-weight: 300;
+}
+.searchInputWrapper {
+  margin: 0 auto;
+  width: 80%;
+  background-color: white;
+  filter: drop-shadow(5px 5px 5px rgb(199, 199, 199));
 }

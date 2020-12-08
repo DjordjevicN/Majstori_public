@@ -2,25 +2,13 @@
   border: 1px solid var(--lightBorder);
   border-radius: 5px;
 }
-.selectTab {
-  display: flex;
-  padding: 15px 5px;
-  cursor: pointer;
-  border: 1px solid rgb(189, 189, 189);
-  box-shadow: 1px 3px 8px #888888;
-}
 
-.selectTab p {
-  color: var(--lighterText);
-  padding-left: 9px;
-}
 .optionsWrapper {
   display: block;
-  width: 30%;
-
+  width: 80%;
   box-shadow: 1px 3px 8px #888888;
   border: 1px solid var(--lightBorder);
-  z-index: 101;
+  z-index: 200;
   background-color: rgb(255, 255, 255);
   position: absolute;
   height: 500px;
@@ -42,6 +30,7 @@
 
 .options {
   padding: 20px;
+  background-color: wheat;
 }
 .optionItems {
   cursor: pointer;
@@ -62,8 +51,4 @@
 }
 .searchFormWrapper {
   width: 100%;
-}
-.selectTab {
-  display: flex;
-  justify-content: space-between;
 }

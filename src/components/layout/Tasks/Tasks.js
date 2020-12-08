@@ -61,7 +61,7 @@ function Tasks(props) {
                 <Map />
             </div>
             < div className="tasksWrapper" >
-                <div className='searchInputWrapper'>
+                <div className='taskSearchInputWrapper'>
                     <div className='searchInput'>
                         <div className="searchFormWrapper">
                             <div className="selectTab" onClick={() => {
@@ -165,7 +165,7 @@ function Tasks(props) {
                         //             <p className='taskCardItem hour'>Postovano <span>{item.taskCreated_at}</span> </p>
                         //         </div>
                         //         <div className='taskCardAction'>
-                        //             <FavoriteIcon className='taskActionBtn' onClick={() => {
+                        //             <FiHeart className='taskActionBtn' onClick={() => {
                         //                 addToFav(item.task_ID);
                         //             }} />
                         //             <Link to={`/task/${item.task_ID}`} onClick={() => {

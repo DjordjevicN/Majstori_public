@@ -1,13 +1,12 @@
 .dashboardContent {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
 }
 .userSideMenu {
   width: 300px;
   height: 100vh;
   background-color: rgb(218, 218, 218);
 }
-
 .userSideMenuProfile {
   border-bottom: 1px solid rgb(201, 201, 201);
 }
@@ -21,7 +20,6 @@
 .userSideMenuProfileAvatarBox {
   display: flex;
 }
-
 .userSideMenuProfileImage {
   position: relative;
   top: 80px;
@@ -36,7 +34,6 @@
 }
 .userSideMenuInformationBox {
   margin: 0 auto;
-  /* text-align: center; */
   padding: 10px 0;
 }
 .userSideMenuName {
@@ -58,24 +55,33 @@
   align-items: center;
 }
 .userSideMenuItems {
-  padding-top: 20px;
+  margin-left: 50px;
 }
 .userSideMenuItems p {
-  margin: 0 auto;
   font-weight: 600;
   color: rgb(134, 134, 134);
-  padding-top: 10px;
+  padding-top: 20px;
   transition: 0.3s;
 }
 .userSideMenuItems p:hover {
   color: rgb(41, 41, 41);
-  letter-spacing: 1px;
 }
-
 .userSideMenuItem {
-  display: flex;
   cursor: pointer;
-  margin-top: 5px;
+}
+.subOption {
+  display: none;
+  color: #ff140b;
+  transition: 1s;
+}
+.userSideMenuItemOption:hover .subOption {
+  display: block;
+  padding-left: 25px;
+  transition: 1s;
+  color: #ff140b;
+}
+.dashboardContentMenu {
+  display: flex;
 }
 .menuToggleWrapper {
   margin-top: 25%;
@@ -94,7 +100,7 @@
   filter: drop-shadow(5px 5px 5px rgb(190, 190, 190));
 }
 .additionalWrapper {
-  /* width: 150px; */
+  width: 100%;
 }
 .additionalContent {
   display: flex;
@@ -141,5 +147,6 @@
   background-color: #c3ffa7;
 }
 .dashboardContentDisplay {
-  width: 60%;
+  width: 70%;
+  margin: 0 auto;
 }

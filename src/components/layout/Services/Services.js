@@ -53,8 +53,10 @@ function Services(props) {
                                 setOpenTab(true)
                             }
                         }} >
-                            <p>{category}</p>
+                            {category === '' ? <p>Odaberi Kategoriju</p> : <p>{category}</p>
+                            }
                             <KeyboardArrowDownIcon />
+
                         </div>
                     </div>
                     {openTab ? <div className="optionsWrapper">
@@ -74,10 +76,12 @@ function Services(props) {
                         </div>
                     </div> : <div ref={menuRef}></div>}
                     <button className="searchButtons" onClick={() => {
+                        setPage(0)
                         handleSearch()
                     }}>TRAZI</button>
                 </div>
             </div>
+
             <div>
                 <div className="taskerCardsWrapper">
                     <div className="taskerCardsContent">
@@ -118,7 +122,7 @@ function Services(props) {
                                             </div>
                                             <div className="taskerGrade">
                                                 <div className="gradeIcon">
-                                                    {item.taskerGrade ? <h3>{item.taskerGrade}</h3> : <h3>50%</h3>}
+                                                    {item.taskerGrade ? <h3>{item.taskerGrade}</h3> : <h3>8.8</h3>}
                                                 </div>
                                             </div>
                                         </div>
@@ -128,9 +132,10 @@ function Services(props) {
                         ))}
                     </div>
                 </div>
-                {props.serviceUsers.length > 0 ? <p className='loadMoreBTN' onClick={() => {
+                {props.serviceUsers.length > 5 ? <p className='loadMoreBTN' onClick={() => {
                     loadMore()
-                }} >+ Ucitaj Jos</p> : <p className='noTasks'>Pronadjite posao iz zeljene kategorije</p>}
+                }} >+ Ucitaj Jos</p> : null}
+                {props.serviceUsers.length > 0 ? null : <p className='noTasks'>Pronadjite posao iz zeljene kategorije</p>}
             </div>
         </div >
     );

@@ -56,7 +56,7 @@ function UserProfile(props) {
                     </div>
                     <div className="userProfileTaskerGrade">
                         <div className="userProfileGradeIcon">
-                            <h3>50%</h3>
+                            <h3>8.8</h3>
                         </div>
                     </div>
                 </div>

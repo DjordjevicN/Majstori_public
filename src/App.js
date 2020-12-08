@@ -13,7 +13,7 @@ import './components/layout/Profile/UserTasks/UserTasks.css'
 import './components/layout/Footer.css';
 import './components/layout/Services/Services.css';
 import './components/layout/Profile/UserServices/UserServices.css'
-import './components/layout/Profile/User/User.css';
+import './components/layout/Profile/User/UserPreview.css';
 import './components/layout/Profile/UserOffers/UserOffer.css';
 import './components/layout/Profile/UserProposals/UserProposals.css';
 import './components/layout/News/News.css';

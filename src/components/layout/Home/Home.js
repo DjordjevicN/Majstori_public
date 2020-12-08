@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { FiClock, FiMapPin, FiTag } from "react-icons/fi";
 import { FcApproval } from "react-icons/fc";
 import Footer from '../Footer'
+import * as actionCreator from '../../../store/actions/actions'
 import { motion, AnimatePresence } from 'framer-motion'
 function Home(props) {
     let isLoggedIn = props.authUser.id ? true : false;
@@ -26,6 +27,8 @@ function Home(props) {
                                 transition={{ duration: .3, delay: 1.5 }}>
 
                                 {isLoggedIn ? <p className='homeCTABtn'> <Link className='link' to='/tasks'>Istraži</Link></p> : <p className='homeCTABtn'><Link className='link' to='/tasks'>Uloguj se</Link></p>}
+
+
                             </motion.div>
                         </div>
                     </AnimatePresence>
@@ -74,13 +77,14 @@ function Home(props) {
                                                 </div>
                                             </div>
                                             <div className="cardActionWrap">
-                                                <p className='newTasksCTA'><Link className='link' to='/task/:id'>Detaljnije</Link></p>
+                                                <p className='newTasksCTA' onClick={() => {
+                                                    props.getTaskById(item.task_ID)
+                                                }}><Link className='link' to={`/task/${item.task_ID}`}>Detaljnije</Link></p>
                                             </div>
                                         </motion.div>
                                     ))}
                                 </AnimatePresence>
                             </div>}
-
                         </div>
                     </div>
                 </div>
@@ -114,20 +118,15 @@ function Home(props) {
                     <div className="left">
                         <div className="leftContent">
                             <h2 className="leftTitle">Otvori nalog kao korisnik</h2>
-                            {/* <p>s simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard
-                            dummy text ever since the 1500s, when </p> */}
-                            <p className="bannerSplitCTA">Korisnik</p>
-                        </div>
+                            <Link to="/signup" className="bannerSplitCTA">Korisnik</Link>
 
+                        </div>
                     </div>
                     <div className="right">
                         <div className="rightContent">
                             <h2 className="rightTitle">Otvori nalog kao zanatlija</h2>
-                            {/* <p>s simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard
-                                dummy text ever since the 1500s, when </p> */}
-                            <p className="bannerSplitCTA">Zanatlija</p>
+
+                            <Link to="/signup" className="bannerSplitCTA">Zanatlija</Link>
                         </div>
                     </div>
                 </div>
@@ -157,12 +156,9 @@ function Home(props) {
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
             <Footer />
-            {/* </AnimatePresence> */}
+
         </div>
 
     );
@@ -173,5 +169,10 @@ const mapStateToProps = (state) => {
         homeTasks: state.globalReducer.homePageTasks
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTaskById: (id) => dispatch(actionCreator.getTaskById(id))
 
-export default connect(mapStateToProps, null)(Home);
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

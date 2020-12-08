@@ -6,7 +6,7 @@ import * as actionCreator from '../../../store/actions/actions'
 import * as userActionCreator from '../Profile/User/store/userActions'
 import { FiClock, FiMapPin, FiTag, FiHeart } from "react-icons/fi";
 // FiHeart, FiSearch, FiTag, FiKey,FiCheckCircle,
-
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Task(props) {
     let task = props.task
@@ -51,9 +51,9 @@ function Task(props) {
             console.log('NEMA VISE KREDITA');
         }
     }
-    // kategorija, grad, datum i vreme, favorit, description, title, userName,user rank
     return (
         <div className="singleTaskWrapper">
+
             {modal ? <div className="applyModalFormWrapper">
                 <div className="applyModalForm">
                     <div className="applyForm">
@@ -70,14 +70,13 @@ function Task(props) {
                             }} /></div>
                         </div>
                         <p className='applyFormActions' onClick={() => {
+
                             handleOffer()
                             setModal(false)
                         }}>POSALJI PONUDU</p>
-
                     </div>
                 </div>
             </div> : null}
-
 
             <div className="singleTaskContent">
                 <div className="singleTaskCard">
@@ -110,47 +109,14 @@ function Task(props) {
                             setModal(true)
                             setTask_user_id(task.User_id)
                             setTask_task_ID(task.task_ID)
-                        }}>APLICIRAJ</p>
+                        }}>Apliciraj</p>
                     </div>
                     <div className="singleTaskDescription">
                         <h2>Opis posla</h2>
                         {task.taskDescription}
                     </div>
                 </div>
-
             </div>
-            {/* <div className="singleTaskContent">
-                <div className='taskCard singleTaskCard' key={task.task_ID}>
-                    <div className='taskCardContent' >
-                        <div>
-                            <h4 className='taskCardTitle' variant="h5">{task.taskTitle}</h4>
-                        </div>
-                        <div className='taskCardInfo1' >
-                            <p className='taskCardItem category'>Kategorija: <span>{task.taskCategory}</span> </p>
-                            <p className='taskCardItem date'>Datum: <span> {task.taskStartDate} / {task.taskEndDate}</span></p>
-                            <p className='taskCardItem date'>Vreme: <span>{task.taskStartTime}</span> - <span>{task.taskEndTime}</span> </p>
-                            <p color='primary' className='taskCardItem price'>{task.taskPrice} din</p>
-                        </div>
-                        <div className='taskCardBody'>
-                            <p>{task.taskDescription}</p>
-
-                        </div>
-                        <div className='taskCardInfo2'>
-                            <p className='taskCardItem hour'>Postovano <span>{task.taskCreated_at}</span> </p>
-                        </div>
-                        <div className='taskCardAction'>
-                            <FavoriteIcon className='taskActionBtn' onClick={() => {
-                                console.log('add to favorite');
-                            }} />
-                            <button className='taskActionBtn applyBtn' onClick={() => {
-                                setModal(true)
-                                setTask_user_id(task.User_id)
-                                setTask_task_ID(task.task_ID)
-                            }}>APLICIRAJ</button>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
         </div>
     );
 }
