@@ -26,7 +26,7 @@ function Home(props) {
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ duration: .3, delay: 1.5 }}>
 
-                                {isLoggedIn ? <p className='homeCTABtn'> <Link className='link' to='/tasks'>Istraži</Link></p> : <p className='homeCTABtn'><Link className='link' to='/tasks'>Uloguj se</Link></p>}
+                                {isLoggedIn ? <p className='homeCTABtn'> <Link className='link' to='/tasks'>Istraži</Link></p> : <p className='homeCTABtn'><Link className='link' to='/login'>Uloguj se</Link></p>}
 
 
                             </motion.div>

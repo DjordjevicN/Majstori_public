@@ -1,12 +1,33 @@
 .profileFormWrapper {
   width: 90%;
   margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  filter: drop-shadow(3px 3px 5px rgb(190, 190, 190));
 }
 .profileFormTitle {
-  text-align: left;
-  padding: 20px 0 0 0;
-  color: var(--superLight);
+  text-align: center;
+  padding: 40px 0 20px 0;
+  color: rgb(167, 167, 167);
 }
+.profileFormAvatarBox {
+  border: 1px solid rgb(187, 187, 187);
+  padding: 18px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+.profileFormAvatarBox p {
+  color: rgb(128, 128, 128);
+  font-size: 17px;
+  font-weight: 400;
+}
+.profileFormAvatar {
+  cursor: pointer;
+}
+
 .formActionsWrap {
   display: flex;
   justify-content: space-between;
@@ -15,19 +36,42 @@
 }
 
 .UserFormBtn {
-  font-size: 30px;
-  padding: 5px 15px;
+  padding: 13px 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+.UserFormBtn p {
+  font-size: 20px;
+}
+.formItemSelect {
+  padding: 17px 60px;
+  border: none;
+  background-color: rgba(209, 221, 226, 0.267);
   cursor: pointer;
 }
+.formSelect {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-start; */
+  padding: 0 18px;
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 3px;
+}
+.formSelect p {
+  padding-right: 17%;
+  color: rgb(121, 121, 121);
+}
 .formDelete {
-  background-color: var(--orange1);
+  color: rgb(255, 100, 100);
 }
-.formDelete:hover {
-  background-color: var(--orange0);
-}
+
 .formAdd {
-  background-color: var(--green1);
+  background-color: rgb(33, 121, 252);
 }
 .formAdd:hover {
-  background-color: var(--green2);
+  background-color: rgb(78, 149, 255);
+  filter: drop-shadow(3px 3px 5px rgb(180, 180, 180));
 }

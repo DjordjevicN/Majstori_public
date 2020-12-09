@@ -16,7 +16,7 @@ function HomeSignup(props) {
         like: 1,
         dislike: 1,
         userVipStatus: 1,
-        tasker: true,
+        userType: 'korisnik',
         verified: false,
         created_at: '',
     }

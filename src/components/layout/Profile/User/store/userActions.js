@@ -148,6 +148,7 @@ export const getMyData = (value) => {
                 authorization: userToken
             }
         });
+        console.log(response);
 
         if (response.data.results.length <= 0) {
             dispatch({

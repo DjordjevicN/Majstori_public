@@ -8,15 +8,15 @@ import options from '../../../OptionsData'
 function ProfileForm(props) {
     const [confirm, setConfirm] = useState(false)
     const [openTab, setOpenTab] = useState(false)
-    const [taskCategory, setTaskCategory] = useState('Razno')
+    const [taskCategory, setTaskCategory] = useState('Izaberi kategoriju')
     const [taskTitle, setTaskTitle] = useState('')
     const [taskPrice, setTaskPrice] = useState(0)
     const [taskAddress, setTaskAddress] = useState('')
     const [taskDescription, setTaskDescription] = useState('Opis nije dodat')
-    const [taskStartTime, setTaskStartTime] = useState('')
-    const [taskEndTime, setTaskEndTime] = useState('')
+    // const [taskStartTime, setTaskStartTime] = useState('')
+    // const [taskEndTime, setTaskEndTime] = useState('')
     const [taskStartDate, setTaskStartDate] = useState('')
-    const [taskEndDate, setTaskEndDate] = useState('')
+    // const [taskEndDate, setTaskEndDate] = useState('')
     let menuRef = useRef()
     useEffect(() => {
         let handler = (event) => {
@@ -45,10 +45,10 @@ function ProfileForm(props) {
             taskAddress,
             taskLatitude: 0,
             taskLongitude: 0,
-            taskStartTime,
-            taskEndTime,
+            // taskStartTime,
+            // taskEndTime,
             taskStartDate,
-            taskEndDate,
+            // taskEndDate,
             taskCreated_at,
             User_id: props.authUser.id
         }
@@ -64,7 +64,6 @@ function ProfileForm(props) {
     }
     return (
         <div className='profileFormWrapper'>
-
             {confirm ? <div className="confirmation">
                 <div className="confirmationContent">
                     <div className="confirmationTop">
@@ -85,12 +84,12 @@ function ProfileForm(props) {
 
             <h6 className='profileFormTitle'>KREIRAJ NOVI TASK</h6>
             <div className='formItem'>
-                <TextField fullWidth label="Naslov" variant="outlined" onChange={(e) => {
+                <TextField fullWidth label="Naslov" placeholder="Naslov posla (eg. Potreban cuvar za psa)" variant="outlined" onChange={(e) => {
                     setTaskTitle(e.target.value)
                 }} />
             </div>
             <div className='formItem'>
-                <TextField fullWidth label="Adresa" variant="outlined" onChange={(e) => {
+                <TextField fullWidth label="Adresa" placeholder="Ova adresa ce biti prikazana na mapi." variant="outlined" onChange={(e) => {
                     setTaskAddress(e.target.value)
                 }} />
             </div>
@@ -107,26 +106,29 @@ function ProfileForm(props) {
                         <KeyboardArrowDownIcon />
                     </div>
                 </div>
-                {openTab ? <div className="optionsWrapper">
-                    <div className="options" ref={menuRef}>
-                        {options.map((item) => {
-                            if (item.main) {
-                                return <div key={item.id} className="optionItems optionItemMain" onClick={() => {
+                <div className="optionsFormTask">
+
+                    {openTab ? <div className="optionsWrapper">
+                        <div className="options" ref={menuRef}>
+                            {options.map((item) => {
+                                if (item.main) {
+                                    return <div key={item.id} className="optionItems optionItemMain" onClick={() => {
+                                        setTaskCategory(item.value)
+                                        setOpenTab(false)
+                                    }} >{item.title}</div>
+                                }
+                                return <div key={item.id} className="optionItems " onClick={() => {
                                     setTaskCategory(item.value)
                                     setOpenTab(false)
                                 }} >{item.title}</div>
-                            }
-                            return <div key={item.id} className="optionItems " onClick={() => {
-                                setTaskCategory(item.value)
-                                setOpenTab(false)
-                            }} >{item.title}</div>
-                        })}
-                    </div>
-                </div> : <div ref={menuRef}></div>}
+                            })}
+                        </div>
+                    </div> : <div ref={menuRef}></div>}
+                </div>
 
             </div>
             <div className='formItem'>
-                <TextField fullWidth label="Cena" variant="outlined" onChange={(e) => {
+                <TextField fullWidth label="Cena" placeholder="Prazno polje ce biti upisano kao 'Kontakt'" variant="outlined" onChange={(e) => {
                     setTaskPrice(e.target.value)
                 }} />
             </div>
@@ -147,7 +149,7 @@ function ProfileForm(props) {
                     }}
                 />
             </div>
-            <div className='formItem'>
+            {/* <div className='formItem'>
                 <TextField
                     id="time"
                     label="Pocetno Vreme"
@@ -187,11 +189,11 @@ function ProfileForm(props) {
                         setTaskEndTime(e.target.value)
                     }}
                 />
-            </div>
+            </div> */}
             <p className='servicesFormBtn' onClick={() => {
                 setConfirm(true)
             }}>+DODAJ</p>
-            <p className='addTaskTUT'>Cena kreiranja taska je 1 kredit. Preostali kredit na vasem racunu: {props.authUser.credit}. Svakog prvog u mesecu mozete besplatno da dodate 30 kredita OVDE</p>
+            <p className='addTaskTUT'>Cena kreiranja posla je 1 token. Na vasem racunu: {props.authUser.credit}. Svakog prvog u mesecu mozete besplatno da dodate 30 tokena OVDE</p>
         </div>
     );
 }

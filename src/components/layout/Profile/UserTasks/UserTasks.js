@@ -7,8 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 function UserTasks(props) {
     let myTasks = props.myTasks;
     let authUser = props.authUser;
-    console.log(myTasks);
-    console.log(authUser);
     return (
         <div className='taskDashPageWrapper'>
             <div className="taskDashPageContent">

@@ -60,10 +60,10 @@
   justify-content: center;
   align-items: center;
   color: var(--shade1);
-  background-color: var(--green1);
+  background-color: rgb(253, 103, 103);
   font-weight: 500;
   margin-bottom: 20px;
 }
 .servicesFormBtn:hover {
-  background-color: var(--green2);
+  background-color: rgb(250, 61, 61);
 }

@@ -31,8 +31,6 @@ function Tasks(props) {
     }, [])
     const handleSearch = () => {
         if (category === '') {
-            // props.clearTasksFromState()
-            // props.getLatestTasks()
         } else {
             let filter = {
                 category,
@@ -53,7 +51,6 @@ function Tasks(props) {
             taskId
         }
         props.addFav(value)
-        // ako nije dodaj ako jeste vrati notifikaciju
     }
     return (
         <div className='tasksRoot'>

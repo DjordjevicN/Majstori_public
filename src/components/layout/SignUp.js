@@ -17,7 +17,7 @@ function Signup(props) {
     dislike: 1,
     userRank: 1,
     userVipStatus: 1,
-    tasker: true,
+    userType: 'korisnik',
     verified: false,
     created_at: '',
   }

@@ -5,14 +5,19 @@
 
 .optionsWrapper {
   display: block;
-  width: 80%;
   box-shadow: 1px 3px 8px #888888;
   border: 1px solid var(--lightBorder);
   z-index: 200;
   background-color: rgb(255, 255, 255);
   position: absolute;
   height: 500px;
+  width: 500px;
+
   overflow-y: scroll;
+}
+.options {
+  padding: 20px;
+  background-color: rgb(226, 226, 226);
 }
 .optionsWrapper::-webkit-scrollbar {
   background-color: red;
@@ -28,10 +33,6 @@
   background: rgb(241, 116, 116);
 }
 
-.options {
-  padding: 20px;
-  background-color: wheat;
-}
 .optionItems {
   cursor: pointer;
   font-weight: 500;

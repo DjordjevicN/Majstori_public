@@ -17,24 +17,26 @@ function Login(props) {
   }
   return (
     <div className='loginWrapper'>
-      <div className='form'>
-        <img className='loginAvatar' alt="Cindy Baker" src="lock.png" />
-        <h3 className='loginTitle'>Login</h3>
-        <div className='formItem'>
-          <TextField fullWidth label="Email" variant="outlined" onChange={(e) => { setEmail(e.target.value) }} />
-        </div>
-        <div className='formItem'>
-          <TextField fullWidth type='password' label="Password" variant="outlined" onChange={(e) => { setPassword(e.target.value) }} />
-        </div>
+      <div className="loginBox">
+        <div className='form'>
+          <h3 className='loginTitle'>Login</h3>
+          <div className='formItem'>
+            <TextField fullWidth label="Email" variant="outlined" onChange={(e) => { setEmail(e.target.value) }} />
+          </div>
+          <div className='formItem'>
+            <TextField fullWidth type='password' label="Password" variant="outlined" onChange={(e) => { setPassword(e.target.value) }} />
+          </div>
 
-        <button onClick={() => handleSubmit()} className='formButtonLogin'>LOG IN</button>
+          <button onClick={() => handleSubmit()} className='formButtonLogin'>LOG IN</button>
 
 
-        <div className='actions' >
-          {/* <Link to='/' >Reset password</Link> */}
-          <Link to="/signup">Don't have account</Link>
+          <div className='actions' >
+            {/* <Link to='/' >Reset password</Link> */}
+            <Link className='loginLink' to="/signup">Don't have account</Link>
+          </div>
         </div>
       </div>
+
     </div>
   );
 }

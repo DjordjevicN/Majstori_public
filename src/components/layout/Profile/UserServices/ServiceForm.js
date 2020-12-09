@@ -5,9 +5,8 @@ import * as actionCreator from '../User/store/userActions'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import options from '../../../OptionsData'
 function ServiceForm(props) {
-
     const [openTab, setOpenTab] = useState(false)
-    const [serviceCategory, setServiceCategory] = useState('Razno')
+    const [serviceCategory, setServiceCategory] = useState('Izaberi Kategoriju')
     const [servicePrice, setServicePrice] = useState(0)
     const [serviceDescription, setServiceDescription] = useState('Opis nije dodat')
     let menuRef = useRef()
@@ -68,12 +67,12 @@ function ServiceForm(props) {
             </div>
 
             <div className='formItem'>
-                <TextField fullWidth label="Cena" variant="outlined" onChange={(e) => {
+                <TextField fullWidth label="Cena" placeholder="Prazno polje ce biti upisano kao 'Kontakt'" variant="outlined" onChange={(e) => {
                     setServicePrice(e.target.value)
                 }} />
             </div>
             <div className='formItem'>
-                <TextField fullWidth multiline label="Opis" variant="outlined" onChange={(e) => {
+                <TextField fullWidth multiline label="Opis" placeholder="Napisite opis usluge" variant="outlined" onChange={(e) => {
                     setServiceDescription(e.target.value)
                 }} />
             </div>
