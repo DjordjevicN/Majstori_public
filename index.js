@@ -101,14 +101,14 @@ app.post('/loginUser', (req, res) => {
 })
 //CREATE NEW USER AKA SIGNUP
 app.post('/createUser', async (req, res) => {
-    let { firstName, email, password, credit, userRank, userVipStatus, tasker, verified, created_at } = req.body.newUser;
+    let { firstName, email, password, credit, userRank, userVipStatus, userType, verified, created_at } = req.body.newUser;
     let newPassword = await bcrypt.hash(password, saltRounds)
     let sql = `INSERT INTO user SET 
     firstName="${firstName}",
     email="${email}",
     password="${newPassword}",
     credit="${credit}",
-    tasker="${tasker}",
+    userType="${userType}",
     userRank="${userRank}",
     userVipStatus="${userVipStatus}",
     verified="${verified}",
@@ -123,8 +123,7 @@ app.post('/createUser', async (req, res) => {
 })
 // UPDATE USER PROFILE
 app.post('/updateUser', auth, (req, res) => {
-    let { id, firstName, lastName, address, email, aboutMe, phoneNumber, avatar, updated_at } = req.body.value;
-    console.log(avatar);
+    let { id, firstName, lastName, address, email, aboutMe, phoneNumber, avatar, userType, updated_at } = req.body.value;
     let sql = `UPDATE user SET 
     firstName ='${firstName}' ,
     lastName = '${lastName}',
@@ -133,6 +132,7 @@ app.post('/updateUser', auth, (req, res) => {
     aboutMe="${aboutMe}",
     phoneNumber="${phoneNumber}",
     avatar="${avatar}",
+    userType="${userType}",
     updated_at="${updated_at}"
      WHERE id = ${id}`
     let query = db.query(sql, (err, results) => {
@@ -247,10 +247,10 @@ app.post('/createTask', (req, res) => {
         taskAddress,
         taskLatitude,
         taskLongitude,
-        taskStartTime,
-        taskEndTime,
+        // taskStartTime,
+        // taskEndTime,
         taskStartDate,
-        taskEndDate,
+        // taskEndDate,
         taskCreated_at,
         User_id } = req.body.value
     let post = {
@@ -261,10 +261,10 @@ app.post('/createTask', (req, res) => {
         taskAddress,
         taskLatitude,
         taskLongitude,
-        taskStartTime,
-        taskEndTime,
+        // taskStartTime,
+        // taskEndTime,
         taskStartDate,
-        taskEndDate,
+        // taskEndDate,
         taskCreated_at,
         User_id
     }
@@ -446,7 +446,6 @@ app.post("/picture", async (req, res) => {
 app.post('/sendNews', (req, res) => {
 
     let { newsTitle, newsMessage, newsCreated_at } = req.body.value.news
-    // console.log(newsTitle, newsMessage, newsCreated_at);
     let post = { newsTitle, newsMessage, newsCreated_at };
     let sql = 'INSERT INTO news SET ?'
     let query = db.query(sql, post, (err, results) => {
