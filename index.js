@@ -8,15 +8,9 @@ const auth = require('./auth')
 const cors = require('cors')
 const saltRounds = 10;
 require('dotenv').config()
-
 // ********************
 const fileUpload = require('express-fileupload')
 const morgan = require("morgan")
-
-
-
-
-
 // ********************
 const port = process.env.PORT || 3001
 // ******************* 
@@ -30,7 +24,6 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if (err) {
         throw err
-
     }
     console.log('SQL CONNECTED WOOHOO');
 });
@@ -39,32 +32,15 @@ app.use(cors())
 app.use(express.json())
 app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.urlencoded({ extended: true }))
-
-
 app.use(fileUpload({
     createParentPath: true,
     // uriDecodeFileNames: true
 }))
 app.use(morgan("dev"))
 
-
-
-// *****
-
-// *****
 // *********************************************************
 app.get('/', (req, res) => {
     res.send('ZANATLIJE BACKEND CHECK FULL')
-})
-// GET ALL USERS
-app.get('/profile', (req, res) => {
-    res.send('PROFIL TAB RADI')
-    // let sql = `SELECT * FROM user`
-    // let query = db.query(sql, (err, results) => {
-    //     if (err) throw err;
-    //     res.send(results)
-
-    // })
 })
 // GET MY DATA
 app.get('/getMyData', auth, (req, res) => {
@@ -72,10 +48,7 @@ app.get('/getMyData', auth, (req, res) => {
     let sql = `SELECT * FROM user WHERE id = '${id}'`
     let query = db.query(sql, (err, results) => {
         if (err) throw err;
-        // delete results[0].password;
         res.send({ results, notification: '' })
-
-
     })
 })
 /// GET PROFILE by email and password || LOGIN ||
@@ -146,7 +119,6 @@ app.post('/updateUser', auth, (req, res) => {
 // UPDATE USER PROFILE CREDIT
 app.post('/updateUsersCredit', (req, res) => {
     let { credit, id } = req.body.value;
-
     let sql = `UPDATE user SET 
     credit ='${credit}'
      WHERE id = ${id}`
@@ -437,15 +409,8 @@ app.post("/picture", async (req, res) => {
         res.status(500).send(e)
     }
 })
-// DELETE TASK_OFFER THAT I OWN
-
-// ********* TO DO **********
-
-// CREATE ADMIN_LOG => 
-
 // SEND NEWS
 app.post('/sendNews', (req, res) => {
-
     let { newsTitle, newsMessage, newsCreated_at } = req.body.value.news
     let post = { newsTitle, newsMessage, newsCreated_at };
     let sql = 'INSERT INTO news SET ?'
@@ -457,8 +422,6 @@ app.post('/sendNews', (req, res) => {
         res.send({ results, notification: 'Service Created' })
     })
 })
-
-
 //GET ALL NEWS
 app.get('/getNews', (req, res) => {
     let sql = `SELECT * FROM news ORDER BY newsId DESC`
@@ -470,27 +433,22 @@ app.get('/getNews', (req, res) => {
         res.send({ results, notification: 'New News are in' })
     })
 })
-
-
-    /
-    // ADD CREDIT
-    app.post('/addCredit', (req, res) => {
-        let { userId, credit, userVipStatus, userRank } = req.body.value;
-        let sql = `UPDATE user SET 
+// ADD CREDIT
+app.post('/addCredit', (req, res) => {
+    let { userId, credit, userVipStatus, userRank } = req.body.value;
+    let sql = `UPDATE user SET 
     credit = "${credit}",
     userVipStatus = "${userVipStatus}",
     userRank = "${userRank}"
      WHERE id = ${userId}`
-        let query = db.query(sql, (err, results) => {
-            if (err) {
-                res.send({ status: false, notification: '' })
-                throw err
-            };
-            res.send({ status: true, results, notification: 'Zlatnici uspesno obnovljeni' })
-        })
+    let query = db.query(sql, (err, results) => {
+        if (err) {
+            res.send({ status: false, notification: '' })
+            throw err
+        };
+        res.send({ status: true, results, notification: 'Zlatnici uspesno obnovljeni' })
     })
-
-
+})
 // ADD TO FAVORITE LIST
 app.post('/addFav', async (req, res) => {
     let { authUserID, taskId } = req.body.value;
@@ -511,7 +469,6 @@ app.get('/getMyFavoriteTasks/:id', (req, res) => {
     JOIN task ON task_ID = favorite.fav_task_id
     JOIN user ON favorite.fav_user_id = user.id 
     WHERE user.id = "${req.params.id}"`
-
     let query = db.query(sql, (err, results) => {
         if (err) {
             res.send({ status: false, notification: '' })
