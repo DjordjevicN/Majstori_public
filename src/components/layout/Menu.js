@@ -8,7 +8,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import WorkIcon from '@material-ui/icons/Work';
 import PersonIcon from '@material-ui/icons/Person';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import { FiCheckCircle, FiClock, FiMapPin, FiUsers, FiHeart, FiSearch, FiTag, FiKey } from "react-icons/fi";
+import * as actionCreator from './Profile/User/store/userActions'
+import { FiKey } from "react-icons/fi";
 
 function Menu(props) {
     const [menuToggle, setMenuToggle] = useState(false);
@@ -79,9 +80,9 @@ function Menu(props) {
                                 {props.authUser.avatar ? <img src={`http://localhost:3001/uploads/${props.authUser.avatar}`} alt="profile" className='menuItemPhoto' /> : <img src="./images/zanatlija.png" className='menuItemPhoto' alt="profile" />}
 
                                 <p>{props.authUser.firstName}</p>
+
                             </div>
                         </Link> : <Link className='menuLink' to='/login'><FiKey /> Log in</Link>}
-
 
                     </div>
                 </div>
@@ -94,4 +95,5 @@ const mapStateToProps = (state) => {
         authUser: state.User.authUser
     }
 }
+
 export default withRouter(connect(mapStateToProps, null)(Menu))

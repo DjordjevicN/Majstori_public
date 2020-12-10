@@ -6,16 +6,15 @@ function UserProfile(props) {
 
     let user = props.user[0];
     let services = props.user;
-    console.log(user);
-    console.log(services);
+
 
     return (
         <div className="userProfileWrapper">
             {user && <div className="userProfileContent">
                 <div className="userProfileInfo">
                     <div className="userProfileAvatar">
-                        {/* {user.avatar ? <img src={user.avatar} alt="user profile image" /> : <img src="/images/noProfile.jpg" alt="" />} */}
-                        <img className="userProfileAvatarImage" src="/images/noProfile.jpg" alt="" />
+                        {user.avatar ? <img src={`http://localhost:3001/uploads/${user.avatar}`} alt="profile" className='userProfileAvatarImage' /> : <img src="./images/zanatlija.png" className='userProfileAvatarImage' alt="profile" />}
+
 
                     </div>
                     <div className="userProfilePersonal">
@@ -25,7 +24,6 @@ function UserProfile(props) {
 
                         </div>
                         <div className="userProfileContact">
-
                             <div className="userProfileDoneJobs">
                                 <FcInspection />
                                 {user.completedTasks ? <p >
@@ -68,21 +66,17 @@ function UserProfile(props) {
 
                 <hr />
                 <div className="userProfileSectionTitle">
-                    <h2>Moje Usluge</h2>
+                    <h4>Moje Usluge</h4>
                 </div>
                 {services.length > 0 && services.map((item) => (
                     <div className="userProfileServiceInformation" key={item.service_ID}>
-                        <div className="userProfileServiceTitle">
-                            <h2>Title</h2>
-                        </div>
                         <div className="userProfileServicePriceAndCategory">
                             <div className="userProfileServiceCategory">
-                                {console.log(item.serviceCategory)}
                                 <h4>{item.serviceCategory}</h4>
                             </div>
                             <div className="userProfileServicePrice">
                                 <FcMoneyTransfer />
-                                {item.servicePrice ? <h3>{item.servicePrice}</h3> : <h3>Kontakt</h3>}
+                                {item.servicePrice ? <h4>{item.servicePrice}</h4> : <h4>Kontakt</h4>}
                             </div>
                         </div>
                         <div className="userProfileServiceDescription">

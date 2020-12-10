@@ -8,7 +8,7 @@ import * as actionCreator from '../../../store/actions/actions'
 import { motion, AnimatePresence } from 'framer-motion'
 function Home(props) {
     let isLoggedIn = props.authUser.id ? true : false;
-    console.log(props.homeTasks);
+
     return (
         <div className='homeMainWrapper'>
             <div className="homeContent">

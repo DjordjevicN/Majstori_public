@@ -34,7 +34,6 @@ function Signup(props) {
   return (
     <div className='loginWrapper'>
       <div className='form'>
-        <img className='loginAvatar' alt="Cindy Baker" src="lock.png" />
         <h3 className='loginTitle' >Sign up</h3>
         <div className='formItem'>
           <TextField fullWidth label="Name" variant="outlined" onChange={(e) => { state.firstName = e.target.value }} />
@@ -46,7 +45,7 @@ function Signup(props) {
           <TextField fullWidth type="password" label="Password" variant="outlined" onChange={(e) => { state.password = e.target.value }} />
         </div>
         <div className='actions' >
-          <Link className='linkBtn' to='/login'>I have an account</Link>
+          <Link className='linkBtn loginLink' to='/login'>I have an account</Link>
           <Link className='signupButton' to="/login" onClick={() => handleSubmit()}>SIGNUP</Link>
         </div>
       </div>

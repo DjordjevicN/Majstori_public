@@ -1,0 +1,61 @@
+.userPreviewWrapper {
+  width: 100%;
+}
+.userPreviewContent {
+  background-color: white;
+  filter: drop-shadow(3px 3px 5px rgb(192, 192, 192));
+}
+.userPreviewAvatarNameBox {
+  text-align: center;
+}
+.userPreviewAvatar {
+  padding: 30px 0 20px 0;
+}
+.userPreviewImage {
+  width: 200px;
+  border-radius: 50%;
+}
+.userPreviewContactTitle h4,
+.userPreviewAboutMe h4,
+.userPreviewServicesTitle h4 {
+  color: silver;
+  padding-bottom: 10px;
+}
+.userPreviewInformationWrapper {
+  margin: 30px 20px 0 20px;
+}
+
+.userPreviewInfoContent {
+  display: grid;
+  grid-template-columns: 3fr 5fr;
+}
+
+.userPreviewServicesWrapper {
+  margin-top: 30px;
+}
+.userPreviewServicesContent {
+  margin: 20px;
+}
+.userPreviewServicesCardWrapper {
+  padding-bottom: 30px;
+}
+.userPreviewInfoContentItem p {
+  color: silver;
+}
+.userPreviewInfoContentItem span {
+  color: black;
+}
+.userPreviewServicesCard {
+  background-color: white;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgb(214, 214, 214);
+}
+.userPreviewServicesCardCategory {
+}
+.userPreviewServicesCardPrice {
+  color: rgb(255, 108, 108);
+}
+.userPreviewServicesCardDescription {
+  margin-top: 20px;
+}

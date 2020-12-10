@@ -45,7 +45,7 @@ function UserDashboard(props) {
                                         <div className="userSideMenuName userSideMenuInformationItem">
                                             <h4>{User.firstName}</h4>
                                             <FcApproval /></div>
-                                        <div className="userSideMenuPhone userSideMenuInformationItem"> <FcPhoneAndroid />
+                                        {/* <div className="userSideMenuPhone userSideMenuInformationItem"> <FcPhoneAndroid />
                                             <p>{User.phoneNumber}</p>
                                         </div>
                                         <div className="userSideMenuEmail userSideMenuInformationItem"> <FcFeedback />
@@ -58,7 +58,7 @@ function UserDashboard(props) {
                                         <div className="userSideMenuCreated userSideMenuInformationItem">
                                             <p>Created: </p>
                                             <p>{User.created_at}</p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>

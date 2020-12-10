@@ -8,7 +8,9 @@
   margin: 0 auto;
 }
 .avatarImage {
-  width: 100px;
+  width: 150px;
+  border-radius: 50%;
+  padding: 0 20px;
 }
 .taskCardInner {
   padding: 20px;

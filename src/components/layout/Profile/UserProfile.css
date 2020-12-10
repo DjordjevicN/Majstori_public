@@ -45,8 +45,7 @@
   width: 15px;
 }
 .userProfileSectionTitle {
-  color: rgb(107, 107, 107);
-
+  color: silver;
   margin: 20px 0 10px 20px;
 }
 .userProfileSectionTitle h2 {
@@ -64,6 +63,7 @@
 }
 .userProfileServicePriceAndCategory {
   display: flex;
+  padding-bottom: 10px;
 }
 .userProfileServicePrice {
   display: flex;
@@ -71,14 +71,18 @@
   margin-left: 20px;
 }
 .userProfileServiceCategory h4 {
-  color: rgb(129, 129, 129);
-  font-weight: 400;
 }
 .userProfileServicePrice h3 {
   margin-left: 5px;
 }
 .userProfileAboutMe {
-  margin-bottom: 10px;
+  margin: 10px 20px;
+}
+.userProfileAboutMe h4 {
+  color: silver;
+}
+.userProfileAboutMe p {
+  padding: 10px 0;
 }
 .userProfileTaskerGrade {
   display: grid;

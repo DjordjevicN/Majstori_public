@@ -16,7 +16,7 @@ function Services(props) {
     }
     let menuRef = useRef()
     let users = props.serviceUsers;
-    console.log(users);
+
     const handleSearch = () => {
         let filter = {
             category,
@@ -95,7 +95,7 @@ function Services(props) {
                                 }}>  <div className="taskerCardInner">
                                         <div className="taskerCardInnerInfo">
                                             <div className="avatar">
-                                                <img className="avatarImage" src={`/images/johnDoe.jpg`} alt="" />
+                                                {item.avatar ? <img src={`http://localhost:3001/uploads/${item.avatar}`} alt="profile" className='avatarImage' /> : <img src="./images/zanatlija.png" className='avatarImage' alt="profile" />}
                                             </div>
                                             <div className="taskerDetails">
                                                 <div className="taskerName">

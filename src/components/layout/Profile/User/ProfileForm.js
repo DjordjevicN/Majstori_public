@@ -5,6 +5,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux'
 import * as actionCreator from './store/userActions'
 import FormData from 'form-data'
+import { Link } from 'react-router-dom'
 
 function ProfileForm(props) {
     const [confirm, setConfirm] = useState(false)
@@ -118,6 +119,9 @@ function ProfileForm(props) {
                     setConfirm(true)
                 }}>Obriši profil</p>
             </div>
+            <Link className='logoutBTN' to='/' onClick={() => {
+                props.logoutUser()
+            }} >Log out</Link>
         </div>
 
     );
@@ -130,9 +134,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateUser: (state) => dispatch(actionCreator.updateUser(state)),
-        deleteUser: (state) => dispatch(actionCreator.deleteUser(state))
+        deleteUser: (state) => dispatch(actionCreator.deleteUser(state)),
+        logoutUser: () => dispatch(actionCreator.logoutUser())
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm)
+
+
+
+
 
