@@ -421,7 +421,8 @@ app.post("/picture", async (req, res) => {
             const { picture } = req.files
             const id = req.body.userId
             let randomNumber = Math.floor(Math.random() * Math.floor(10000000000000000000))
-            let pictureName = `${randomNumber}${picture.name}.jpg`
+            let pictureName = `${randomNumber}${picture.name}`
+
             let sql = `UPDATE user SET avatar="${pictureName}" WHERE id = ${id}`
             let query = db.query(sql, (err, results) => {
                 if (err) {
