@@ -5,12 +5,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 import * as actionCreator from '../../../store/actions/actions'
 import * as userActionCreator from '../Profile/User/store/userActions'
 import { FiClock, FiMapPin, FiTag, FiHeart } from "react-icons/fi";
-// FiHeart, FiSearch, FiTag, FiKey,FiCheckCircle,
-import { motion, AnimatePresence } from 'framer-motion'
-
 function Task(props) {
     let task = props.task
-
     const [modal, setModal] = useState(false)
     const [offerPrice, setOfferPrice] = useState('');
     const [offerMessage, setOfferMessage] = useState('');

@@ -3,9 +3,6 @@ import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 import { connect } from 'react-redux'
 import * as actionCreator from '../User/store/userActions'
 import { FiRefreshCw, FiTrash2 } from "react-icons/fi";
-
-
-
 function UserProposals(props) {
     let authUserId = props.authUser.id
     let myProposals = props.myProposals;

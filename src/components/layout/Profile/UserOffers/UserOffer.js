@@ -1,44 +1,44 @@
 import React from 'react';
-import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actionCreator from '../User/store/userActions'
 import * as globalActionCreator from '../../../../store/actions/actions'
-import { FiRefreshCw } from "react-icons/fi";
 function UserOffer(props) {
-    let authUserId = props.authUser.id
     let myOffers = props.myOffers;
+    console.log(myOffers);
     return (
-        <div className='applicationDash'>
-            < FiRefreshCw className='applicationRefreshInbox' onClick={() => {
-                props.getMyOffers(authUserId)
-            }} />
-            {myOffers.length > 0 ? myOffers.map((item) => (
-                <div className="applicationDashCard" key={item.offer_ID}>
-                    <div className="offerContent">
-                        <div className="applicationDashInfoTop">
-                            <div className="offerWho" onClick={() => {
-                                props.getFullProfileById(item.id)
-                            }}>{item.firstName ? <Link to={`userProfile/${item.id}`} className="offerWhoLink"> {item.firstName} </Link> : <Link to={`userProfile/${item.id}`} className="offerWhoLink">{item.email}</Link>} </div>
-                            <div><TrendingFlatIcon /></div>
-                            <div className="offerTaskName">{item.taskTitle}</div>
-                        </div>
-                        <div>
-                            <div className="applicationDashText">
-                                <p>{item.offerMessage}</p>
-                            </div>
-                            <div className="applicationDashOffer">
-                                <div className='priceOffers'>
-                                    <p>moja cena: <span>{item.taskPrice}</span> </p>
-                                    <TrendingFlatIcon />
-                                    <p>ponudjena cena: <span>{item.offerPrice}</span></p>
+        <div className="applicationDashWrapper">
+            <div className="applicationDashContent">
+                {myOffers ? myOffers.map((item) => (
+                    <div className="applicationDashCard" key={item.offer_ID}>
+                        <Link className='applicationDashCardLink' to={`/userProfile/${item.id}`} onClick={() => {
+                            console.log('click');
+                            props.getFullProfileById(item.id)
+                        }}>
+                            <div className="applicationDashCardContent">
+                                <div className="applicationDashCardInfo">
+                                    <div className="applicationDashCardAvatarName">
+                                        <div className="applicationDashCardAvatar">
+                                            {item.avatar ? <img src={`http://localhost:3001/uploads/${item.avatar}`} alt="profile" className='applicationDashCardImage' /> : <img src="./images/zanatlija.png" className='applicationDashCardImage' alt="profile" />}
+                                        </div>
+                                        <div className="applicationDashCardName">
+                                            <h2>{item.firstName}</h2>
+                                        </div>
+                                    </div>
+                                    <div className='applicationDashCarPrice'>{item.offerPrice}din</div>
                                 </div>
-                                <p className='offerDate'>{item.offerCreated_at}</p>
+                                <div className="applicationDashCardTitle">
+                                    <h4>{item.taskTitle}</h4>
+                                </div>
+                                <div className="applicationDashCardDescription">
+                                    <p>{item.offerMessage}</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
-                </div>
-            )) : <div>Nema ponuda</div>}
+                )) : null}
+
+            </div>
         </div>
     );
 }

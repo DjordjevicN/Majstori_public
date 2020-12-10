@@ -2,34 +2,29 @@ import React, { useState } from 'react';
 import * as actionCreator from '../News/store/NewsActions'
 import * as userActionCreator from '../Profile/User/store/userActions'
 import { connect } from 'react-redux';
-import { FcPhoneAndroid, FcFeedback, FcApproval, FcNext, FcPrevious } from "react-icons/fc";
+import { FcApproval, FcNext, FcPrevious } from "react-icons/fc";
 // FcHome,FcInspection, FcMoneyTransfer, FcMenu,  FcSettings,
-
-// PAGES
 import UserPreview from '../Profile/User/UserPreview'
 import ProfileForm from '../Profile/User/ProfileForm';
 import ServiceForm from '../Profile/UserServices/ServiceForm';
 import TaskForm from '../Profile/UserTasks/TaskForm';
 // import Shop from '../Profile/Shop/Shop'
 // import Settings from '../Profile/UserSettings/UserSettings'
+// import UserProposals from './UserProposals/UserProposals'
 import UserAdditionalInfo from '../../forms/UserAdditionalInfo';
 import UserTasks from '../Profile/UserTasks/UserTasks'
 import UserOffer from '../Profile/UserOffers/UserOffer'
-import UserProposals from './UserProposals/UserProposals'
 import UserServices from '../Profile/UserServices/UserServices'
 import News from '../News/News'
 import FavoritePage from './FavoritePage/FavoritePage'
 
-// console.log(User);
+
 function UserDashboard(props) {
-    // const [dashForm, setDashForm] = useState(<ProfileForm />)
     const [dashPage, setDashPage] = useState(<UserTasks />)
     const [dashMenuOpen, setDashMenuOpen] = useState(true)
     let User = props.authUser;
     return (
         <div className='dashboardWrapper'>
-
-            {/* MENU  */}
             <div className="dashboardContent">
                 <div className="dashboardContentMenu">
                     {dashMenuOpen &&
@@ -83,11 +78,11 @@ function UserDashboard(props) {
                                             }} >+ Dodaj posao</p>
                                         </div>
                                     </div>
-                                    <div className="userSideMenuItem">
+                                    {/* <div className="userSideMenuItem">
                                         <p onClick={() => {
                                             setDashPage(<UserProposals />)
                                         }}>Moje Ponude</p>
-                                    </div>
+                                    </div> */}
                                     <div className="userSideMenuItemOption">
 
                                         <div className="userSideMenuItem">
@@ -104,6 +99,8 @@ function UserDashboard(props) {
                                     <div className="userSideMenuItem">
                                         <p onClick={() => {
                                             setDashPage(<FavoritePage />)
+                                            props.getMyFavoriteTasks(User.id)
+
                                         }} >Sacuvano</p>
                                     </div>
                                     <div className="userSideMenuItemOption">

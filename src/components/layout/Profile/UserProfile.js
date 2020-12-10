@@ -3,13 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { FcHome, FcPhoneAndroid, FcFeedback, FcInspection, FcMoneyTransfer, FcApproval } from "react-icons/fc";
 function UserProfile(props) {
-
     let user = props.user[0];
     let services = props.user;
-
-
+    console.log(user);
     return (
         <div className="userProfileWrapper">
+
             {user && <div className="userProfileContent">
                 <div className="userProfileInfo">
                     <div className="userProfileAvatar">

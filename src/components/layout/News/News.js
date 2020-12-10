@@ -5,8 +5,8 @@ function News(props) {
     let news = props.news;
     return (
         <div className='newsWrapper' >
-            <h5 className='newsTabTitle'>NEWS</h5>
-            {news && news.map((item) => (
+            <h3 className='newsTabTitle'>Obavestenja</h3>
+            {news.length > 0 ? news.map((item) => (
                 <div className="newsCard" key={item.newsId}>
                     <div className="newsCardContent">
                         <h3 className="newsCardTitle"> {item.newsTitle} </h3>
@@ -14,7 +14,7 @@ function News(props) {
                         <p className="newsCardDate">{item.newsCreated_at}</p>
                     </div>
                 </div>
-            ))}
+            )) : <p>Nema novih obavestenja</p>}
 
         </div>
     );

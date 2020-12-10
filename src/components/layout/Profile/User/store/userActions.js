@@ -364,21 +364,18 @@ export const addCredit = (value) => {
 }
 // GET MY FAVORITE TASKS
 export const getMyFavoriteTasks = (value) => {
-
+    console.log(value);
     return async (dispatch) => {
         dispatch({
             type: "LOADING_TRUE"
         })
         const response = await Axios.get(`${hosting}/getMyFavoriteTasks/${value}`,)
+        console.log(response);
         dispatch({
             type: "NOTIFICATION",
             payload: response.data.notification
         })
-        if (response.data.status) {
-            notifications.warning(response.data.notification)
-        } else {
-            notifications.fail(response.data.notification)
-        }
+
         dispatch({
             type: "UPDATE_MY_FAVORITE_TASKS",
             payload: response.data.results
@@ -412,14 +409,7 @@ export const addFav = (value) => {
 }
 // DELETE TASK FROM FAVORITE
 export const deleteFromFav = (value) => {
-
     return async (dispatch) => {
         await Axios.get(`${hosting}/deleteFromFav/${value}`)
-
-        // dispatch({
-        //     type: "NOTIFICATION",
-        //     payload: response.data.notification
-        // })
-
     }
 }

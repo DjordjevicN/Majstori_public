@@ -1,16 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
 import { IoLogoLinkedin, IoLogoFacebook, IoLogoInstagram } from "react-icons/io";
-
-
-
-// import * as userActionCreator from '../User/store/userActions'
 function UserPreview(props) {
     let user = props.authUser;
     let myServices = props.myServices;
-    console.log(user);
-    console.log(myServices);
     return (
         <div className='userPreviewWrapper'>
             <div className="userPreviewContent">
@@ -24,7 +17,6 @@ function UserPreview(props) {
                 </div>
                 <div className="userPreviewInformationWrapper">
                     <div className="userPreviewInfoContent">
-
                         <div className='userPreviewContact '>
                             <div className="userPreviewContactTitle">
                                 <h4>Kontakt</h4>
@@ -79,10 +71,8 @@ function UserPreview(props) {
                                     </div>
                                 </div>
                             )) : null}
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -90,16 +80,8 @@ function UserPreview(props) {
 }
 const mapStateToProps = (state) => {
     return {
-
         authUser: state.User.authUser,
         myServices: state.User.myServices
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserPreview);
+export default connect(mapStateToProps, null)(UserPreview);

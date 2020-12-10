@@ -1,4 +1,4 @@
-.applicationDashCard {
+/* .applicationDashCard {
   width: 90%;
   margin: 15px auto;
   border-left: 6px solid var(--green1);
@@ -66,4 +66,44 @@
 .offerWhoLink {
   color: var(--shade6);
   text-decoration: none;
+} */
+.applicationDashCardLink {
+  color: black;
+  text-decoration: none;
+}
+.applicationDashCard {
+  background-color: white;
+  filter: drop-shadow(3px 3px 5px silver);
+}
+.applicationDashCardContent {
+  padding: 10px;
+}
+.applicationDashCardInfo {
+  display: flex;
+  justify-content: space-between;
+}
+.applicationDashCardImage {
+  width: 80px;
+  border-radius: 50%;
+}
+.applicationDashCardAvatarName {
+  display: flex;
+  align-items: center;
+}
+.applicationDashCardName {
+  padding-left: 20px;
+  color: rgb(87, 87, 87);
+}
+.applicationDashCarPrice {
+  background-color: rgb(243, 99, 99);
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 400;
+}
+.applicationDashCardTitle {
+  padding: 10px 0;
 }
