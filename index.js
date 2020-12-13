@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 const auth = require('./auth')
 const cors = require('cors')
+const path = require('path')
 const saltRounds = 10;
 require('dotenv').config()
 // ********************
@@ -40,10 +41,14 @@ app.use(morgan("dev"))
 
 // *********************************************************
 app.get('/', (req, res) => {
-    res.send('ZANATLIJE BACKEND CHECK FULL')
+    res.send('ZANATLIJE BACKEND FULL')
+})
+app.get('/testRoute', (req, res) => {
+    res.send('RADI TEST ROUTE')
 })
 // GET MY DATA
 app.get('/getMyData', auth, (req, res) => {
+
     let id = req.user.user.id
     let sql = `SELECT * FROM user WHERE id = '${id}'`
     let query = db.query(sql, (err, results) => {
@@ -488,6 +493,14 @@ app.get('/deleteFromFav/:id', (req, res) => {
         res.send({ results, notification: ' Deleted' })
     })
 })
+
+// Deploy script
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("frontend/build"))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
 app.listen(port, () => {
     console.log(`Listening on ${port}`);
 })
