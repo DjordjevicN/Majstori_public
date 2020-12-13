@@ -16,11 +16,17 @@ const morgan = require("morgan")
 const port = process.env.PORT || 3001
 // ******************* 
 const db = mysql.createConnection({
-    user: 'root',
+    user: 'vrtirep_nikola',
     host: 'localhost',
-    password: '',
-    database: 'majstori'
+    password: '&zL^dDMAt+NR',
+    database: 'vrtirep_majstori'
 })
+// const db = mysql.createConnection({
+//     user: 'root',
+//     host: 'localhost',
+//     password: '',
+//     database: 'majstori'
+// })
 //connect
 db.connect((err) => {
     if (err) {
@@ -29,22 +35,22 @@ db.connect((err) => {
     console.log('SQL CONNECTED WOOHOO');
 });
 const app = express();
-app.use(cors())
+app.use(cors());
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
 app.use("/uploads", express.static("uploads"))
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(fileUpload({
     createParentPath: true,
     // uriDecodeFileNames: true
 }))
 app.use(morgan("dev"))
-
 // *********************************************************
 app.get('/', (req, res) => {
-    res.send('ZANATLIJE BACKEND FULL')
+    res.send('back radi')
 })
-app.get('/testRoute', (req, res) => {
-    res.send('RADI TEST ROUTE')
+app.get('/test', (req, res) => {
+    res.send(' TEST ROUTE')
 })
 // GET MY DATA
 app.get('/getMyData', auth, (req, res) => {
@@ -493,14 +499,6 @@ app.get('/deleteFromFav/:id', (req, res) => {
         res.send({ results, notification: ' Deleted' })
     })
 })
-
-// Deploy script
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("frontend/build"))
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-    })
-}
 app.listen(port, () => {
     console.log(`Listening on ${port}`);
 })
