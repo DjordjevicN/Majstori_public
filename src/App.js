@@ -25,7 +25,6 @@ import './CSS/Signup.css';
 import './CSS/Dashboard.css';
 import './CSS/form.css';
 import './CSS/selectForm.css';
-
 // PAGES
 import Menu from './components/layout/Menu'
 import Home from './components/layout/Home/Home'
@@ -38,21 +37,21 @@ import UserDashboard from './components/layout/Profile/UserDashboard'
 import AdminDashboard from './components/layout/GOD/AdminDashboard'
 import UserProfile from './components/layout/Profile/UserProfile'
 // import Footer from './components/layout/Footer'
-
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css/animate.compat.css'
 // import { NotificationContainer, NotificationManager } from 'react-notifications';
 function App(props) {
+  let userToken = localStorage.getItem('userToken');
   useEffect(() => {
-    props.getMyData()
     props.getAllTasks()
-
+    if (userToken) {
+      props.getMyData()
+    }
     return
     /* eslint-disable-next-line */
   }, []);
   return (
-
     <BrowserRouter>
       <div className="App">
         <ReactNotification />
@@ -80,7 +79,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-
     loginUser: (email, password) => dispatch(actionCreator.loginUser({ email, password })),
     getMyData: () => dispatch(actionCreator.getMyData()),
     getAllTasks: () => dispatch(globalActionCreator.getAllTasks())

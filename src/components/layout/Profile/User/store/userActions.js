@@ -2,8 +2,6 @@ import Axios from 'axios';
 import * as notifications from '../../../../Notifications'
 let hosting = "http://localhost:3001"
 // CREATE SERVICES 
-
-
 export const createNewService = (value) => {
     return async (dispatch) => {
         dispatch({
@@ -148,8 +146,6 @@ export const getMyData = (value) => {
                 authorization: userToken
             }
         });
-
-
         if (response.data.results.length <= 0) {
             dispatch({
                 type: "NOTIFICATION",
